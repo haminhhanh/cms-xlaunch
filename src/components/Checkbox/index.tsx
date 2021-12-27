@@ -1,0 +1,25 @@
+import React from 'react';
+import Checkbox from 'rc-checkbox';
+import styles from './index.less';
+import classNames from 'classnames';
+import 'rc-checkbox/assets/index.css';
+import Text from '../Text';
+interface CheckBoxProps {
+  className?: string;
+  label?: string;
+  disabled?: boolean;
+}
+const RcCheckBox = React.forwardRef((props: CheckBoxProps, ref: any) => {
+  const { className, label, disabled = false, ...rest } = props;
+
+  const classes: string = classNames(styles.default, className);
+
+  return (
+    <div className={styles.wrapper}>
+      <Checkbox className={classes} disabled={disabled} {...rest} />
+      {label && <Text type="body-14-medium">{label}</Text>}
+    </div>
+  );
+});
+
+export default React.memo(RcCheckBox);

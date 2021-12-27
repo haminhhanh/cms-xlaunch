@@ -1,0 +1,57 @@
+@import '../../global/colors.less';
+
+.radio {
+  &Btn {
+    background: transparent;
+    box-shadow: none;
+    border: none;
+    padding: 0 0 0 25px;
+    label {
+      cursor: pointer;
+      font-weight: 500;
+      font-size: 14px;
+      line-height: 24px;
+      color: @neutral-100;
+      position: relative;
+      &:after {
+        position: absolute;
+        content: '';
+        left: -25px;
+        top: 50%;
+        transform: translateY(-50%);
+        border: 2px solid #a9a8b4;
+        width: 18px;
+        height: 18px;
+        border-radius: 50%;
+      }
+      &:before {
+        position: absolute;
+        content: '';
+        top: 50%;
+        transform: translateY(-50%);
+        left: -21px;
+        background: linear-gradient(
+          90deg,
+          #ff6700 1.25%,
+          #fc8800 51.65%,
+          #ff6700 100%
+        );
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        opacity: 0;
+      }
+    }
+
+    &Active {
+      label {
+        &:before {
+          opacity: 1;
+        }
+        &:after {
+          border-color: @primary;
+        }
+      }
+    }
+  }
+}

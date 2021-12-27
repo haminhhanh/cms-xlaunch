@@ -1,0 +1,37 @@
+@import './colors.less';
+@import './button.less';
+@import './fonts.less';
+@import './text.less';
+@import './sider.less';
+@import './input.less';
+@import './tab.less';
+@import './pagination.less';
+@import './slider.less';
+@import './table.less';
+
+body {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+  background-color: @primary-500;
+  * {
+    &:focus {
+      outline: none;
+    }
+  }
+  ul,
+  li {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .rc-dialog-root {
+    .rc-dialog-mask {
+      backdrop-filter: blur(1px);
+      -webkit-backdrop-filter: blur(1px);
+    }
+    .rc-dialog-wrap {
+      display: flex;
+      align-items: center;
+    }
+  }
+}

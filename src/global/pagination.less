@@ -1,0 +1,54 @@
+@import './colors.less';
+
+.pagination {
+  :global {
+    .rc-pagination-item {
+      background-color: transparent;
+      min-width: 32px;
+      height: 32px;
+      border: none;
+      a {
+        font-style: normal;
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 24px;
+        color: @neutral-0;
+        min-width: 32px;
+        height: 32px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+    }
+    .rc-pagination-item-active {
+      background: linear-gradient(
+        90deg,
+        #ff6700 1.25%,
+        #fb9600 51.65%,
+        #ff6700 100%
+      );
+      border-radius: 4px;
+      min-width: 32px;
+      height: 32px;
+      a {
+        min-width: 32px;
+        height: 32px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+    }
+    .rc-pagination-prev,
+    .rc-pagination-next {
+      .rc-pagination-item-link {
+        border: none;
+        background: transparent;
+        font-style: normal;
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 24px;
+        color: @neutral-0;
+      }
+    }
+  }
+}
