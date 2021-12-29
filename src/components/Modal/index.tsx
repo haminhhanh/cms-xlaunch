@@ -1,39 +1,34 @@
 import React, { useImperativeHandle, forwardRef } from 'react';
 import Dialog from 'rc-dialog';
-import 'rc-dialog/assets/index.css';
-import styles from './index.less';
 import cls from 'classnames';
-import Text, { TextProps } from '../Text';
-
 import { useBoolean } from '@umijs/hooks';
+
+import styles from './index.less';
 
 interface ModalProps {
   visible?: boolean;
   children?: React.ReactNode;
   className?: string;
   closeIcon?: React.ReactNode;
-  title?: string | React.ReactNode;
-  content?: string | React.ReactNode;
-  footer?: string | React.ReactNode;
-  titleProps?: TextProps;
+  title?: string | boolean | React.ReactNode;
+  footer?: string | boolean | React.ReactNode;
   onClose?: () => void;
   width?: number;
   closable?: boolean;
   maskClosable?: boolean;
+  centered?: boolean;
 }
 
-function Modal(props: ModalProps, ref: any) {
+const Modal = (props: ModalProps, ref: any) => {
   const {
     visible,
     children,
     className,
     closeIcon,
-    title,
-    content,
+    title = 'Title',
     footer,
-    titleProps,
+    centered = true,
     onClose,
-    width = 443,
     ...rest
   } = props;
 
@@ -44,54 +39,31 @@ function Modal(props: ModalProps, ref: any) {
     setFalse,
   }));
 
-  const renderTitle = () => {
-    if (!title) return null;
-
-    if (typeof title === 'string') {
-      <Text
-        type="title-24-medium"
-        color="neutral-0"
-        {...titleProps}
-        className="modal-title"
-      >
-        {title}
-      </Text>;
-    }
-
-    return <div className="modal-title">{title}</div>;
-  };
-
-  const renderCloseIcon = (): React.ReactNode => {
-    if (closeIcon) return closeIcon;
-
-    return <img src="/assets/images/ic-close.svg" alt="" />;
-  };
+  const closeIconEle: React.ReactNode = closeIcon || (
+    <img src="/assets/images/ic-close-modal.svg" alt="" />
+  );
 
   return (
-    <>
-      {/* <span onClick={setTrue} ref={ref}>
-        {children}
-      </span> */}
-
-      <Dialog
-        visible={visible ? visible : state}
-        width={width}
-        className={cls([styles.rcModal, className])}
-        onClose={visible ? onClose : setFalse}
-        closeIcon={renderCloseIcon()}
-        {...rest}
-        animation="zoom"
-        maskAnimation="fade"
-      >
-        {/* {renderTitle()}
-
-        {content && <div className="modal-body">{content}</div>}
-
-        {footer && <div className="modal-footer">{footer}</div>} */}
-        {children}
-      </Dialog>
-    </>
+    <Dialog
+      visible={visible ? visible : state}
+      animation="zoom"
+      maskAnimation="fade"
+      title={title}
+      footer={footer}
+      wrapClassName={cls([
+        styles.rcModal,
+        {
+          [`${styles.rcModalCentered}`]: centered,
+        },
+        className,
+      ])}
+      onClose={visible ? onClose : setFalse}
+      closeIcon={closeIconEle}
+      {...rest}
+    >
+      {children}
+    </Dialog>
   );
-}
+};
 
 export default forwardRef(Modal);
