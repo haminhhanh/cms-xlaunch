@@ -13,3 +13,7 @@ Start the dev server,
 ```bash
 $ yarn start
 ```
+
+```
+  Define routes in config routes
+```

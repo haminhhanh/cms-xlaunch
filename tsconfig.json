@@ -3,7 +3,6 @@
     "target": "esnext",
     "module": "esnext",
     "moduleResolution": "node",
-    "resolveJsonModule": true,
     "importHelpers": true,
     "jsx": "react-jsx",
     "esModuleInterop": true,
@@ -20,8 +19,8 @@
     "mock/**/*",
     "src/**/*",
     "config/**/*",
-    ".umirc.ts",
-    "typings.d.ts"
+    "typings.d.ts",
+    "scripts"
   ],
   "exclude": [
     "node_modules",
