@@ -1,12 +1,11 @@
 import React from 'react';
 import classNames from 'classnames';
-
 interface ButtonProps {
   children: React.ReactNode;
   onClick?: (
     event: React.MouseEvent<HTMLButtonElement | HTMLAnchorElement, MouseEvent>,
   ) => void;
-  type?: 'primary' | 'secondary' | 'text';
+  type?: 'primary' | 'secondary' | 'disabled';
   disabled?: boolean;
   className?: string;
   loading?: boolean;
@@ -22,7 +21,7 @@ const Button = React.forwardRef((props: ButtonProps, ref: any) => {
     children,
     onClick,
     className,
-    type = 'primary',
+    type = 'secondary',
     align = 'center',
     disabled = false,
     loading = false,
