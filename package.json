@@ -20,18 +20,20 @@
     ]
   },
   "dependencies": {
-    "@ant-design/pro-layout": "^6.5.0",
-    "react": "17.x",
-    "react-dom": "17.x",
-    "umi": "^3.5.20"
+    "@umijs/hooks": "^1.9.3",
+    "@umijs/preset-react": "1.x",
+    "dayjs": "^1.10.7",
+    "umi": "^3.4.15",
+    "umi-request": "^1.4.0"
   },
   "devDependencies": {
     "@types/react": "^17.0.0",
     "@types/react-dom": "^17.0.0",
-    "@umijs/preset-react": "1.x",
-    "@umijs/test": "^3.5.20",
+    "@umijs/test": "^3.4.15",
     "lint-staged": "^10.0.7",
     "prettier": "^2.2.0",
+    "react": "17.x",
+    "react-dom": "17.x",
     "typescript": "^4.1.2",
     "yorkie": "^2.0.0"
   }
