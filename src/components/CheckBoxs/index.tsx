@@ -41,7 +41,7 @@ const CheckBoxs = React.forwardRef((props: CheckBoxProps, ref: any) => {
             />
 
             {optionsValue.label && (
-              <Text type="body-14-medium">{optionsValue.label}</Text>
+              <Text type="body-p2-regular">{optionsValue.label}</Text>
             )}
           </div>
         );

@@ -7,40 +7,27 @@ export interface TextProps {
   disabled?: boolean;
   onClick?: () => void;
   type:
-    | 'caption-12-light'
-    | 'caption-12-regular'
-    | 'caption-12-medium'
-    | 'caption-12-semi-bold'
-    | 'body-14-regular'
-    | 'body-14-medium'
-    | 'body-14-semi-bold'
-    | 'body-16-regular'
-    | 'body-16-medium'
-    | 'body-16-semi-bold'
-    | 'headline-20-regular'
-    | 'headline-20-medium'
-    | 'headline-20-semi-bold'
-    | 'title-24-medium'
-    | 'title-24-semi-bold'
-    | 'title-30-semi-bold'
-    | 'title-38-semi-bold';
+    | 'body-p2-regular'
+    | 'body-p2-bold'
+    | 'body-p1-regular'
+    | 'body-p1-bold'
+    | 'subheading-p1-regular'
+    | 'subheading-p1-bold'
+    | 'heading-p3-bold'
+    | 'heading-p2-bold'
+    | 'heading-p1-bold'
+    | 'text-AgilePad';
   color?:
-    | 'primary'
-    | 'primary-100'
-    | 'primary-200'
-    | 'primary-300'
-    | 'primary-400'
-    | 'primary-500'
-    | 'neutral-0'
-    | 'neutral-100'
-    | 'neutral-200'
+    | 'primary-blue'
+    | 'primary-violet'
+    | 'neutral-600'
+    | 'neutral-500'
     | 'neutral-300'
-    | 'secondary-400'
-    | 'secondary-500'
-    | 'secondary-300'
-    | 'secondary-200'
-    | 'secondary-100'
-    | 'red-500';
+    | 'neutral-200'
+    | 'neutral-150'
+    | 'neutral-250'
+    | 'neutral-400'
+    | 'neutral-100';
   align?: 'left' | 'center' | 'right';
 }
 
@@ -49,7 +36,7 @@ const Text = (props: TextProps) => {
     children,
     className,
     type,
-    color = 'neutral-0',
+    color = 'neutral-100',
     disabled = false,
     align,
     onClick,

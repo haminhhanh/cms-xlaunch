@@ -1,6 +1,6 @@
 import 'rc-dialog/assets/index.css';
-import '@/global/theme.less';
 import styles from './index.less';
+import '@/global/theme.less';
 
 export default function IndexPage() {
   return (
