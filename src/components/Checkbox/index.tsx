@@ -17,7 +17,7 @@ const RcCheckBox = React.forwardRef((props: CheckBoxProps, ref: any) => {
   return (
     <div className={styles.wrapper}>
       <Checkbox className={classes} disabled={disabled} {...rest} />
-      {label && <Text type="body-14-medium">{label}</Text>}
+      {label && <Text type="body-p2-regular">{label}</Text>}
     </div>
   );
 });

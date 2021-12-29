@@ -1,22 +1,16 @@
-import { setLocale, useIntl } from 'umi';
 import styles from './index.less';
+import '@/global/theme.less';
+import Button from '@/components/Button';
 
 export default function IndexPage() {
-  const intl = useIntl();
-  console.log(
-    process.env.APP__END_POINT,
-    process.env.APP__LOGIN_REDIRECT_ENDPOINT,
-  );
   return (
     <div>
-      <h1
-        className={styles.title}
-        onClick={() => {
-          setLocale(intl.locale === 'en-US' ? 'zh-CN' : 'en-US');
-        }}
-      >
-        {intl.formatMessage({ id: 'index.hello' }, { name: 'abcd' })}
-      </h1>
+      <h1 className={styles.title}>Page index</h1>
+      {/* <Button  type = 'primary'>
+        Connect Wallet
+      </Button>
+      <Button  type = 'secondary'> Connect Wallet</Button>
+      <Button  type = 'disabled'>Disable</Button> */}
     </div>
   );
 }

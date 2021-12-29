@@ -38,11 +38,7 @@ const FormItem = ({
                 )}
               </div>
               {!hideError && hasError && (
-                <Text
-                  type="body-14-medium"
-                  color="red-500"
-                  className={styles.txtFormError}
-                >
+                <Text type="body-p2-regular" className={styles.txtFormError}>
                   {hasError}
                 </Text>
               )}
@@ -62,11 +58,7 @@ const FormItem = ({
             </div>
 
             {!hideError && hasError && (
-              <Text
-                type="body-14-medium"
-                color="red-500"
-                className={styles.txtFormError}
-              >
+              <Text type="body-p2-regular" className={styles.txtFormError}>
                 {hasError}
               </Text>
             )}
