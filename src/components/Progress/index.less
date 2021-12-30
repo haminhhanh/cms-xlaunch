@@ -1,0 +1,28 @@
+@import '../../global/colors.less';
+
+.progress {
+  background: linear-gradient(92.62deg, #323be0 -26.42%, #b13acd 108.59%);
+  border-radius: 5px;
+  text-align: left;
+  height: 10px;
+  border: none;
+}
+.wrapperProgress {
+  max-width: 376px;
+  width: 100%;
+  height: 10px;
+  border-radius: 5px;
+  background: #f1f5f9;
+  border: none;
+  .progress40 {
+    width: 40%;
+    &:extend(.progress);
+  }
+  .progress100 {
+    width: 100%;
+    &:extend(.progress);
+  }
+  .progress0 {
+    background: #f1f5f9;
+  }
+}
