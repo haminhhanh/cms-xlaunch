@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'umi';
+import { Link, useIntl } from 'umi';
 import Button from '../../components/Button';
 import Text from '../../components/Text';
 import { useLocation } from 'umi';
@@ -25,9 +25,57 @@ const headers = [
 
 import styles from './index.less';
 import ConnectWalletModal from '@/components/ConnectWalletModal';
+import {
+  useIsConnected,
+  useWallet,
+  useWalletInfo,
+  useWalletState,
+} from '@/utils/hooks/connect/wallet';
+import { WALLET_TYPE } from '@/utils/constants/wallet';
 
 function Header() {
   const location = useLocation();
+  const intl = useIntl();
+  const walletInfo = useWalletInfo();
+  const isConnected = useIsConnected();
+  const [wallet] = useWalletState();
+  const { disconnectWallet } = useWallet();
+
+  const walletIcon = () => {
+    if (typeof wallet?.walletType === 'string') {
+      switch (wallet.walletType) {
+        case WALLET_TYPE.META_MASK:
+          return '/assets/images/logo-metamask.png';
+        case WALLET_TYPE.COIN_98:
+          return '/assets/images/logo-coin98.png';
+        case WALLET_TYPE.WALLET_CONNECT:
+          return '/assets/images/logo-wallet-connect.png';
+        default:
+          return;
+      }
+    }
+  };
+  const walletName = () => {
+    if (typeof wallet.walletType === 'string') {
+      switch (wallet.walletType) {
+        case WALLET_TYPE.META_MASK:
+          return intl.formatMessage({ id: 'navbar.wallet.Name.metamask' });
+        case WALLET_TYPE.COIN_98:
+          return intl.formatMessage({ id: 'navbar.wallet.name.coin98' });
+        case WALLET_TYPE.WALLET_CONNECT:
+          return intl.formatMessage({
+            id: 'navbar.wallet.name.wallet.connect',
+          });
+        default:
+          return;
+      }
+    }
+  };
+
+  const onDisconnectWallet = () => {
+    disconnectWallet();
+  };
+
   return (
     <div className={styles.headerWrapper}>
       <div className={styles.headerContainer}>
@@ -37,9 +85,9 @@ function Header() {
               <img src="/assets/images/AgilePad.svg" alt="logo" />
             </div>
             <div className={styles.link}>
-              {headers.map((item) => {
+              {headers.map((item, idx) => {
                 return (
-                  <Link to={item.path}>
+                  <Link to={item.path} key={`${idx}`}>
                     <Text
                       type={`${
                         location.pathname === item.path
@@ -61,9 +109,60 @@ function Header() {
             </div>
           </div>
           <div>
-            <ConnectWalletModal>
-              <Button>Connect Wallet</Button>
-            </ConnectWalletModal>
+            {!isConnected && (
+              <ConnectWalletModal>
+                <Button>Connect Wallet</Button>
+              </ConnectWalletModal>
+            )}
+
+            {isConnected && (
+              <>
+                <address className="account-info">
+                  <div className="total bg-dark-2">{walletInfo?.balance}</div>
+                  <div className="address">
+                    <span className="lighter">
+                      {walletInfo?.formattedAddress}
+                    </span>
+                  </div>
+
+                  <div className="wallet-box">
+                    {/* <div className="d-flex justify-between">
+                      <aside>
+                        <span className="neutral-100">
+                          {intl.formatMessage({ id: 'navbar.wallet' })}
+                        </span>
+                      </aside>
+
+                      <aside className={'wallet-type'}>
+                        <span className="white p-14">
+                          <img src={`${walletIcon()}`} alt="" />
+                        </span>
+                        {`${walletName()}`}
+                      </aside>
+                    </div>
+
+                    <div className="d-flex justify-between">
+                      <aside>
+                        <span className="neutral-100">
+                          {intl.formatMessage({
+                            id: 'navbar.connected.network',
+                          })}
+                        </span>
+                      </aside>
+                    </div>
+                    <div className="hr"></div> */}
+                    <Button onClick={onDisconnectWallet}>
+                      {intl.formatMessage({ id: 'navbar.disconnect.wallet' })}
+                    </Button>
+                  </div>
+                </address>
+                {/* <Link href={Links.account}>
+                  <Button className="link-account">
+                    {intl.formatMessage({ id: 'navbar.my.account' })}
+                  </Button>
+                </Link> */}
+              </>
+            )}
           </div>
         </div>
       </div>

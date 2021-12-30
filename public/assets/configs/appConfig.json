@@ -1,0 +1,32 @@
+{
+  "adjustTimeInSeconds": 0,
+  "dashboardRefreshTime": 30,
+  "summonRefreshTime": 12,
+  "firstSaleDate": "20211220",
+  "underMaintain": false,
+
+  "showDashboard": true,
+  "showSpecialSummon": true,
+  "showMarket": true,
+  "showMarketFalseMessage": "Open after first NFT batch sale!",
+
+  "showFullFilter": true,
+  "showSorting": true,
+
+  "showNotification": true,
+  "webHeader": {
+    "htmlContent": "Closed Beta: Dec 27, 2021 7:00 AM (UTC) - Jan 3, 2022 7:00 AM (UTC). <span style=\"color: #333399;\">&nbsp;<strong><a target=\"_blank\" style=\"color: #fefefe;text-decoration: underline;\" href=\"https://medium.com/summoners-arena/event-announcement-summonia-beta-festival-c777fb6d0666/\">More Details!</a>",
+    "startTime": 1640319500,
+    "endTime": 1641019500,
+    "visible": true
+  },
+
+  "showCoin98": false,
+  "showWalletConnect": false,
+
+  "showExchange": true,
+  "showRegister": false,
+
+  "currentBatchID": 2,
+  "version": "Launch Beta - v0.0.10"
+}

@@ -1,3 +1,4 @@
+import { ENVIRONMENTS } from '@/utils/constants/environments';
 import {
   getProvider,
   //   walletConnectProvider,
@@ -7,7 +8,7 @@ import { utils } from 'ethers';
 import numeral from 'numeral';
 import { atom, useRecoilState, useRecoilValue } from 'recoil';
 
-const infoCache = localStorage.getItem('@CAR');
+const infoCache = localStorage.getItem(ENVIRONMENTS.LOCAL_STORAGE_KEY);
 
 let initialInfo;
 if (infoCache) {
@@ -17,15 +18,6 @@ if (infoCache) {
 export const walletAtom = atom({
   key: 'WALLET_STATE',
   default: {
-    userInfo: {
-      playerId: undefined,
-      ASG: undefined,
-      SAE: undefined,
-      name: undefined,
-      nftAddress: undefined,
-      myAddress: '',
-      loading: true,
-    },
     walletInfo: {
       formattedAddress: initialInfo?.formattedAddress,
       address: initialInfo?.address,
@@ -40,11 +32,6 @@ export const walletAtom = atom({
 export const useCurrentAccountAddress = () => {
   const walletState = useRecoilValue(walletAtom);
   return walletState?.walletInfo?.address;
-};
-
-export const useInGameInfo = () => {
-  const walletState = useRecoilValue(walletAtom);
-  return walletState?.userInfo;
 };
 
 export const useWalletInfo = () => {
@@ -94,15 +81,6 @@ export const useWallet = () => {
     //   walletConnectProvider?.disconnect();
     // }
     setWalletState({
-      userInfo: {
-        playerId: undefined,
-        ASG: undefined,
-        SAE: undefined,
-        name: undefined,
-        nftAddress: undefined,
-        myAddress: '',
-        loading: true,
-      },
       walletInfo: {
         formattedAddress: undefined,
         address: undefined,

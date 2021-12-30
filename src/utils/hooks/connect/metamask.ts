@@ -31,7 +31,7 @@ export const connectMetaService = async () => {
     });
   }
 
-  const accounts = await window.ethereum.send('eth_requestAccounts');
+  const accounts = await window?.ethereum.send('eth_requestAccounts');
 
   return accounts.result[0];
 };
