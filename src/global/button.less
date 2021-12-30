@@ -3,7 +3,6 @@
 .btn {
   &:extend(.body-p1-bold);
   display: block;
-  margin: 10px 10px;
   align-items: center;
   height: 48px;
   padding: 0 45px;
@@ -87,9 +86,8 @@
 
   // button secondary
   &-secondary {
-    border: solid 1px transparent;
     background: linear-gradient(92.62deg, #323be0 -26.42%, #b13acd 108.59%);
-
+    border: none;
     &:disabled {
       color: @neutral-100;
       box-shadow: 1px 999px 1px @disabled inset;

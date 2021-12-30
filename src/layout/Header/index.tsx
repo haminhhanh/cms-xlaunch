@@ -1,9 +1,12 @@
 import React from 'react';
 import { Link } from 'umi';
+import Button from '../../components/Button';
+import Text from '../../components/Text';
+import { useLocation } from 'umi';
 
 const headers = [
   {
-    name: 'home',
+    name: 'Home',
     path: '/',
   },
   {
@@ -11,7 +14,7 @@ const headers = [
     path: '/trade',
   },
   {
-    name: 'IDO Pool',
+    name: 'IDO Pools',
     path: '/ido-pool',
   },
   {
@@ -23,11 +26,44 @@ const headers = [
 import styles from './index.less';
 
 function Header() {
+  const location = useLocation();
   return (
-    <div className={styles.header}>
-      {headers.map((item) => {
-        return <Link to={item.path}>{item.name}</Link>;
-      })}
+    <div className={styles.headerWrapper}>
+      <div className={styles.headerContainer}>
+        <div className={styles.headerFlex}>
+          <div className={styles.flex}>
+            <div className={styles.logo}>
+              <img src="/assets/images/AgilePad.svg" alt="logo" />
+            </div>
+            <div className={styles.link}>
+              {headers.map((item) => {
+                return (
+                  <Link to={item.path}>
+                    <Text
+                      type={`${
+                        location.pathname === item.path
+                          ? 'body-p1-regular' && 'active'
+                          : 'body-p1-regular'
+                      }`}
+                      className={styles.text}
+                      color={`${
+                        location.pathname === item.path
+                          ? 'neutral-100'
+                          : 'neutral-200'
+                      }`}
+                    >
+                      {item.name}
+                    </Text>
+                  </Link>
+                );
+              })}
+            </div>
+          </div>
+          <div>
+            <Button>Connect Wallet</Button>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

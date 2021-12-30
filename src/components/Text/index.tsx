@@ -16,7 +16,8 @@ export interface TextProps {
     | 'heading-p3-bold'
     | 'heading-p2-bold'
     | 'heading-p1-bold'
-    | 'text-AgilePad';
+    | 'text-AgilePad'
+    | 'active';
   color?:
     | 'primary-blue'
     | 'primary-violet'
@@ -36,7 +37,7 @@ const Text = (props: TextProps) => {
     children,
     className,
     type,
-    color = 'neutral-100',
+    color = 'neutral-200',
     disabled = false,
     align,
     onClick,
