@@ -73,4 +73,4 @@ const Text = (props: TextProps) => {
   );
 };
 
-export default React.memo(Text);
+export default Text;
