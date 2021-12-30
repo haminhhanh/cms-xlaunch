@@ -24,6 +24,7 @@ const headers = [
 ];
 
 import styles from './index.less';
+import ConnectWalletModal from '@/components/ConnectWalletModal';
 
 function Header() {
   const location = useLocation();
@@ -60,7 +61,9 @@ function Header() {
             </div>
           </div>
           <div>
-            <Button>Connect Wallet</Button>
+            <ConnectWalletModal>
+              <Button>Connect Wallet</Button>
+            </ConnectWalletModal>
           </div>
         </div>
       </div>
