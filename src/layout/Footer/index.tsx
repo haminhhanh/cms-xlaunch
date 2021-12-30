@@ -14,7 +14,7 @@ function Footer() {
         <div className={styles.footerContact}>
           <div className={styles.footerContactIcon}>
             <span className={styles.icon}>
-              <img src="/assets/images/Vector.svg" alt="telegram" />
+              <img src="/assets/images/ic-telegram.svg" alt="telegram" />
             </span>
             <span className={styles.text}>
               <a href="#">

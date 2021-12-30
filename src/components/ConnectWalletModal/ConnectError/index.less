@@ -1,0 +1,48 @@
+@import '../../../global/colors.less';
+
+.modalConnectError {
+  :global {
+    .modal-body {
+      padding-top: 8px !important;
+    }
+  }
+  .content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    .icon {
+      width: 157px;
+      height: 150px;
+      border: 1px solid #000;
+      border-radius: 12px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background: #000c;
+    }
+
+    .description {
+      margin: 24px 0;
+      display: flex;
+      flex-direction: column;
+      text-align: center;
+
+      .txtDownload {
+        margin-top: -8px;
+        cursor: pointer;
+      }
+
+      .manageExt {
+        margin-top: -8px;
+        display: flex;
+        gap: 6px;
+
+        .txtManage {
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}

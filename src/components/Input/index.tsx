@@ -1,6 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
-import { useToggle } from '@umijs/hooks';
+import { useToggle, useUpdateEffect } from '@umijs/hooks';
 import Text from '../Text';
 
 interface InputProps {
@@ -16,6 +16,7 @@ interface InputProps {
   suffix?: React.ReactNode;
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
   value?: any;
+  defaultValue?: any;
 }
 
 const Input = React.forwardRef((props: InputProps, ref: any) => {
@@ -28,11 +29,19 @@ const Input = React.forwardRef((props: InputProps, ref: any) => {
     onClick,
     maxLength,
     suffix,
+    defaultValue,
     ...rest
   } = props;
   const inputRef = (ref as any) || React.createRef<HTMLInputElement>();
 
   const { state: isVisibleEye, toggle: toggleEye } = useToggle(false);
+
+  useUpdateEffect(() => {
+    if (defaultValue && inputRef.current.value !== defaultValue) {
+      inputRef.current.value = defaultValue;
+      if (props?.onChange) props.onChange(defaultValue);
+    }
+  }, [defaultValue]);
 
   const isTypePassword: boolean = type === 'password';
 
@@ -156,4 +165,4 @@ const Input = React.forwardRef((props: InputProps, ref: any) => {
   );
 });
 
-export default React.memo(Input);
+export default Input;

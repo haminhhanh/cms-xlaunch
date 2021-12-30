@@ -2,7 +2,7 @@ import React from 'react';
 import Checkbox from 'rc-checkbox';
 import styles from './index.less';
 import classNames from 'classnames';
-import 'rc-checkbox/assets/index.css';
+
 import Text from '../Text';
 
 type OptionT = {

@@ -1,10 +1,8 @@
 import { useEffect } from 'react';
-import { formatWalletAddress } from '@/utils/normalizers';
-import { useMount, useUpdateEffect } from '@umijs/hooks';
+import { useMount } from '@umijs/hooks';
 import { useWallet } from './wallet';
-// import { walletConnectProvider } from '@/utils/contracts/ultilities';
-import { WALLET_TYPE } from '@/utils/constants/wallet';
 import { atom, useRecoilState } from 'recoil';
+import { formatWalletAddress } from '@/utils/hooks/normalizers';
 
 export const useProvider = () => {
   const {

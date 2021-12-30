@@ -1,73 +1,86 @@
 import { WEB_PATHS } from '@/utils/apis';
 import { useRequest } from '@umijs/hooks';
-import { atom, useRecoilState, useRecoilValue } from 'recoil';
+import {
+  atom,
+  useRecoilState,
+  useRecoilValue,
+  useSetRecoilState,
+} from 'recoil';
+import dayjs from 'dayjs';
 import { web } from '@/utils/apis';
 
-interface ContractAddressInterace {
-  hardCap: {
-    name: string;
-    symbol: string;
-    owner: string;
-    totalSupply: string;
-    address: string;
-  };
-  softCap: {
-    name: string;
-    symbol: string;
-    owner: string;
-    address: string;
-  };
-  nft: {
-    name: string;
-    symbol: string;
-    owner: string;
-    address: string;
-  };
-  tokenTransferProxy: {
-    address: string;
-  };
-  mysterySale: {
-    bucket: string;
-    sold: string;
-    startTime: number;
-    endTime: number;
-    price: string;
-    address: string;
-  };
-  marketplace: {
-    address: string;
-  };
-  auction: {
-    address: string;
-  };
-  gameForwarder: {
-    address: string;
-  };
-  gameWalletBridge: {
-    address: string;
-  };
+import isBetween from 'dayjs/plugin/isBetween';
+
+dayjs.extend(isBetween);
+interface HeroLevelByStarInterface {
+  [key: string]: number;
 }
 
+export interface HeroBatches {
+  id: number;
+  name: string;
+  total: number;
+  isWhitelist: boolean;
+  quota: number;
+  symbol: string;
+}
+interface AppConfig {
+  showRegister: boolean;
+  showExchange: boolean;
+  webHeader:
+    | undefined
+    | {
+        htmlContent: any;
+        startTime: number;
+        endTime: number;
+        visible?: boolean;
+      };
+  adjustTimeInSeconds: number;
+
+  showSpecialSummon: boolean;
+  showMarket: boolean;
+  showMarketFalseMessage: string;
+  firstSaleDate: string;
+  underMaintain: boolean;
+  showNotification: true;
+  summonRefreshTime: number;
+  showFullFilter: boolean;
+  showSorting: boolean;
+  showCoin98: boolean;
+  showWalletConnect: boolean;
+  dashboardRefreshTime: number;
+  heroBatches: HeroBatches[];
+  currentBatchID: number;
+  version: string;
+}
 interface ConfigInterface {
-  loading?: boolean;
-  GAME_NFT?: any;
-  MARKETPLACE?: any;
-  MYSTERY_SALE?: any;
-  ADDRESS?: ContractAddressInterace;
-  CHAIN?: any;
-  AUCTION?: any;
-  HARD_TOKEN?: any;
-  SOFT_TOKEN?: any;
+  loading: boolean;
+  APP_CONFIG: AppConfig;
 }
 
 const initialValue: ConfigInterface = {
   loading: true,
-  GAME_NFT: undefined,
-  MARKETPLACE: undefined,
-  MYSTERY_SALE: undefined,
-  ADDRESS: undefined,
-  CHAIN: undefined,
-  AUCTION: undefined,
+  APP_CONFIG: {
+    webHeader: undefined,
+    underMaintain: false,
+    adjustTimeInSeconds: 0,
+    summonRefreshTime: 15,
+    firstSaleDate: '',
+    showMarketFalseMessage: '',
+    showExchange: true,
+    showNotification: true,
+    showSpecialSummon: true,
+    showMarket: true,
+    showRegister: true,
+    showFullFilter: true,
+    showSorting: true,
+    showCoin98: true,
+    showWalletConnect: true,
+    heroBatches: [],
+    dashboardRefreshTime: 20,
+    currentBatchID: 0,
+    version: 'Launch - v0.0.1',
+  },
 };
 
 export const configAtoms = atom({
@@ -75,40 +88,64 @@ export const configAtoms = atom({
   default: initialValue,
 });
 
-export const useConfigInfo = () => useRecoilValue(configAtoms);
+export const useToast = () => {
+  const config = useRecoilValue(configAtoms);
+  const setConfigState = useSetRecoilState(configAtoms);
+  const webHeader = config?.APP_CONFIG?.webHeader;
+  if (!webHeader) {
+    return {
+      isVisible: false,
+    };
+  }
+
+  const now = new Date().valueOf();
+  const isVisible =
+    webHeader.visible &&
+    now >= webHeader?.startTime * 1000 &&
+    now <= webHeader?.endTime * 1000;
+
+  const hideToast = () => {
+    setConfigState({
+      ...config,
+      APP_CONFIG: {
+        ...config.APP_CONFIG,
+        webHeader: config?.APP_CONFIG?.webHeader
+          ? { ...config.APP_CONFIG.webHeader, visible: false }
+          : undefined,
+      },
+    });
+  };
+
+  return {
+    isVisible,
+    hideToast,
+    htmlContent: webHeader.htmlContent,
+  };
+};
+
+export const useConfigInfo = () => {
+  const config = useRecoilValue(configAtoms);
+  return config;
+};
 
 export const useConfig = () => {
   const [config, setConfig] = useRecoilState(configAtoms);
+
   useRequest(
     async () => {
       const jsons = [
-        WEB_PATHS.GAME_NFT, // 0
-        WEB_PATHS.MARKETPLACE, // 1
-        WEB_PATHS.MYSTERY_SALE, // 2
-        WEB_PATHS.ADDRESS, // 3
-        WEB_PATHS.CHAIN, // 4
-        WEB_PATHS.AUCTION, // 5
-        WEB_PATHS.HARD_TOKEN, // 6
-        WEB_PATHS.SOFT_TOKEN, // 7
+        WEB_PATHS.APP_CONFIG, // 0
       ];
       return Promise.all(jsons.map((path) => web.get(path)));
     },
     {
       onSuccess: (r) => {
         setConfig({
-          GAME_NFT: r[0],
-          MARKETPLACE: r[1],
-          MYSTERY_SALE: r[2],
-          ADDRESS: r[3],
-          CHAIN: r[4],
-          AUCTION: r[5],
-          SOFT_TOKEN: r[6],
-          HARD_TOKEN: r[7],
+          APP_CONFIG: r[0],
           loading: false,
         });
       },
     },
   );
-
   return { loading: config.loading };
 };
