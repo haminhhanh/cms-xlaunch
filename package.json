@@ -29,6 +29,8 @@
     "rc-checkbox": "^2.3.2",
     "rc-field-form": "^1.22.0",
     "recoil": "^0.5.2",
+    "rc-dropdown": "^3.2.0",
+    "rc-table": "^7.21.0",
     "umi": "^3.4.15",
     "umi-request": "^1.4.0"
   },
