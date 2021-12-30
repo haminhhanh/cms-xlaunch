@@ -1,0 +1,30 @@
+@import '../../global/colors.less';
+
+.headerWrapper {
+  background: @neutral-500;
+  .headerContainer {
+    width: 100%;
+    max-width: 1460px;
+    margin: 0 auto;
+    .headerFlex {
+      display: flex;
+      height: 80px;
+      align-items: center;
+      justify-content: space-between;
+      .flex {
+        display: flex;
+        align-items: center;
+      }
+      .logo {
+        margin-right: 100px;
+      }
+      .link {
+        display: flex;
+        align-items: center;
+        .text {
+          margin-right: 50px;
+        }
+      }
+    }
+  }
+}
