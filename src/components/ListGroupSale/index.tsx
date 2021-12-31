@@ -14,7 +14,7 @@ interface ListGroupSaleProps {
 const ListGroupSale = React.forwardRef(
   (props: ListGroupSaleProps, ref: any) => {
     const { className, label, disabled = false, ...rest } = props;
-    const Dropdown = require('rc-dropdown');
+    // const Dropdown = require('rc-dropdown');
 
     const classes: string = classNames(styles.default, className);
 
@@ -26,9 +26,7 @@ const ListGroupSale = React.forwardRef(
               <div></div>
               <div></div>
             </div>
-            <div className={styles.dropdown}>
-              <Dropdown />
-            </div>
+            <div className={styles.dropdown}>{/* <Dropdown /> */}</div>
           </div>
         </div>
       </div>
