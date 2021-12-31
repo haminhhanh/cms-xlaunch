@@ -1,26 +1,95 @@
-.ListGroupSaleWrapper {
+@import '../../global/colors.less';
+
+.flex {
+  display: flex;
+  align-items: center;
+}
+.flexBetween {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.ListGroupSaleWrapper,
+.ListGroupSaleWrapperDown {
+  position: relative;
   max-width: 1460px;
   width: 100%;
   background: linear-gradient(
     180deg,
     rgba(18, 18, 18, 0.8) -145.15%,
-    #121212 100%
+    @neutral-500 100%
   );
+  border-radius: 8px;
   .background {
     background-image: url('/assets/images/Rectangle4915.svg');
     &:extend(.background-img);
-    max-width: 662px;
+    background-position: center;
 
     .backgroundContent {
       background-image: url('/assets/images/Rectangle4914.svg');
       &:extend(.background-img);
-      max-width: 392px;
+      background-position: right;
+    }
+    .buttonLus {
+      background: linear-gradient(
+        103.11deg,
+        #323be0 -118.51%,
+        rgba(50, 59, 224, 0) 116.84%
+      );
+      border: 1px solid transparent;
+      position: relative;
+      border-radius: 8px;
+      padding: 8px 16px;
+      box-sizing: border-box;
+      border-image-slice: 1;
+      border-image-source: linear-gradient(
+        92.62deg,
+        #323be0 -26.42%,
+        #b13acd 108.59%
+      );
+    }
+    .buttonLusBush {
+      margin-right: 10px;
+    }
+    .logo {
+      margin-right: 29px;
+    }
+    .LunaRush {
+      margin-right: 132px;
+    }
+    .icon {
+      margin-top: 14px;
+      &:extend(.flexBetween);
+    }
+    .dropdown {
+      button {
+        background: @neutral-300;
+        border-radius: 8px;
+        border: none;
+        width: 40px;
+        height: 40px;
+        cursor: pointer;
+      }
+    }
+  }
+  .GroupSaleWraper {
+    &:extend(.flexBetween);
+    background: @neutral-400;
+    width: 100%;
+    padding: 48px 64px;
+    border-radius: 0px 0px 8px 8px;
+    transform: translateY(0%);
+    transition-delay: 0s, 0s, 0.3s;
+    .GroupSale {
+      margin: 0px 10px;
     }
   }
 }
+.ListGroupSaleWrapperDown {
+  &:extend(.ListGroupSaleWrapper);
+  border-radius: 8px 8px 0px 0px;
+}
 .background-img {
-  background-position: right;
   background-repeat: no-repeat;
-  background-size: cover;
-  height: 103px;
+  background-size: auto;
 }

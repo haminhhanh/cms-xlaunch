@@ -1,3 +1,89 @@
+.home {
+  position: relative;
+  z-index: 1;
+
+  .landingPage {
+    .backgroundImg {
+      max-width: 1920px;
+      width: 100%;
+      background-image: url('/assets/images/home-landingpage.png'),
+        linear-gradient(
+          180deg,
+          #000000 -36.3%,
+          rgba(1, 1, 1, 0) 18.75%,
+          rgba(1, 1, 1, 0.4322) 66.74%,
+          #000000 96.79%
+        );
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      height: auto;
+      padding: 100px 0 96px 0;
+      .container {
+        max-width: 1460px;
+        width: 100%;
+        margin: 0 auto;
+        display: flex;
+        align-self: center;
+        .backgroundLogo {
+          margin-right: 100px;
+        }
+        .AboutUs {
+          text-align: left;
+          margin-top: 50px;
+        }
+        .content {
+          .item {
+            margin-bottom: 32px;
+          }
+        }
+      }
+    }
+  }
+  .backgroundColor {
+    position: absolute;
+    z-index: 3;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      180deg,
+      #000000 -36.3%,
+      rgba(1, 1, 1, 0) 18.75%,
+      rgba(1, 1, 1, 0.4322) 66.74%,
+      #000000 96.79%
+    );
+    top: 0;
+    left: 0;
+    z-index: 3;
+  }
+  .content {
+    width: 100%;
+    max-width: 1460px;
+    margin: 0 auto;
+    .step {
+      .header {
+        text-align: center;
+      }
+      .listStep {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+    }
+  }
+}
 .title {
-  background: rgb(121, 242, 157);
+  font-size: 72px;
+  background: -webkit-linear-gradient(
+    92.75deg,
+    #323be0 -57.33%,
+    #b13acd 106.46%
+  );
+  font-weight: bold;
+  font-size: 38px;
+  line-height: 46px;
+  margin-top: -25px;
+  margin-bottom: 40px;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }

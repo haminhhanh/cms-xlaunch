@@ -28,7 +28,8 @@ export interface TextProps {
     | 'neutral-150'
     | 'neutral-250'
     | 'neutral-400'
-    | 'neutral-100';
+    | 'neutral-100'
+    | 'gradient';
   align?: 'left' | 'center' | 'right';
 }
 
