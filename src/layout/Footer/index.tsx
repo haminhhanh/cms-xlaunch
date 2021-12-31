@@ -26,7 +26,7 @@ function Footer() {
           </div>
           <div className={styles.footerContactIcon}>
             <span className={styles.icon}>
-              <img src="/assets/images/_x30_4.Twitter.svg" alt="twitter" />
+              <img src="/assets/images/Twitter.svg" alt="twitter" />
             </span>
             <span className={styles.text}>
               <a href="#">

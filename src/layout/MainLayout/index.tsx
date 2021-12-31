@@ -24,7 +24,7 @@ const Provider = ({ children }: { children: React.ReactNode }) => {
   return (
     <div className={styles.mainLayout}>
       <Header />
-      <div>{children}</div>
+      <div className={styles.children}>{children}</div>
       <Footer />
     </div>
   );
