@@ -70,13 +70,32 @@ export default function IndexPage() {
             <Step label="Claim" step={5} />
           </div>
         </div>
+        <div className={styles.tier}>
+          <div className={styles.header}>
+            <div>
+              <img src="/assets/images/TIER.svg" />
+            </div>
+            <div className={styles.title}>Tier</div>
+          </div>
+          <div className={styles.listCard}>
+            <div className={styles.listCardItem}>
+              <Card />
+            </div>
+            <div className={styles.listCardItem}>
+              <Card />
+            </div>
+            <div className={styles.listCardItem}>
+              <Card />
+            </div>
+            <div className={styles.listCardItem}>
+              <Card />
+            </div>
+            <div className={styles.listCardItem}>
+              <Card />
+            </div>
+          </div>
+        </div>
       </div>
-
-      {/* <Step /> */}
-      {/* <Card />
-      <Progress />
-      <DetailGroupSale />
-      <ListGroupSale /> */}
     </div>
   );
 }

@@ -16,6 +16,7 @@ const Card = React.forwardRef((props: CardProps, ref: any) => {
   return (
     <div className={styles.Cardwrapper}>
       <div className={styles.CardBackground}>
+        <div className={styles.Background} />
         <div className={styles.CardContent}>
           <Text type="heading-p2-bold" color="neutral-100">
             Brozen
