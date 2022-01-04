@@ -2,14 +2,24 @@
   max-width: 468px;
   width: 100%;
   .CardBackground {
-    background-image: url('/assets/images/background-card.svg'),
-      linear-gradient(180deg, #212121 -3.35%, rgba(32, 32, 34, 0) 167.48%);
+    background-image: linear-gradient(
+        180deg,
+        #212121 -3.35%,
+        rgba(32, 32, 34, 0) 167.48%
+      ),
+      url('/assets/images/background-card.svg');
     padding: 40px 33px 36px 37px;
     text-align: center;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
     border-radius: 8px;
+    position: relative;
+    background-color: linear-gradient(
+      180deg,
+      #212121 -3.35%,
+      rgba(32, 32, 34, 0) 167.48%
+    );
 
     .CardItem {
       margin-bottom: 24px;
