@@ -28,6 +28,12 @@ export default [
         component: '@/pages/Launchpad',
         title: 'navbar.launchpad',
       },
+      {
+        exact: true,
+        path: '/launchpad/:id',
+        component: '@/pages/Launchpad/[id]',
+        title: 'navbar.launchpad.detail',
+      },
     ],
   },
 ];

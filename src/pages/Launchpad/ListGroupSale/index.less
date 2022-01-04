@@ -1,5 +1,8 @@
-@import '../../global/colors.less';
+@import '../../../global/colors.less';
 
+.background-img {
+  background-repeat: no-repeat;
+}
 .flex {
   display: flex;
   align-items: center;
@@ -14,22 +17,20 @@
   position: relative;
   max-width: 1460px;
   width: 100%;
+  border-radius: 8px;
   background: linear-gradient(
     180deg,
     rgba(18, 18, 18, 0.8) -145.15%,
-    @neutral-500 100%
+    #121212 100%
   );
-  border-radius: 8px;
   .background {
-    background-image: url('/assets/images/Rectangle4915.svg');
-    &:extend(.background-img);
-    background-position: center;
+    background-image: url('/assets/images/Rectangle4915.svg'),
+      url('/assets/images/Rectangle4914.svg');
 
-    .backgroundContent {
-      background-image: url('/assets/images/Rectangle4914.svg');
-      &:extend(.background-img);
-      background-position: right;
-    }
+    &:extend(.background-img);
+    background-repeat: no-repeat;
+    background-position: center, right;
+    background-size: content, content;
     .buttonLus {
       background: linear-gradient(
         103.11deg,
@@ -88,8 +89,4 @@
 .ListGroupSaleWrapperDown {
   &:extend(.ListGroupSaleWrapper);
   border-radius: 8px 8px 0px 0px;
-}
-.background-img {
-  background-repeat: no-repeat;
-  background-size: auto;
 }
