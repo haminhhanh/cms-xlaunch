@@ -2,6 +2,7 @@ import React from 'react';
 import classNames from 'classnames';
 import { useToggle, useUpdateEffect } from '@umijs/hooks';
 import Text from '../Text';
+import styles from './index.less';
 
 interface InputProps {
   className?: string;
@@ -122,13 +123,14 @@ const Input = React.forwardRef((props: InputProps, ref: any) => {
   };
 
   return (
-    <div className="wrapper-input">
+    <div className={styles.wrapperInput}>
       {label && type !== 'hidden' && (
         <Text
-          type="body-7"
-          color="neutral-200"
-          className="input-label"
+          type="body-p1-regular"
+          color="neutral-250"
+          className={styles.inputLabel}
           onClick={handleClickLabel}
+          align="left"
         >
           {label}
         </Text>

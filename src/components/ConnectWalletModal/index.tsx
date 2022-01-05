@@ -133,7 +133,7 @@ const ConnectWalletModal = ({ children }: { children: React.ReactNode }) => {
             <img src="/assets/images/ic-metamask.svg" alt="" />
           </li>
 
-          {/* <li className={styles.walletItem}>
+          <li className={styles.walletItem}>
             <Text color="neutral-100" type="subheading-p1-regular">
               TrustWallet
             </Text>
@@ -173,7 +173,7 @@ const ConnectWalletModal = ({ children }: { children: React.ReactNode }) => {
               MathWallet
             </Text>
             <img src="/assets/images/ic-math.svg" alt="" />
-          </li> */}
+          </li>
         </ul>
 
         <a href="#">Learn how to connect?</a>
