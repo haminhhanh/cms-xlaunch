@@ -1,0 +1,30 @@
+@import '../../global/colors.less';
+
+.wrapperInput {
+  background: @neutral-400;
+  border-radius: 8px;
+  padding: 15px 0px 16px 24px;
+  text-align: left;
+  .inputLabel {
+    margin-bottom: 5px;
+  }
+  input {
+    background: transparent;
+    width: 100%;
+    border: none;
+    font-size: 20px;
+    line-height: 28px;
+    color: #b13acd;
+    font-weight: 700;
+    &::placeholder {
+      color: #b13acd;
+      font-size: 20px;
+      line-height: 28px;
+    }
+  }
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}

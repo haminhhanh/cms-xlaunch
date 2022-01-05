@@ -30,4 +30,7 @@ export default {
     'Can not use Metamask while Coin98 is enabled.',
   'connectWallet.disabledCoin98': 'You can disable Coin98 extension in',
   'connectWallet.manageExtensions': 'Manage Extensions',
+
+  // Launchpad
+  'Open-in': 'Open in',
 };

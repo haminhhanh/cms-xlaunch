@@ -42,12 +42,22 @@
       border-radius: 8px;
       padding: 8px 16px;
       box-sizing: border-box;
-      border-image-slice: 1;
-      border-image-source: linear-gradient(
-        92.62deg,
-        #323be0 -26.42%,
-        #b13acd 108.59%
-      );
+      cursor: pointer;
+      &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        border-radius: 8px;
+        padding: 1px;
+        background: linear-gradient(92.62deg, #323be0 -26.42%, #b13acd 108.59%);
+        -webkit-mask: linear-gradient(#fff 0 0) content-box,
+          linear-gradient(#fff 0 0);
+        -webkit-mask-composite: destination-out;
+        mask-composite: exclude;
+      }
     }
     .buttonLusBush {
       margin-right: 10px;
@@ -81,8 +91,11 @@
     border-radius: 0px 0px 8px 8px;
     transform: translateY(0%);
     transition-delay: 0s, 0s, 0.3s;
+    flex-wrap: wrap;
+
     .GroupSale {
-      margin: 0px 10px;
+      width: calc(33.33% - 28px);
+      margin: 0 14px 10px;
     }
   }
 }

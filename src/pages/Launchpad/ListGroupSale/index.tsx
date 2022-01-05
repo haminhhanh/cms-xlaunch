@@ -14,11 +14,12 @@ interface ListGroupSaleProps {
   className?: string;
   label?: string;
   disabled?: boolean;
+  id?: any;
 }
 
 const ListGroupSale = React.forwardRef(
   (props: ListGroupSaleProps, ref: any) => {
-    const { className, label, disabled = false, ...rest } = props;
+    const { className, label, disabled = false, id, ...rest } = props;
     const [dropdown, setDropdown] = useState(false);
 
     const classes: string = classNames(styles.default, className);
@@ -26,13 +27,13 @@ const ListGroupSale = React.forwardRef(
     const GroupSale = () => (
       <div className={styles.GroupSaleWraper}>
         <div className={styles.GroupSale}>
-          <DetailGroupSale />
+          <DetailGroupSale id={id} />
         </div>
         <div className={styles.GroupSale}>
-          <DetailGroupSale />
+          <DetailGroupSale id={id} />
         </div>
         <div className={styles.GroupSale}>
-          <DetailGroupSale />
+          <DetailGroupSale id={id} />
         </div>
       </div>
     );
@@ -68,10 +69,18 @@ const ListGroupSale = React.forwardRef(
                   </div>
                 </div>
                 <div className={styles.buttonLusBush}>
-                  <button className={styles.buttonLus}>LUS / BUSD</button>
+                  <button className={styles.buttonLus}>
+                    <Text type="body-p1-bold" color="neutral-100">
+                      LUS / BUSD
+                    </Text>
+                  </button>
                 </div>
 
-                <button className={styles.buttonLus}> LUS</button>
+                <button className={styles.buttonLus}>
+                  <Text type="body-p1-bold" color="neutral-100">
+                    LUS
+                  </Text>
+                </button>
               </div>
               <div className={styles.dropdown}>
                 <button onClick={() => setDropdown(!dropdown)}>

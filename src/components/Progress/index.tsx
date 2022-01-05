@@ -10,21 +10,31 @@ interface ProgressProps {
   percent?: number;
 }
 const Progress = React.forwardRef((props: ProgressProps, ref: any) => {
-  const { className, label, disabled = false, percent = 100, ...rest } = props;
+  const { className, label, disabled = false, percent = 0, ...rest } = props;
 
   const classes: string = classNames(styles.default, className);
 
   return (
     <div className={styles.wrapperProgress}>
-      <div
-        className={
-          percent === 0
-            ? styles.progress0
-            : percent === 40
-            ? styles.progress40
-            : styles.progress100
-        }
-      />
+      <div className={styles.BorderProgress}>
+        <div
+          className={
+            percent === 0
+              ? styles.progress0
+              : percent === 40
+              ? styles.progress40
+              : styles.progress100
+          }
+        />
+      </div>
+      <div className={styles.numberProgress}>
+        <Text type="body-p1-bold" color="neutral-100">
+          {percent === 0 ? '0%' : percent === 40 ? '40%' : '100%'}
+        </Text>
+        <Text type="body-p1-bold" color="neutral-100">
+          100%
+        </Text>
+      </div>
     </div>
   );
 });

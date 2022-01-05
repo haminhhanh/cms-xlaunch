@@ -143,10 +143,10 @@ export default function LaunchpadPage() {
       </div>
       <div className={styles.ListGroupSale}>
         <div className={styles.ListGroupSaleItem}>
-          <ListGroupSale />
+          <ListGroupSale id={1} />
         </div>
         <div className={styles.ListGroupSaleItem}>
-          <ListGroupSale />
+          <ListGroupSale id={2} />
         </div>
       </div>
     </div>

@@ -6,7 +6,7 @@ import Step from '@/components/Step';
 import Card from '@/components/Card';
 import Progress from '@/components/Progress';
 import DetailGroupSale from '@/components/DetailGroupSale';
-import ListGroupSale from '@/components/ListGroupSale';
+import ListGroupSale from './Launchpad/ListGroupSale';
 import Text from '@/components/Text';
 
 export default function IndexPage() {

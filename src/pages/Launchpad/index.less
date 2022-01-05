@@ -44,7 +44,27 @@
         rgba(18, 18, 18, 0) 149.87%
       );
       box-shadow: 0px 0px 10px 5px rgba(187, 20, 226, 0.25);
+      position: relative;
       border-radius: 8px;
+      &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        border-radius: 8px;
+        padding: 2px;
+        background: linear-gradient(
+          92.81deg,
+          rgba(50, 59, 224, 0.5) -5.17%,
+          rgba(177, 58, 205, 0.5) 172.83%
+        );
+        -webkit-mask: linear-gradient(#fff 0 0) content-box,
+          linear-gradient(#fff 0 0);
+        -webkit-mask-composite: destination-out;
+        mask-composite: exclude;
+      }
       .leftContent {
         margin-right: 110px;
       }
@@ -106,4 +126,153 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+//detail launchpad
+
+.background {
+  background: linear-gradient(180deg, #212121 -6.76%, rgba(33, 33, 33, 0) 100%);
+  border-radius: 8px;
+}
+
+.openInTime {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 18px 33px 40px 33px;
+  background: linear-gradient(
+    180deg,
+    rgba(33, 33, 33, 0.8) 0%,
+    rgba(33, 33, 33, 0) 92.79%
+  );
+  border-radius: 8px;
+  max-width: 468px;
+  margin: 0 auto;
+  .border {
+    border: 1px solid #5b5b5b;
+    height: 28px;
+    margin-top: 8px;
+  }
+}
+
+.wrapperLaunchDetail {
+  max-width: 1460px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 26px 0 100px 0px;
+
+  .left,
+  .right {
+    width: calc(50% - 14px);
+    &:extend(.background);
+  }
+
+  .wrapperLaunchDetailTop {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 56px;
+    .left {
+      padding: 27px 28px 23px 30px;
+      background: linear-gradient(
+        180deg,
+        @neutral-400 -6.76%,
+        rgba(33, 33, 33, 0) 100%
+      );
+      border-radius: 8px;
+      margin-right: 14px;
+      .logoTitle {
+        display: flex;
+        align-items: center;
+        margin-bottom: 26px;
+        .logo {
+          margin-right: 24px;
+        }
+        .text {
+          margin-bottom: 16px;
+        }
+      }
+    }
+    .right {
+      margin-left: 14px;
+      padding: 27px 28px 23px 30px;
+      background: linear-gradient(
+        180deg,
+        @neutral-400 -6.76%,
+        rgba(33, 33, 33, 0) 100%
+      );
+      border-radius: 8px;
+      .swap {
+        margin-bottom: 30px;
+        .titleSwap {
+          &:extend(.flex);
+        }
+      }
+      .progess {
+        .titleProgess {
+          margin-bottom: 8px;
+        }
+      }
+    }
+  }
+  .wrapperLaunchDetailContent {
+    text-align: center;
+    .openIn {
+      margin-bottom: 200px;
+
+      .openInTitle {
+        margin-bottom: 24px;
+      }
+    }
+    .Investment {
+      padding: 26px 0px 30px 28px;
+      text-align: left;
+      margin-bottom: 200px;
+      &:extend(.background);
+      .InvestmentHeader {
+        margin-bottom: 28px;
+      }
+      .InvestmentContent {
+        display: flex;
+        align-items: center;
+        .InvestmentContentItem {
+          margin-right: 96px;
+        }
+      }
+    }
+    .Available {
+      max-width: 468px;
+      width: 100%;
+      margin: 0 auto;
+      .AvailableTitle {
+        margin-bottom: 24px;
+      }
+      .AvailableTime {
+        margin-bottom: 10px;
+      }
+      .AvailableDate {
+        margin-bottom: 8px;
+      }
+      .AvailableMinMax {
+        max-width: 262px;
+        width: 100%;
+        margin: 0 auto;
+        margin-bottom: 38px;
+        &:extend(.flex);
+        .AvailableMinMaxItem {
+          display: flex;
+          align-items: center;
+        }
+      }
+      .AvailableInput {
+        margin-bottom: 48px;
+      }
+      .AvailableSubmit {
+        button {
+          margin: 0 auto;
+          width: 220px;
+          height: 48px;
+        }
+      }
+    }
+  }
 }

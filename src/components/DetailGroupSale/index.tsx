@@ -5,12 +5,14 @@ import 'rc-checkbox/assets/index.css';
 import Text from '../Text';
 import Progress from '@/components/Progress';
 import Button from '@/components/Button';
+import { Link } from 'umi';
 
 interface DetailGroupSaleProps {
   className?: string;
   label?: string;
   disabled?: boolean;
   percent?: number;
+  id?: any;
 }
 const DetailGroupSale = React.forwardRef(
   (props: DetailGroupSaleProps, ref: any) => {
@@ -18,7 +20,8 @@ const DetailGroupSale = React.forwardRef(
       className,
       label,
       disabled = false,
-      percent = 100,
+      percent = 0,
+      id,
       ...rest
     } = props;
 
@@ -76,10 +79,6 @@ const DetailGroupSale = React.forwardRef(
             <div className={styles.progress}>
               <Progress />
             </div>
-
-            <Text type="body-p1-bold" color="neutral-100" align="right">
-              {percent === 0 ? '0%' : percent === 40 ? '40%' : '100%'}
-            </Text>
           </div>
           <div className={styles.flexBetween}>
             <div>
@@ -90,11 +89,11 @@ const DetailGroupSale = React.forwardRef(
                 5 days: 22h : 53m : 5s
               </Text>
             </div>
-            <div>
+            <Link to={`/launchpad/${id}`}>
               <Button type="primary" className={styles.buttonDetail}>
                 View Detail
               </Button>
-            </div>
+            </Link>
           </div>
         </div>
       </div>
