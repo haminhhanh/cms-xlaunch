@@ -1,8 +1,18 @@
-import React from 'react';
-import { Link, useIntl } from 'umi';
+import React, { useEffect } from 'react';
+import { useLocation, Link, useIntl } from 'umi';
+
 import Button from '../../components/Button';
 import Text from '../../components/Text';
-import { useLocation } from 'umi';
+import ConnectWalletModal from '@/components/ConnectWalletModal';
+import {
+  useIsConnected,
+  useWallet,
+  useWalletInfo,
+  useWalletState,
+} from '@/utils/hooks/connect/wallet';
+import { WALLET_TYPE } from '@/utils/constants/wallet';
+
+import styles from './index.less';
 
 const headers = [
   {
@@ -23,23 +33,19 @@ const headers = [
   },
 ];
 
-import styles from './index.less';
-import ConnectWalletModal from '@/components/ConnectWalletModal';
-import {
-  useIsConnected,
-  useWallet,
-  useWalletInfo,
-  useWalletState,
-} from '@/utils/hooks/connect/wallet';
-import { WALLET_TYPE } from '@/utils/constants/wallet';
-
 function Header() {
   const location = useLocation();
   const intl = useIntl();
   const walletInfo = useWalletInfo();
   const isConnected = useIsConnected();
   const [wallet] = useWalletState();
-  const { disconnectWallet } = useWallet();
+  const { disconnectWallet, getWalletBalanceRequest } = useWallet();
+
+  useEffect(() => {
+    if (wallet?.walletInfo?.address) {
+      getWalletBalanceRequest.run(wallet?.walletInfo?.address);
+    }
+  }, [wallet?.walletInfo?.address]);
 
   const walletIcon = () => {
     if (typeof wallet?.walletType === 'string') {
@@ -117,12 +123,14 @@ function Header() {
 
             {isConnected && (
               <>
-                <address className="account-info">
-                  <div className="total bg-dark-2">{walletInfo?.balance}</div>
-                  <div className="address">
-                    <span className="lighter">
-                      {walletInfo?.formattedAddress}
-                    </span>
+                <address className={styles.accountInfo}>
+                  <div className={styles.accountBalance}>
+                    <div className="total bg-dark-2">{walletInfo?.balance}</div>
+                    <div className="address">
+                      <span className="lighter">
+                        {walletInfo?.formattedAddress}
+                      </span>
+                    </div>
                   </div>
 
                   <div className="wallet-box">

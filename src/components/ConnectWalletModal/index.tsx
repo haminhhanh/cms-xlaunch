@@ -16,7 +16,7 @@ import useRequest from '@ahooksjs/use-request';
 
 const ConnectWalletModal = ({ children }: { children: React.ReactNode }) => {
   const walletType = useRef('');
-  const { walletState, setWalletState, getWalletBalanceRequest } = useWallet();
+  const { walletState, setWalletState } = useWallet();
 
   const {
     isVisibleConnectWallet,
@@ -26,7 +26,8 @@ const ConnectWalletModal = ({ children }: { children: React.ReactNode }) => {
   if (walletState.walletType) {
     walletType.current = walletState.walletType;
   }
-
+  // const isShowCoin98: boolean = useShowCoin98();
+  // const isShowWalletConnect: boolean = useShowWalletConnect();
   const [isConnectError, setIsConnectError] = React.useState<boolean>(false);
 
   const onConnectSuccess = (address: string, walletType: string) => {
@@ -46,7 +47,6 @@ const ConnectWalletModal = ({ children }: { children: React.ReactNode }) => {
       // @ts-ignore
       walletInfo: { address, formattedAddress },
     });
-
     onCloseConnectWallet();
   };
 
@@ -54,7 +54,6 @@ const ConnectWalletModal = ({ children }: { children: React.ReactNode }) => {
     manual: true,
     onSuccess: (address: string) => {
       onConnectSuccess(address, WALLET_TYPE.META_MASK);
-      getWalletBalanceRequest.run(address);
     },
     onError: (error: any) => {
       console.log('🚀 ~ error', error);

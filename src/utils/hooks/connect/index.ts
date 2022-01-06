@@ -1,3 +1,4 @@
+import { ENVIRONMENTS } from '@/utils/constants/environments';
 import { useEffect } from 'react';
 import { useMount } from '@umijs/hooks';
 import { useWallet } from './wallet';
@@ -5,30 +6,39 @@ import { atom, useRecoilState } from 'recoil';
 import { formatWalletAddress } from '@/utils/hooks/normalizers';
 
 export const useProvider = () => {
-  const {
-    disconnectWallet,
-    walletState,
-    setWalletState,
-    getWalletBalanceRequest,
-  } = useWallet();
+  const { disconnectWallet, walletState, setWalletState } = useWallet();
 
   const walletType = walletState?.walletType;
-  const address = walletState?.walletInfo?.address;
 
-  useMount(() => {
+  useMount(async () => {
     if (walletState.cacheInfo) {
-      setWalletState({
-        ...walletState,
-        walletType: walletState.cacheInfo.walletType,
-      });
-      getWalletBalanceRequest.run(address);
+      if (!walletState?.cacheInfo?.walletType) {
+        disconnectWallet();
+      } else if (window?.ethereum) {
+        const result = await window.ethereum.send('eth_requestAccounts');
+        if (
+          result &&
+          result?.result[0] &&
+          result.result[0].toLowerCase() ===
+            walletState?.cacheInfo?.address.toLowerCase()
+        ) {
+          setWalletState({
+            ...walletState,
+            walletType: walletState.cacheInfo.walletType,
+          });
+        } else {
+          disconnectWallet();
+        }
+      } else {
+        disconnectWallet();
+      }
     }
   });
 
   const saveUserInfo = (account: string) => {
     const formattedAddress = formatWalletAddress(account);
     localStorage.setItem(
-      '@CAR',
+      ENVIRONMENTS.LOCAL_STORAGE_KEY,
       JSON.stringify({
         address: account,
         formattedAddress,
@@ -49,9 +59,10 @@ export const useProvider = () => {
     if (window?.ethereum) {
       window?.ethereum.on('accountsChanged', (accounts: any) => {
         const account = accounts[0];
-
         if (account) {
           saveUserInfo(account);
+        } else {
+          disconnectWallet();
         }
       });
       window?.ethereum.on('chainChanged', () => {
@@ -60,6 +71,8 @@ export const useProvider = () => {
       window?.ethereum.on('disconnect', () => {
         disconnectWallet();
       });
+    } else if (!window?.ethereum) {
+      disconnectWallet();
     }
   }, [walletType]);
 };
