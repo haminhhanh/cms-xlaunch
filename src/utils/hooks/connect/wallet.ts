@@ -51,7 +51,7 @@ export const useWalletState = () => {
 export const useWallet = () => {
   const [walletState, setWalletState] = useRecoilState(walletAtom);
 
-  const getWalletBalanceRequest = useRequest(
+  const getWalletBalanceRequest: any = useRequest(
     async (address) => {
       const provider = await getProvider();
       const balance = provider.send('eth_getBalance', [address, 'latest']);
@@ -67,10 +67,24 @@ export const useWallet = () => {
         };
       },
       onSuccess: (balance) => {
+        const infoCache = localStorage.getItem(ENVIRONMENTS.LOCAL_STORAGE_KEY);
+        let initialInfo;
+        if (infoCache) {
+          initialInfo = JSON.parse(infoCache);
+        }
+
         setWalletState({
           ...walletState,
-          walletInfo: { ...walletState.walletInfo, ...balance },
+          walletInfo: {
+            ...walletState.walletInfo,
+            formattedAddress: initialInfo?.formattedAddress,
+            address: initialInfo?.address,
+            ...balance,
+          },
         });
+      },
+      onError: (error: any) => {
+        console.log('🚀 ~ error', error);
       },
     },
   );

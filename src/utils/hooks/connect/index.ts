@@ -21,6 +21,7 @@ export const useProvider = () => {
         ...walletState,
         walletType: walletState.cacheInfo.walletType,
       });
+      getWalletBalanceRequest.run(address);
     }
   });
 
@@ -36,15 +37,6 @@ export const useProvider = () => {
     );
     setWalletState({
       ...walletState,
-      userInfo: {
-        playerId: undefined,
-        ASG: undefined,
-        SAE: undefined,
-        name: undefined,
-        nftAddress: undefined,
-        myAddress: '',
-        loading: true,
-      },
       walletInfo: {
         ...walletState.walletInfo,
         address: account,
@@ -57,6 +49,7 @@ export const useProvider = () => {
     if (window?.ethereum) {
       window?.ethereum.on('accountsChanged', (accounts: any) => {
         const account = accounts[0];
+
         if (account) {
           saveUserInfo(account);
         }
