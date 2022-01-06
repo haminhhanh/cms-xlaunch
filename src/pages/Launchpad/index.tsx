@@ -2,9 +2,12 @@ import styles from './index.less';
 import Text from '@/components/Text';
 import ListGroupSale from '../Launchpad/ListGroupSale';
 import React, { useState } from 'react';
+import { useWalletInfo } from '@/utils/hooks/connect/wallet';
 
 export default function LaunchpadPage() {
   const [activeTab, setActiveTab] = useState('next-ido');
+  const walletInfo = useWalletInfo();
+
   return (
     <div className={styles.wrapperLaunch}>
       <div className={styles.heading}>
@@ -37,7 +40,7 @@ export default function LaunchpadPage() {
                 </span>
                 <span className={styles.itemContent}>
                   <Text color="primary-violet" type="subheading-p1-bold">
-                    0
+                    {walletInfo?.balance}
                   </Text>
                 </span>
               </div>
