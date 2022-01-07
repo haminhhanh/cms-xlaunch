@@ -6,22 +6,26 @@ import { atom, useRecoilState } from 'recoil';
 import { formatWalletAddress } from '@/utils/hooks/normalizers';
 
 export const useProvider = () => {
-  const { disconnectWallet, walletState, setWalletState } = useWallet();
+  const { disconnectWallet, walletState, setWalletState, provider } =
+    useWallet();
 
   const walletType = walletState?.walletType;
+  // console.log('window',walletState?.cacheInfo?.walletType)
 
   useMount(async () => {
     if (walletState.cacheInfo) {
       if (!walletState?.cacheInfo?.walletType) {
         disconnectWallet();
-      } else if (window?.ethereum) {
-        const result = await window.ethereum.send('eth_requestAccounts');
-        if (
-          result &&
-          result?.result[0] &&
-          result.result[0].toLowerCase() ===
-            walletState?.cacheInfo?.address.toLowerCase()
-        ) {
+      } else if (provider) {
+        const result = await provider.request({
+          method: 'eth_requestAccounts',
+        });
+
+        let currentAddress;
+
+        currentAddress = result.result[0].toLowerCase();
+
+        if (currentAddress === walletState?.cacheInfo?.address.toLowerCase()) {
           setWalletState({
             ...walletState,
             walletType: walletState.cacheInfo.walletType,
@@ -45,6 +49,7 @@ export const useProvider = () => {
         walletType,
       }),
     );
+    console.log('account', account);
     setWalletState({
       ...walletState,
       walletInfo: {
@@ -56,8 +61,8 @@ export const useProvider = () => {
   };
 
   useEffect(() => {
-    if (window?.ethereum) {
-      window?.ethereum.on('accountsChanged', (accounts: any) => {
+    if (provider) {
+      provider.on('accountsChanged', (accounts: any) => {
         const account = accounts[0];
         if (account) {
           saveUserInfo(account);
@@ -65,16 +70,16 @@ export const useProvider = () => {
           disconnectWallet();
         }
       });
-      window?.ethereum.on('chainChanged', () => {
+      provider.on('chainChanged', () => {
         window.location.reload();
       });
-      window?.ethereum.on('disconnect', () => {
+      provider.on('disconnect', () => {
         disconnectWallet();
       });
-    } else if (!window?.ethereum) {
+    } else if (!provider) {
       disconnectWallet();
     }
-  }, [walletType]);
+  }, [provider]);
 };
 
 /**

@@ -6,13 +6,12 @@ import { connectCoin98Service } from '@/utils/hooks/connect/coin98';
 import { connectMetaService } from '@/utils/hooks/connect/metamask';
 import { useWallet } from '@/utils/hooks/connect/wallet';
 import { formatWalletAddress } from '@/utils/hooks/normalizers';
-
 import Modal from '../Modal';
 import Text from '../Text';
 import ConnectError from './ConnectError';
-
 import styles from './index.less';
 import useRequest from '@ahooksjs/use-request';
+import { connectBinanceChainWalletService } from '@/utils/hooks/connect/binanceChainWallet';
 
 const ConnectWalletModal = ({ children }: { children: React.ReactNode }) => {
   const walletType = useRef('');
@@ -40,6 +39,8 @@ const ConnectWalletModal = ({ children }: { children: React.ReactNode }) => {
         formattedAddress,
       }),
     );
+    // getWalletBalanceRequest.run(address);
+
     setWalletState({
       ...walletState,
       // @ts-ignore
@@ -78,6 +79,26 @@ const ConnectWalletModal = ({ children }: { children: React.ReactNode }) => {
     },
   });
 
+  const connectBinanceChainWallet = useRequest(
+    connectBinanceChainWalletService,
+    {
+      manual: true,
+      onSuccess: (ress: any) => {
+        onConnectSuccess(
+          ress?.addresses[0]?.address,
+          WALLET_TYPE.BINANCE_CHAIN_WALLET,
+        );
+      },
+      onError: (error: any) => {
+        console.log('🚀 ~ error', error);
+        onCloseConnectWallet();
+        if (error.code !== -32002) {
+          setIsConnectError(true);
+        }
+      },
+    },
+  );
+
   const isTurnOffCoin98: boolean =
     !!connectMetamaskRequest.error?.message.match(
       'Coin98 extension is enabled, you cannot use both Metamask and Coin98 at once.',
@@ -110,6 +131,15 @@ const ConnectWalletModal = ({ children }: { children: React.ReactNode }) => {
     onCloseConnectWallet();
     setIsConnectError(true);
     console.log('🚀 ~ handleConnectWallet');
+  };
+
+  const handleBinanceChainWallet = () => {
+    setWalletState({
+      ...walletState,
+      // @ts-ignore
+      walletType: WALLET_TYPE.BINANCE_CHAIN_WALLET,
+    });
+    connectBinanceChainWallet.run();
   };
 
   const handleCloseError = () => {
@@ -148,7 +178,7 @@ const ConnectWalletModal = ({ children }: { children: React.ReactNode }) => {
             <img src="/assets/images/ic-safepal.svg" alt="" />
           </li>
 
-          <li className={styles.walletItem}>
+          <li className={styles.walletItem} onClick={handleBinanceChainWallet}>
             <Text color="neutral-100" type="subheading-p1-regular">
               Binance Chain Wallet
             </Text>

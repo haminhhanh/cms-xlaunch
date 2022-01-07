@@ -45,6 +45,8 @@ export const checkMetaMaskInstalled = () => !!window?.ethereum?.isMetaMask;
 
 export const checkCoin98Installed = () => !!window?.ethereum?.isCoin98;
 
+export const checkBinanceChainWalletInstalled = () => !!window?.BinanceChain;
+
 export const preContractRequest = async (
   service: Function,
   params?: any,

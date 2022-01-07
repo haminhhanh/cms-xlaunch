@@ -1,4 +1,5 @@
 import { ENVIRONMENTS } from '@/utils/constants/environments';
+import { WALLET_TYPE } from '@/utils/constants/wallet';
 import {
   getProvider,
   //   walletConnectProvider,
@@ -48,13 +49,25 @@ export const useWalletState = () => {
   return useRecoilState(walletAtom);
 };
 
+const WALLET_MAPPINGS: any = {
+  [WALLET_TYPE.META_MASK]: 'ethereum',
+  [WALLET_TYPE.BINANCE_CHAIN_WALLET]: 'BinanceChain',
+};
+
 export const useWallet = () => {
   const [walletState, setWalletState] = useRecoilState(walletAtom);
 
+  const provider: any = walletState?.walletType
+    ? window[WALLET_MAPPINGS[walletState.walletType]]
+    : null;
+
   const getWalletBalanceRequest = useRequest(
     async (address) => {
-      const provider = await getProvider();
-      const balance = provider.send('eth_getBalance', [address, 'latest']);
+      const balance = provider.request({
+        method: 'eth_getBalance',
+        params: { address },
+      });
+      console.log(balance);
       return balance;
     },
     {
@@ -71,6 +84,9 @@ export const useWallet = () => {
           ...walletState,
           walletInfo: { ...walletState.walletInfo, ...balance },
         });
+      },
+      onError: (error: any) => {
+        console.log('🚀 ~ error', error);
       },
     },
   );
@@ -95,5 +111,6 @@ export const useWallet = () => {
     walletState,
     setWalletState,
     getWalletBalanceRequest,
+    provider,
   };
 };

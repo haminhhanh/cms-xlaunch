@@ -40,6 +40,7 @@ function Header() {
   const isConnected = useIsConnected();
   const [wallet] = useWalletState();
   const { disconnectWallet, getWalletBalanceRequest } = useWallet();
+  console.log('walletInfo', wallet?.walletInfo?.address);
 
   useEffect(() => {
     if (wallet?.walletInfo?.address) {
