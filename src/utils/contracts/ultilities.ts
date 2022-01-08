@@ -30,9 +30,7 @@ export const getProvider = async () => {
   if (ETHER_PROVIDER) {
     return ETHER_PROVIDER;
   }
-  if (window?.BinanceChain) {
-    return window.BinanceChain;
-  }
+
   if (window?.ethereum?.chainId !== CURRENT_NET.chainId) {
     return READ_ONLY_PROVIDER;
   }

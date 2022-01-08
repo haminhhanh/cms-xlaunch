@@ -4,6 +4,7 @@ import { useMount } from '@umijs/hooks';
 import { useWallet } from './wallet';
 import { atom, useRecoilState } from 'recoil';
 import { formatWalletAddress } from '@/utils/hooks/normalizers';
+import { get } from 'lodash';
 
 export const useProvider = () => {
   const { disconnectWallet, walletState, setWalletState, provider } =
@@ -20,17 +21,16 @@ export const useProvider = () => {
           method: 'eth_accounts',
         });
 
-        let currentAddress;
+        const currentAddress = get(result, 'result[0]', '');
 
-        currentAddress = result.result[0].toLowerCase();
-
-        if (currentAddress === walletState?.cacheInfo?.address.toLowerCase()) {
+        if (
+          currentAddress.toLowerCase() ===
+          walletState?.cacheInfo?.address.toLowerCase()
+        ) {
           setWalletState({
             ...walletState,
             walletType: walletState.cacheInfo.walletType,
           });
-        } else {
-          disconnectWallet();
         }
       }
     }
@@ -74,6 +74,8 @@ export const useProvider = () => {
       provider.on('disconnect', () => {
         disconnectWallet();
       });
+    } else {
+      disconnectWallet();
     }
   }, [provider]);
 };

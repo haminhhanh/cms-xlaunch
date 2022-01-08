@@ -25,7 +25,7 @@ export const walletAtom = atom({
       balance: undefined,
       originalBalance: undefined,
     },
-    walletType: undefined,
+    walletType: initialInfo?.walletType,
     cacheInfo: initialInfo,
   },
 });
@@ -63,8 +63,7 @@ export const useWallet = () => {
 
   const getWalletBalanceRequest = useRequest(
     async (address) => {
-      const providerInstance = await getProvider();
-      const balance = providerInstance.request({
+      const balance = provider.request({
         method: 'eth_getBalance',
         params: [address, 'latest'],
       });
@@ -80,6 +79,8 @@ export const useWallet = () => {
         };
       },
       onSuccess: (balance) => {
+        console.log(balance);
+
         setWalletState({
           ...walletState,
           walletInfo: { ...walletState.walletInfo, ...balance },
