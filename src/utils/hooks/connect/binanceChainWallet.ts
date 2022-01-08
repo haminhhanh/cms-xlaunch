@@ -7,8 +7,9 @@ export const connectBinanceChainWalletService = async () => {
       message: 'Binance Chain Wallet extension is not installed!',
     });
   }
-  const accounts = await window?.BinanceChain.requestAccounts();
-  // console.log('accounts',accounts[0])
+  const accounts = await window?.BinanceChain.request({
+    method: 'eth_accounts',
+  });
 
   return accounts[0];
 };

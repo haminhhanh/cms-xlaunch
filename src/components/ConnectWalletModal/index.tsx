@@ -83,11 +83,8 @@ const ConnectWalletModal = ({ children }: { children: React.ReactNode }) => {
     connectBinanceChainWalletService,
     {
       manual: true,
-      onSuccess: (ress: any) => {
-        onConnectSuccess(
-          ress?.addresses[0]?.address,
-          WALLET_TYPE.BINANCE_CHAIN_WALLET,
-        );
+      onSuccess: (r: any) => {
+        onConnectSuccess(r, WALLET_TYPE.BINANCE_CHAIN_WALLET);
       },
       onError: (error: any) => {
         console.log('🚀 ~ error', error);

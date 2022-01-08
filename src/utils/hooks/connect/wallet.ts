@@ -63,11 +63,11 @@ export const useWallet = () => {
 
   const getWalletBalanceRequest = useRequest(
     async (address) => {
-      const balance = provider.request({
+      const providerInstance = await getProvider();
+      const balance = providerInstance.request({
         method: 'eth_getBalance',
-        params: { address },
+        params: [address, 'latest'],
       });
-      console.log(balance);
       return balance;
     },
     {

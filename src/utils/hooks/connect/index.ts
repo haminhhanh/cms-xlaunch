@@ -10,7 +10,6 @@ export const useProvider = () => {
     useWallet();
 
   const walletType = walletState?.walletType;
-  // console.log('window',walletState?.cacheInfo?.walletType)
 
   useMount(async () => {
     if (walletState.cacheInfo) {
@@ -18,7 +17,7 @@ export const useProvider = () => {
         disconnectWallet();
       } else if (provider) {
         const result = await provider.request({
-          method: 'eth_requestAccounts',
+          method: 'eth_accounts',
         });
 
         let currentAddress;
@@ -33,8 +32,6 @@ export const useProvider = () => {
         } else {
           disconnectWallet();
         }
-      } else {
-        disconnectWallet();
       }
     }
   });
@@ -49,7 +46,7 @@ export const useProvider = () => {
         walletType,
       }),
     );
-    console.log('account', account);
+
     setWalletState({
       ...walletState,
       walletInfo: {
@@ -64,6 +61,7 @@ export const useProvider = () => {
     if (provider) {
       provider.on('accountsChanged', (accounts: any) => {
         const account = accounts[0];
+
         if (account) {
           saveUserInfo(account);
         } else {
@@ -76,8 +74,6 @@ export const useProvider = () => {
       provider.on('disconnect', () => {
         disconnectWallet();
       });
-    } else if (!provider) {
-      disconnectWallet();
     }
   }, [provider]);
 };
