@@ -2,7 +2,7 @@ version: '3.5'
 
 services:
   app:
-    image: ghcr.io/namnh240795agiletech/kingdomfe
+    image: ghcr.io/namnh240795agiletech/xlaunchfe
     ports:
       - 5454:80
     volumes:
