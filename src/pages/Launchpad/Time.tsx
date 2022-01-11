@@ -20,7 +20,7 @@ const Time = React.forwardRef((props: TimeProps, ref: any) => {
         <div className={styles.number}>
           <Text
             color={type === 'opent' ? 'yellow' : 'green'}
-            type="heading-p1-bold"
+            type="subheading-p1-bold"
           >
             05
           </Text>
@@ -31,12 +31,11 @@ const Time = React.forwardRef((props: TimeProps, ref: any) => {
           </Text>
         </div>
       </div>
-      <div className={styles.border} />
       <div className={styles.openInTimeItem}>
         <div className={styles.number}>
           <Text
             color={type === 'opent' ? 'yellow' : 'green'}
-            type="heading-p1-bold"
+            type="subheading-p1-bold"
           >
             12
           </Text>
@@ -47,12 +46,11 @@ const Time = React.forwardRef((props: TimeProps, ref: any) => {
           </Text>
         </div>
       </div>
-      <div className={styles.border} />
       <div className={styles.openInTimeItem}>
         <div className={styles.number}>
           <Text
             color={type === 'opent' ? 'yellow' : 'green'}
-            type="heading-p1-bold"
+            type="subheading-p1-bold"
           >
             36
           </Text>
@@ -63,12 +61,11 @@ const Time = React.forwardRef((props: TimeProps, ref: any) => {
           </Text>
         </div>
       </div>
-      <div className={styles.border} />
       <div className={styles.openInTimeItem}>
         <div className={styles.number}>
           <Text
             color={type === 'opent' ? 'yellow' : 'green'}
-            type="heading-p1-bold"
+            type="subheading-p1-bold"
           >
             20
           </Text>

@@ -40,7 +40,7 @@ function Header() {
   const isConnected = useIsConnected();
   const [wallet] = useWalletState();
   const { disconnectWallet, getWalletBalanceRequest } = useWallet();
-
+  console.log('location', location.pathname);
   useEffect(() => {
     if (wallet?.walletInfo?.address) {
       getWalletBalanceRequest.run(wallet?.walletInfo?.address);
@@ -96,12 +96,16 @@ function Header() {
                   <Link to={item.path} key={`${idx}`}>
                     <Text
                       type={`${
+                        (location.pathname.indexOf(item.path) !== -1 &&
+                          item.path !== '/') ||
                         location.pathname === item.path
                           ? 'body-p1-regular' && 'active'
                           : 'body-p1-regular'
                       }`}
                       className={styles.text}
                       color={`${
+                        (location.pathname.indexOf(item.path) !== -1 &&
+                          item.path !== '/') ||
                         location.pathname === item.path
                           ? 'neutral-100'
                           : 'neutral-200'

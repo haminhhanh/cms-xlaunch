@@ -58,7 +58,7 @@ const ListGroupSale = React.forwardRef(
                   </Text>
                   <div className={styles.icon}>
                     <a href="#">
-                      <img src="/assets/images/Group.svg" />
+                      <img src="/assets/images/ic-link.svg" />
                     </a>
                     <a href="#">
                       <img src="/assets/images/Twitter.svg" />

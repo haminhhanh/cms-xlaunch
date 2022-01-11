@@ -42,7 +42,7 @@ const DetailGroupSale = React.forwardRef(
               </Text>
             </button>
             <span>
-              <img src="/assets/images/Group.svg" alt="share" />
+              <img src="/assets/images/ic-link.svg" alt="share" />
             </span>
           </div>
         </div>
