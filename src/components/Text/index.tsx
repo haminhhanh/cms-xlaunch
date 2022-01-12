@@ -31,7 +31,8 @@ export interface TextProps {
     | 'neutral-100'
     | 'gradient'
     | 'green'
-    | 'yellow';
+    | 'yellow'
+    | 'red';
   align?: 'left' | 'center' | 'right';
 }
 

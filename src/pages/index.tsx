@@ -62,12 +62,14 @@ export default function IndexPage() {
             </div>
             <div className={styles.title}>Step</div>
           </div>
-          <div className={styles.listStep}>
-            <Step label="Connect Wallet, KYC" step={1} />
-            <Step label="Swap" step={2} />
-            <Step label="Stake to IDO Pools" step={3} />
-            <Step label="Launchpad" step={4} />
-            <Step label="Claim" step={5} />
+          <div>
+            <div className={styles.listStep}>
+              <Step label="Connect Wallet, KYC" step={1} />
+              <Step label="Swap" step={2} />
+              <Step label="Stake to IDO Pools" step={3} />
+              <Step label="Launchpad" step={4} />
+              <Step label="Claim" step={5} />
+            </div>
           </div>
         </div>
         <div className={styles.tier}>

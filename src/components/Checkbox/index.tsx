@@ -41,7 +41,11 @@ const RcCheckBox = React.forwardRef((props: CheckBoxProps, ref: any) => {
         onChange={onChecked}
         {...rest}
       />
-      {label && <Text type="body-p2-regular">{label}</Text>}
+      {label && (
+        <Text type="body-p1-regular" color="neutral-100">
+          {label}
+        </Text>
+      )}
     </div>
   );
 });

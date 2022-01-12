@@ -38,6 +38,9 @@
     background-size: contain, cover, cover;
     .left {
       margin-right: 66px;
+      .text {
+        margin-bottom: 42px;
+      }
     }
     .right {
       padding: 36px;
@@ -182,13 +185,18 @@
         background-color: @neutral-500;
         padding: 24px;
         border-radius: 8px;
-        min-width: 344px;
+        max-width: 344px;
         width: 100%;
         margin-bottom: 16px;
         .heading {
           margin-bottom: 29px;
-          .titleWhiteList {
+          .flexWhiteList {
             margin-bottom: 2px;
+            display: flex;
+            align-items: center;
+            img {
+              margin-right: 13px;
+            }
           }
         }
         .button {
@@ -249,7 +257,7 @@
             background: #b13acd;
             border-radius: 100%;
             position: absolute;
-            left: -7px;
+            left: -8px;
             top: 0;
           }
         }
@@ -261,7 +269,7 @@
             background: @neutral-300;
             border-radius: 100%;
             position: absolute;
-            left: -7px;
+            left: -8px;
             top: 0;
           }
         }
@@ -335,7 +343,7 @@
         justify-content: space-between;
         align-content: flex-start;
         padding: 32px 16px 24px 16px;
-        .contentItem {
+        .DetailLaunchpadInfo {
           width: calc(50% - 32px);
           margin: 0 16px;
           .headingBackground {
@@ -352,6 +360,51 @@
               &:last-child {
                 margin-bottom: 0;
               }
+            }
+          }
+          .bodyStep {
+            background: @neutral-400;
+            border-radius: 8px;
+            padding: 24px;
+          }
+          .tabStep {
+            display: flex;
+            align-items: center;
+            margin-bottom: 24px;
+            .tabStepItem,
+            .tabStepItemActive {
+              width: calc(50% - 8px);
+              margin: 0 4px;
+              border: none;
+              background: none;
+              border-bottom: 1px solid @neutral-200;
+              cursor: pointer;
+              padding-bottom: 8px;
+            }
+            .tabStepItemActive {
+              border-bottom: 1px solid @neutral-100;
+            }
+          }
+          .inputWrapper {
+            .label {
+              &:extend(.flex);
+              margin-bottom: 16px;
+            }
+            .input {
+              margin-bottom: 8px;
+            }
+            .minMax {
+              &:extend(.flex);
+              margin-bottom: 16px;
+            }
+            .textNote {
+              margin-bottom: 24px;
+            }
+          }
+          .button {
+            &:extend(.flex);
+            button {
+              width: 170px;
             }
           }
         }

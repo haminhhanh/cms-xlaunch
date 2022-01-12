@@ -19,10 +19,64 @@ const StatusWhiteList = React.forwardRef(
       label,
       disabled = false,
       id,
-      status = 'notOpen',
+      status = 'open',
       ...rest
     } = props;
     const classes: string = classNames(styles.default, className);
+
+    const title = (status: any) => {
+      switch (status) {
+        case 'notOpen':
+          return (
+            <Text
+              type="subheading-p1-bold"
+              color="neutral-100"
+              className={styles.flexWhiteList}
+            >
+              Join Whitelist
+            </Text>
+          );
+        case 'open':
+          return (
+            <Text
+              type="subheading-p1-bold"
+              color="neutral-100"
+              className={styles.flexWhiteList}
+            >
+              Join Whitelist
+            </Text>
+          );
+        case 'applieWhiteList':
+          return (
+            <div className={styles.flexWhiteList}>
+              <img src="/assets/images/ic-whitelist-applied.svg" />
+              <Text type="subheading-p1-bold" color="primary-violet">
+                Applied Whitelist
+              </Text>
+            </div>
+          );
+        case 'winWhiteList':
+          return (
+            <div className={styles.flexWhiteList}>
+              <img src="/assets/images/ic-whitelist-win.svg" />
+              <Text type="subheading-p1-bold" color="green">
+                Win Whitelist
+              </Text>
+            </div>
+          );
+        case 'notWinWhiteList':
+          return (
+            <div className={styles.flexWhiteList}>
+              <img src="/assets/images/ic-whitelist-fail.svg" />
+              <Text type="subheading-p1-bold" color="red">
+                Fail Whitelist
+              </Text>
+            </div>
+          );
+        default:
+          '';
+      }
+    };
 
     const textNote = (status: any) => {
       switch (status) {
@@ -45,20 +99,25 @@ const StatusWhiteList = React.forwardRef(
       <div className={styles.whiteList}>
         <div className={styles.content}>
           <div className={styles.heading}>
-            <Text
-              type="subheading-p1-bold"
-              color="neutral-100"
-              className={styles.titleWhiteList}
-            >
-              Join Whitelist
-            </Text>
+            {title(status)}
             <Text type="body-p1-regular" color="neutral-150">
               {textNote(status)}
+              {/* {status === 'winWhiteList' ? (
+                <Text type="body-p1-bold" color="neutral-100">
+                  50$ BUSD
+                </Text>
+              ) : null} */}
             </Text>
           </div>
-          <div className={styles.button}>
-            <Button type="disabled">Apply Whitelist</Button>
-          </div>
+          {status === 'notOpen' ? (
+            <div className={styles.button}>
+              <Button type="disabled">Apply Whitelist</Button>
+            </div>
+          ) : status === 'open' ? (
+            <div className={styles.button}>
+              <Button>Apply Whitelist</Button>
+            </div>
+          ) : null}
         </div>
       </div>
     );

@@ -3,6 +3,7 @@ import Text from '@/components/Text';
 import ListGroupSale from '../Launchpad/ListGroupSale';
 import React, { useState } from 'react';
 import { useWalletInfo } from '@/utils/hooks/connect/wallet';
+import Button from '@/components/Button';
 
 export default function LaunchpadPage() {
   const [activeTab, setActiveTab] = useState('next-ido');
@@ -13,11 +14,16 @@ export default function LaunchpadPage() {
       <div className={styles.heading}>
         <div className={styles.left}>
           <div className={styles.title}>Agile Launchpad</div>
-          <Text color="neutral-200" type="body-p1-regular">
+          <Text
+            color="neutral-200"
+            type="body-p1-regular"
+            className={styles.text}
+          >
             Agile LaunchPad projects are carefully chosen through vetting, which
             takes everything from the origins of the project teams to legitimacy
             and implementation capacities into account
           </Text>
+          <Button>Apply for IDO</Button>
         </div>
         <div className={styles.right}>
           <div className={styles.item}>
