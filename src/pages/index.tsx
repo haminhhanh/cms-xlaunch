@@ -5,8 +5,6 @@ import '@/global/theme.less';
 import Step from '@/components/Step';
 import Card from '@/components/Card';
 import Progress from '@/components/Progress';
-import DetailGroupSale from '@/components/DetailGroupSale';
-import ListGroupSale from './Launchpad/ListGroupSale';
 import Text from '@/components/Text';
 
 export default function IndexPage() {
@@ -53,22 +51,28 @@ export default function IndexPage() {
           </div>
         </div>
       </div>
-      <div className={styles.backgroundColor} />
       <div className={styles.content}>
         <div className={styles.step}>
-          <div className={styles.header}>
-            <div>
-              <img src="/assets/images/STEP.svg" />
-            </div>
-            <div className={styles.title}>Step</div>
-          </div>
           <div>
-            <div className={styles.listStep}>
-              <Step label="Connect Wallet, KYC" step={1} />
-              <Step label="Swap" step={2} />
-              <Step label="Stake to IDO Pools" step={3} />
-              <Step label="Launchpad" step={4} />
-              <Step label="Claim" step={5} />
+            <div className={styles.header}>
+              <div>
+                <img src="/assets/images/STEP.svg" />
+              </div>
+              <div className={styles.title}>Step</div>
+            </div>
+            <div style={{ position: 'relative' }}>
+              <div className={styles.backgroundColor}></div>
+              <div className={styles.listStep}>
+                <Step label="Connect Wallet, KYC" step={1} />
+                <img src="/assets/images/Arrow.svg" />
+                <Step label="Swap" step={2} />
+                <img src="/assets/images/Arrow.svg" />
+                <Step label="Stake to IDO Pools" step={3} />
+                <img src="/assets/images/Arrow.svg" />
+                <Step label="Launchpad" step={4} />
+                <img src="/assets/images/Arrow.svg" />
+                <Step label="Claim" step={5} />
+              </div>
             </div>
           </div>
         </div>

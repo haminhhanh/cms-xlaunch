@@ -89,8 +89,18 @@
   }
 
   .ListGroupSale {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
     .ListGroupSaleItem {
-      margin-bottom: 20px;
+      width: calc(50% - 28px);
+      margin: 0px 14px 28px 14px;
+      &:nth-child(even) {
+        margin-right: 0;
+      }
+      &:nth-child(odd) {
+        margin-left: 0;
+      }
     }
   }
 }

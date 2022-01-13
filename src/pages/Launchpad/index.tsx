@@ -1,9 +1,9 @@
 import styles from './index.less';
 import Text from '@/components/Text';
-import ListGroupSale from '../Launchpad/ListGroupSale';
 import React, { useState } from 'react';
 import { useWalletInfo } from '@/utils/hooks/connect/wallet';
 import Button from '@/components/Button';
+import DetailGroupSale from './DetailGroupSale';
 
 export default function LaunchpadPage() {
   const [activeTab, setActiveTab] = useState('next-ido');
@@ -152,10 +152,16 @@ export default function LaunchpadPage() {
       </div>
       <div className={styles.ListGroupSale}>
         <div className={styles.ListGroupSaleItem}>
-          <ListGroupSale id={1} />
+          <DetailGroupSale />
         </div>
         <div className={styles.ListGroupSaleItem}>
-          <ListGroupSale id={2} />
+          <DetailGroupSale />
+        </div>
+        <div className={styles.ListGroupSaleItem}>
+          <DetailGroupSale />
+        </div>
+        <div className={styles.ListGroupSaleItem}>
+          <DetailGroupSale />
         </div>
       </div>
     </div>

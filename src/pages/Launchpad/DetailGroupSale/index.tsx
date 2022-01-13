@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './index.less';
 import classNames from 'classnames';
 import 'rc-checkbox/assets/index.css';
-import Text from '../Text';
+import Text from '@/components/Text';
 import Progress from '@/components/Progress';
 import Button from '@/components/Button';
 import { Link } from 'umi';
@@ -30,20 +30,40 @@ const DetailGroupSale = React.forwardRef(
     return (
       <div className={styles.DetailGroupSaleWrapper}>
         <div className={styles.DetailGroupSaleHeader}>
-          <div>
-            <Text type="heading-p3-bold" color="neutral-100">
-              Private
-            </Text>
-          </div>
           <div className={styles.flex}>
-            <button>
-              <Text type="body-p2-regular" color="neutral-100">
-                Coming
+            <img src="/assets/images/logoSale.png" />
+            <div className={styles.lunaRush}>
+              <Text
+                type="heading-p3-bold"
+                color="neutral-100"
+                className={styles.TextlunaRush}
+              >
+                Luna Rush
               </Text>
-            </button>
-            <span>
-              <img src="/assets/images/ic-link.svg" alt="share" />
-            </span>
+              <div className={styles.buttonLusBush}>
+                <button className={styles.buttonLus}>
+                  <Text type="body-p1-bold" color="neutral-100">
+                    LUS / BUSD
+                  </Text>
+                </button>
+                <button className={styles.buttonLus}>
+                  <Text type="body-p1-bold" color="neutral-100">
+                    LUS
+                  </Text>
+                </button>
+              </div>
+            </div>
+          </div>
+          <div className={styles.iconLink}>
+            <a href="#">
+              <img src="/assets/images/ic-link.svg" />
+            </a>
+            <a href="#">
+              <img src="/assets/images/Twitter.svg" />
+            </a>
+            <a href="#">
+              <img src="/assets/images/ic-telegram.svg" />
+            </a>
           </div>
         </div>
         <div className={styles.DetailGroupSaleBody}>

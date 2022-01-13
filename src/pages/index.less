@@ -47,8 +47,32 @@
     width: 100%;
     max-width: 1460px;
     margin: 0 auto;
+    @media only screen and (max-width: 1460px) {
+      padding: 0 20px;
+    }
     .step {
       margin-bottom: 96px;
+      img {
+        margin-bottom: 5px;
+      }
+      .backgroundColor {
+        background-image: linear-gradient(
+            180deg,
+            rgba(187, 20, 226, 0.4) 0%,
+            rgba(40, 50, 227, 0.4) 100%
+          ),
+          url('/assets/images/Ellipse-home.png');
+
+        position: absolute;
+        height: 141px;
+        left: 0;
+        right: 0;
+        z-index: 1;
+        display: block;
+        filter: blur(300px);
+        background-position: center;
+        background-size: cover;
+      }
       .header {
         text-align: center;
       }
@@ -57,21 +81,13 @@
         justify-content: space-between;
         align-items: center;
         flex-wrap: wrap;
-        background-image: url('/assets/images/Ellipse-home.png');
         background-position: center;
         background-size: contain;
-        // background: linear-gradient(
-        //   180deg,
-        //   rgba(187, 20, 226, 0.4) 0%,
-        //   rgba(40, 50, 227, 0.4) 100%
-        // );
-        // filter: blur(300px);
+        background-image: url('/assets/images/Ellipse-home.png');
       }
     }
+
     .tier {
-      @media only screen and (max-width: 1460px) {
-        padding: 0 20px;
-      }
       .listCard {
         display: flex;
         justify-content: center;

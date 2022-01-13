@@ -1,0 +1,99 @@
+@import '../../../global/colors.less';
+
+.flex {
+  display: flex;
+  align-items: center;
+}
+.flexBetween {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.DetailGroupSaleWrapper {
+  background: @neutral-400;
+  border-radius: 8px;
+
+  .DetailGroupSaleHeader {
+    &:extend(.flexBetween);
+    align-items: flex-start;
+    padding: 23px 32px 32px 32px;
+    border-bottom: 1px solid @neutral-300;
+
+    img {
+      margin-right: 27px;
+    }
+    .TextlunaRush {
+      margin-bottom: 16px;
+    }
+    .buttonLus {
+      background: linear-gradient(
+        103.11deg,
+        #323be0 -118.51%,
+        rgba(50, 59, 224, 0) 116.84%
+      );
+      border: 1px solid transparent;
+      position: relative;
+      border-radius: 8px;
+      padding: 8px 16px;
+      box-sizing: border-box;
+      cursor: pointer;
+      &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        border-radius: 8px;
+        padding: 1px;
+        background: linear-gradient(92.62deg, #323be0 -26.42%, #b13acd 108.59%);
+        -webkit-mask: linear-gradient(#fff 0 0) content-box,
+          linear-gradient(#fff 0 0);
+        -webkit-mask-composite: destination-out;
+        mask-composite: exclude;
+      }
+      &:first-child {
+        margin-right: 12px;
+      }
+    }
+    .iconLink {
+      &:extend(.flex);
+      a {
+        width: 44px;
+        height: 44px;
+        background-color: @neutral-300;
+        border-radius: 100%;
+        position: relative;
+        margin-right: 16px;
+        &:last-child {
+          margin-right: 0;
+        }
+        img {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+        }
+      }
+    }
+  }
+  .DetailGroupSaleBody {
+    padding: 18px 32px 32px 32px;
+    border-radius: 0px 0px 8px 8px;
+    .DetailGroupSaleBodyItem {
+      margin-bottom: 18px;
+      .title {
+        margin-bottom: 8px;
+      }
+      .progress {
+        margin-bottom: 4px;
+      }
+    }
+    .buttonDetail {
+      padding: 12px 19px;
+      width: 140px;
+    }
+  }
+}

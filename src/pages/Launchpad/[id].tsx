@@ -162,7 +162,7 @@ function LaunchPadDetail() {
           <div className={styles.heading}>
             <div className={styles.link}>
               <div className={styles.logo}>
-                <img src="/assets/images/logoSale.svg" alt="logosale" />
+                <img src="/assets/images/logoSale.png" alt="logosale" />
                 <div>
                   <Text type="heading-p2-bold" color="neutral-100">
                     Luna Rush
