@@ -1,13 +1,25 @@
 import styles from './index.less';
 import Text from '@/components/Text';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useWalletInfo } from '@/utils/hooks/connect/wallet';
 import Button from '@/components/Button';
 import DetailGroupSale from './DetailGroupSale';
+import { api } from '@/utils/apis';
 
 export default function LaunchpadPage() {
   const [activeTab, setActiveTab] = useState('next-ido');
   const walletInfo = useWalletInfo();
+  const [listLaunch, setListLaunch] = useState([]);
+  useEffect(() => {
+    api
+      .get('/launch')
+      .then(function (response: any) {
+        setListLaunch(response);
+      })
+      .catch(function (error: any) {
+        console.log('error', error);
+      });
+  }, []);
 
   return (
     <div className={styles.wrapperLaunch}>
@@ -151,18 +163,22 @@ export default function LaunchpadPage() {
         </button>
       </div>
       <div className={styles.ListGroupSale}>
-        <div className={styles.ListGroupSaleItem}>
-          <DetailGroupSale />
-        </div>
-        <div className={styles.ListGroupSaleItem}>
-          <DetailGroupSale />
-        </div>
-        <div className={styles.ListGroupSaleItem}>
-          <DetailGroupSale />
-        </div>
-        <div className={styles.ListGroupSaleItem}>
-          <DetailGroupSale />
-        </div>
+        {listLaunch.map((item: any) => {
+          return (
+            <div className={styles.ListGroupSaleItem} key={item.id}>
+              <DetailGroupSale
+                dataLaunch={item}
+                percent={
+                  activeTab === 'past-ido'
+                    ? 100
+                    : activeTab === 'open-ido'
+                    ? 0
+                    : undefined
+                }
+              />
+            </div>
+          );
+        })}
       </div>
     </div>
   );

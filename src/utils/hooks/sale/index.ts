@@ -4,8 +4,8 @@ import clone from 'lodash/clone';
 import { useMemo, useState } from 'react';
 
 interface SaleCountdownProps {
-  startDate: Date;
-  endDate: Date;
+  startDate: any;
+  endDate: any;
   nonUpdate?: boolean;
 }
 

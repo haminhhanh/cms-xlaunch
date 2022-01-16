@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styles from './index.less';
 import classNames from 'classnames';
 import 'rc-checkbox/assets/index.css';
@@ -6,6 +6,7 @@ import Text from '@/components/Text';
 import Progress from '@/components/Progress';
 import Button from '@/components/Button';
 import { Link } from 'umi';
+import { useSaleCountdown } from '@/utils/hooks/sale';
 
 interface DetailGroupSaleProps {
   className?: string;
@@ -13,6 +14,7 @@ interface DetailGroupSaleProps {
   disabled?: boolean;
   percent?: number;
   id?: any;
+  dataLaunch: any;
 }
 const DetailGroupSale = React.forwardRef(
   (props: DetailGroupSaleProps, ref: any) => {
@@ -21,12 +23,16 @@ const DetailGroupSale = React.forwardRef(
       label,
       disabled = false,
       percent = 0,
+      dataLaunch,
       id,
       ...rest
     } = props;
-
     const classes: string = classNames(styles.default, className);
-
+    const { remain } = useSaleCountdown({
+      startDate: dataLaunch?.open_date,
+      endDate: new Date(dataLaunch?.close_date),
+      nonUpdate: false,
+    });
     return (
       <div className={styles.DetailGroupSaleWrapper}>
         <div className={styles.DetailGroupSaleHeader}>
@@ -55,13 +61,13 @@ const DetailGroupSale = React.forwardRef(
             </div>
           </div>
           <div className={styles.iconLink}>
-            <a href="#">
+            <a href={dataLaunch?.web_link}>
               <img src="/assets/images/ic-link.svg" />
             </a>
-            <a href="#">
+            <a href={dataLaunch?.twitter_link}>
               <img src="/assets/images/Twitter.svg" />
             </a>
-            <a href="#">
+            <a href={dataLaunch?.telegram_link}>
               <img src="/assets/images/ic-telegram.svg" />
             </a>
           </div>
@@ -69,7 +75,7 @@ const DetailGroupSale = React.forwardRef(
         <div className={styles.DetailGroupSaleBody}>
           <div className={styles.DetailGroupSaleBodyItem}>
             <Text type="body-p1-bold" color="neutral-100">
-              1 LUS = TBA BUSD
+              {`${dataLaunch?.rate}LUS =TBA BUSD`}
             </Text>
           </div>
           <div className={styles.DetailGroupSaleBodyItem}>
@@ -97,7 +103,7 @@ const DetailGroupSale = React.forwardRef(
               Progress
             </Text>
             <div className={styles.progress}>
-              <Progress />
+              <Progress percent={percent} />
             </div>
           </div>
           <div className={styles.flexBetween}>
@@ -106,10 +112,15 @@ const DetailGroupSale = React.forwardRef(
                 Open in
               </Text>
               <Text type="body-p1-bold" color="neutral-100">
-                5 days: 22h : 53m : 5s
+                {`${remain.days} days: ${remain.hours}h : ${remain.minutes}m : ${remain.seconds}s`}
               </Text>
             </div>
-            <Link to={`/launchpad/${id}`}>
+            <Link
+              to={{
+                pathname: `/launchpad/${dataLaunch.id}`,
+                state: { dataDetailLaunch: dataLaunch },
+              }}
+            >
               <Button type="primary" className={styles.buttonDetail}>
                 View Detail
               </Button>

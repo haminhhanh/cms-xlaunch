@@ -79,8 +79,6 @@ export const useWallet = () => {
         };
       },
       onSuccess: (balance) => {
-        console.log(balance);
-
         setWalletState({
           ...walletState,
           walletInfo: { ...walletState.walletInfo, ...balance },

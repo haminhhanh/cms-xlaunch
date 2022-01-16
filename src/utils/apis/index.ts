@@ -10,6 +10,7 @@ export const web = extend({
 export const api = extend({
   prefix: ENVIRONMENTS.API_URL,
   errorHandler: (res) => {
+    console.log('res', res.message);
     // @ts-ignore
     if (res?.code === 503) {
       return history.push('/service-temporary-unavailable');

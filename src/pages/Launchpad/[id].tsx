@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from './index.less';
 import Text from '@/components/Text';
 import Button from '@/components/Button';
@@ -9,11 +9,28 @@ import Time from './Time';
 import StatusWhiteList from './StatusWhiteList';
 import CheckRobot from '@/components/CheckRobot';
 import DetailLaunchpadInfo from './detailLaunchpadInfo';
+import { useLocation } from 'umi';
+import { api } from '@/utils/apis';
 
 function LaunchPadDetail() {
   const intl = useIntl();
   const [activeTab, setActiveTab] = useState('pool');
   const [stepTab, setStepTab] = useState('Approve');
+  const dataLaunch: any = useLocation();
+  const idLaunch = dataLaunch?.state?.dataDetailLaunch?.id;
+  const [getAllToken, setAllToken]: any = useState([]);
+
+  useEffect(() => {
+    api
+      .get('/token')
+      .then(function (response: any) {
+        setAllToken(response);
+      })
+      .catch(function (error: any) {
+        console.log('error', error);
+      });
+  }, []);
+  const getToken = getAllToken.find((item: any) => item.launch_id === idLaunch);
   const infoLaunch = {
     pool: {
       title: 'Pool Information',
@@ -45,23 +62,23 @@ function LaunchPadDetail() {
       content: [
         {
           key: 'Name',
-          value: 'Claim',
+          value: getToken?.token_name,
         },
         {
           key: 'Address',
-          value: 'Claim',
+          value: getToken?.token_address,
         },
         {
           key: 'Total Supple',
-          value: 'Claim',
+          value: getToken?.total_supply,
         },
         {
           key: 'Decimals',
-          value: 'Claim',
+          value: getToken?.decimals,
         },
         {
           key: 'Symbol',
-          value: 'Claim',
+          value: getToken?.token_symbol,
         },
       ],
     },
@@ -83,6 +100,7 @@ function LaunchPadDetail() {
       ],
     },
   };
+
   return (
     <div className={styles.wrapperLaunchDetail}>
       <div className={styles.launchDetailContent}>
