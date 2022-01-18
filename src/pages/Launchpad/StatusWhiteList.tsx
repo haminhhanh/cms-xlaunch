@@ -10,6 +10,7 @@ interface StatusWhiteListProps {
   disabled?: boolean;
   id?: any;
   status?: string;
+  changeStatus?: any;
 }
 
 const StatusWhiteList = React.forwardRef(
@@ -19,7 +20,8 @@ const StatusWhiteList = React.forwardRef(
       label,
       disabled = false,
       id,
-      status = 'open',
+      changeStatus = () => {},
+      status,
       ...rest
     } = props;
     const classes: string = classNames(styles.default, className);
@@ -27,6 +29,16 @@ const StatusWhiteList = React.forwardRef(
     const title = (status: any) => {
       switch (status) {
         case 'notOpen':
+          return (
+            <Text
+              type="subheading-p1-bold"
+              color="neutral-100"
+              className={styles.flexWhiteList}
+            >
+              Join Whitelist
+            </Text>
+          );
+        case 'notOpenPast':
           return (
             <Text
               type="subheading-p1-bold"
@@ -73,6 +85,15 @@ const StatusWhiteList = React.forwardRef(
               </Text>
             </div>
           );
+        case 'closeOpen':
+          return (
+            <div className={styles.flexWhiteList}>
+              <img src="/assets/images/ic-whitelist-fail.svg" />
+              <Text type="subheading-p1-bold" color="red">
+                Fail Whitelist
+              </Text>
+            </div>
+          );
         default:
           '';
       }
@@ -81,6 +102,8 @@ const StatusWhiteList = React.forwardRef(
     const textNote = (status: any) => {
       switch (status) {
         case 'notOpen':
+          return 'The whitelist is not yet open';
+        case 'notOpenPast':
           return 'The whitelist is not yet open';
         case 'open':
           return 'The whitelist is open now';
@@ -94,7 +117,6 @@ const StatusWhiteList = React.forwardRef(
           '';
       }
     };
-
     return (
       <div className={styles.whiteList}>
         <div className={styles.content}>
@@ -109,13 +131,21 @@ const StatusWhiteList = React.forwardRef(
               ) : null} */}
             </Text>
           </div>
-          {status === 'notOpen' ? (
+          {status === 'notOpen' || status === 'notOpenPast' ? (
             <div className={styles.button}>
               <Button type="disabled">Apply Whitelist</Button>
             </div>
           ) : status === 'open' ? (
-            <div className={styles.button}>
-              <Button>Apply Whitelist</Button>
+            <div className={styles.buttonActive}>
+              <Button
+                onClick={() => {
+                  changeStatus('applieWhiteList');
+                }}
+              >
+                <a href="https://forms.gle/KBUsGSTD5D71Guac6">
+                  Apply Whitelist
+                </a>
+              </Button>
             </div>
           ) : null}
         </div>

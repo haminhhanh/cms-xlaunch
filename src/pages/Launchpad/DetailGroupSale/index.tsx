@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './index.less';
 import classNames from 'classnames';
 import 'rc-checkbox/assets/index.css';
@@ -7,6 +7,7 @@ import Progress from '@/components/Progress';
 import Button from '@/components/Button';
 import { Link } from 'umi';
 import { useSaleCountdown } from '@/utils/hooks/sale';
+import { api } from '@/utils/apis';
 
 interface DetailGroupSaleProps {
   className?: string;
@@ -28,11 +29,38 @@ const DetailGroupSale = React.forwardRef(
       ...rest
     } = props;
     const classes: string = classNames(styles.default, className);
+    const open_date = new Date(
+      new Date(dataLaunch?.open_date).getTime() - 7 * 60 * 60 * 1000,
+    );
+    const close_date = new Date(
+      new Date(dataLaunch?.close_date).getTime() - 7 * 60 * 60 * 1000,
+    );
     const { remain } = useSaleCountdown({
-      startDate: dataLaunch?.open_date,
-      endDate: new Date(dataLaunch?.close_date),
+      startDate: open_date,
+      endDate: close_date,
       nonUpdate: false,
     });
+    const [getSchedule, setSchedule]: any = useState([]);
+    const openApplyWhiteList = new Date(
+      new Date(getSchedule[0]?.open_date).getTime() - 7 * 60 * 60 * 1000,
+    );
+    const closeApplyWhiteList = new Date(
+      new Date(getSchedule[0]?.close_date).getTime() - 7 * 60 * 60 * 1000,
+    );
+    useEffect(() => {
+      api
+        .get(`/schedule/launch/${dataLaunch.id}`)
+        .then(function (response: any) {
+          setSchedule(response);
+        })
+        .catch(function (error: any) {});
+    }, []);
+
+    // mock data
+
+    const timeTokenClaimedIn = new Date('2022-01-18T12:55:34.571');
+    const timeTokenClaimedEndIn = new Date('2022-01-18T12:59:34.571');
+
     return (
       <div className={styles.DetailGroupSaleWrapper}>
         <div className={styles.DetailGroupSaleHeader}>
@@ -118,7 +146,18 @@ const DetailGroupSale = React.forwardRef(
             <Link
               to={{
                 pathname: `/launchpad/${dataLaunch.id}`,
-                state: { dataDetailLaunch: dataLaunch },
+                state: {
+                  dataDetailLaunch: dataLaunch,
+                  time: { open_date: open_date, close_date: close_date },
+                  timeApplyWhiteList: {
+                    open_date: openApplyWhiteList,
+                    close_date: closeApplyWhiteList,
+                  },
+                  timeClaimed: {
+                    open_date: timeTokenClaimedIn,
+                    close_date: timeTokenClaimedEndIn,
+                  },
+                },
               }}
             >
               <Button type="primary" className={styles.buttonDetail}>

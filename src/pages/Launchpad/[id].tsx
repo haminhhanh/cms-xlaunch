@@ -3,7 +3,6 @@ import styles from './index.less';
 import Text from '@/components/Text';
 import Button from '@/components/Button';
 import Input from '@/components/Input';
-import Progress from '@/components/Progress';
 import { useIntl } from 'umi';
 import Time from './Time';
 import StatusWhiteList from './StatusWhiteList';
@@ -11,6 +10,8 @@ import CheckRobot from '@/components/CheckRobot';
 import DetailLaunchpadInfo from './detailLaunchpadInfo';
 import { useLocation } from 'umi';
 import { api } from '@/utils/apis';
+import dayjs from 'dayjs';
+import { useMount } from '@umijs/hooks';
 
 function LaunchPadDetail() {
   const intl = useIntl();
@@ -18,19 +19,53 @@ function LaunchPadDetail() {
   const [stepTab, setStepTab] = useState('Approve');
   const dataLaunch: any = useLocation();
   const idLaunch = dataLaunch?.state?.dataDetailLaunch?.id;
+  const timeAll = dataLaunch?.state?.time;
+  const timeApplyWhiteList = dataLaunch?.state?.timeApplyWhiteList;
   const [getAllToken, setAllToken]: any = useState([]);
+  const getToken = getAllToken?.find(
+    (item: any) => item.launch_id === idLaunch,
+  );
+  const [joinWhiteList, setJoinWhiteList]: any = useState();
+  const now = dayjs(new Date());
 
-  useEffect(() => {
-    api
-      .get('/token')
-      .then(function (response: any) {
-        setAllToken(response);
-      })
-      .catch(function (error: any) {
-        console.log('error', error);
-      });
-  }, []);
-  const getToken = getAllToken.find((item: any) => item.launch_id === idLaunch);
+  useMount(() => {
+    if (
+      now.isBefore(dayjs(timeApplyWhiteList?.open_date)) ||
+      now.isBefore(dayjs(timeAll?.open_date))
+    ) {
+      setJoinWhiteList('notOpen');
+    } else if (
+      now.isAfter(dayjs(timeApplyWhiteList?.close_date)) ||
+      now.isAfter(dayjs(timeAll?.close_date))
+    ) {
+      setJoinWhiteList('notOpenPast');
+    } else if (
+      now.isAfter(dayjs(timeApplyWhiteList?.open_date)) &&
+      now.isBefore(dayjs(timeAll?.close_date))
+    ) {
+      setJoinWhiteList('open');
+    }
+  });
+
+  const titleTimeSchedule = (status: any) => {
+    switch (status) {
+      case 'notOpenNow':
+        return 'Start to join Whitelist in';
+      case 'notOpenPast':
+        return 'End to join Whitelist in';
+      case 'open':
+        return 'End to join Whitelist in';
+      case 'applieWhiteList':
+        return 'Whitelist result announced in';
+      case 'winWhiteList':
+        return 'Token Claimed in';
+      case 'notWinWhiteList':
+        return 'Token Claimed in';
+      default:
+        'Token Claimed start in';
+    }
+  };
+
   const infoLaunch = {
     pool: {
       title: 'Pool Information',
@@ -101,11 +136,23 @@ function LaunchPadDetail() {
     },
   };
 
+  useEffect(() => {
+    api
+      .get('/token')
+      .then(function (response: any) {
+        setAllToken(response);
+      })
+      .catch(function (error: any) {});
+  }, []);
+
   return (
     <div className={styles.wrapperLaunchDetail}>
       <div className={styles.launchDetailContent}>
         <div className={styles.wrapperLaunchDetailLeft}>
-          <StatusWhiteList />
+          <StatusWhiteList
+            status={joinWhiteList}
+            changeStatus={setJoinWhiteList}
+          />
           <div className={styles.progress}>
             <div className={styles.progressItemActive}>
               <div className={styles.UPCOMING}>
@@ -129,7 +176,9 @@ function LaunchPadDetail() {
                       From
                     </Text>
                     <Text type="body-p2-bold" color="neutral-100">
-                      12:00 AM, 08 Dec 2021
+                      {dayjs(timeApplyWhiteList?.open_date).format(
+                        ' h:mm A, D MMM YYYY',
+                      )}
                     </Text>
                   </div>
                   <div className={styles.timeItem}>
@@ -137,7 +186,9 @@ function LaunchPadDetail() {
                       To
                     </Text>
                     <Text type="body-p2-bold" color="neutral-100">
-                      12:00 AM, 14 Dec 2021
+                      {dayjs(new Date(timeApplyWhiteList?.close_date)).format(
+                        ' h:mm A, D MMM YYYY',
+                      )}
                     </Text>
                   </div>
                 </div>
@@ -147,7 +198,7 @@ function LaunchPadDetail() {
                     color="neutral-100"
                     className={styles.titleText}
                   >
-                    Start to join Whitelist in
+                    {titleTimeSchedule(joinWhiteList)}
                   </Text>
                   <Time />
                 </div>

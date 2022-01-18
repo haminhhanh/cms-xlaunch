@@ -5,11 +5,14 @@ import { useWalletInfo } from '@/utils/hooks/connect/wallet';
 import Button from '@/components/Button';
 import DetailGroupSale from './DetailGroupSale';
 import { api } from '@/utils/apis';
+import dayjs from 'dayjs';
 
 export default function LaunchpadPage() {
   const [activeTab, setActiveTab] = useState('next-ido');
   const walletInfo = useWalletInfo();
   const [listLaunch, setListLaunch] = useState([]);
+  const now = dayjs(new Date());
+
   useEffect(() => {
     api
       .get('/launch')
@@ -20,6 +23,29 @@ export default function LaunchpadPage() {
         console.log('error', error);
       });
   }, []);
+
+  const lisLaunchNextIdo = listLaunch?.filter((item: any) =>
+    dayjs(new Date(item?.open_date).getTime() - 7 * 60 * 60 * 1000).isAfter(
+      now,
+    ),
+  );
+
+  const lisLaunchPastIdo = listLaunch?.filter((item: any) =>
+    dayjs(new Date(item?.close_date).getTime() - 7 * 60 * 60 * 1000).isBefore(
+      now,
+    ),
+  );
+
+  const lisLaunchOpenIdo = listLaunch?.filter(
+    (item: any) =>
+      (dayjs(new Date(item?.close_date).getTime() - 7 * 60 * 60 * 1000).isAfter(
+        now,
+      ) &&
+        dayjs(
+          new Date(item?.open_date).getTime() - 7 * 60 * 60 * 1000,
+        ).isBefore(now)) ||
+      now.isSame(new Date(item?.open_date).getTime() - 7 * 60 * 60 * 1000),
+  );
 
   return (
     <div className={styles.wrapperLaunch}>
@@ -35,7 +61,9 @@ export default function LaunchpadPage() {
             takes everything from the origins of the project teams to legitimacy
             and implementation capacities into account
           </Text>
-          <Button>Apply for IDO</Button>
+          <Button>
+            <a href="https://forms.gle/329KUgXhPPjqPdtr6">Apply for IDO</a>
+          </Button>
         </div>
         <div className={styles.right}>
           <div className={styles.item}>
@@ -163,9 +191,14 @@ export default function LaunchpadPage() {
         </button>
       </div>
       <div className={styles.ListGroupSale}>
-        {listLaunch.map((item: any) => {
+        {(activeTab === 'next-ido'
+          ? lisLaunchNextIdo
+          : activeTab === 'past-ido'
+          ? lisLaunchPastIdo
+          : lisLaunchOpenIdo
+        )?.map((item: any) => {
           return (
-            <div className={styles.ListGroupSaleItem} key={item.id}>
+            <div className={styles.ListGroupSaleItem} key={item?.id}>
               <DetailGroupSale
                 dataLaunch={item}
                 percent={

@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styles from './index.less';
 import classNames from 'classnames';
 import Text from '@/components/Text';
 import { useSaleCountdown } from '@/utils/hooks/sale';
+import { useLocation } from 'umi';
+import { api } from '@/utils/apis';
 import dayjs from 'dayjs';
 
 interface TimeProps {
@@ -15,11 +17,53 @@ const Time = React.forwardRef((props: TimeProps, ref: any) => {
   const { className, label, disabled = false, type, ...rest } = props;
 
   const classes: string = classNames(styles.default, className);
-  const { remain } = useSaleCountdown({
-    startDate: new Date(),
-    endDate: new Date(2022, 1, 12, 13, 0, 0),
-    nonUpdate: false,
-  });
+  const dataLaunch: any = useLocation();
+  const timeAllOpent = dataLaunch?.state?.time.open_date;
+  const timeAllClose = dataLaunch?.state?.time.close_date;
+  const timeCloseWhiteList = dataLaunch?.state?.timeApplyWhiteList.close_date;
+  const timeOpentWhiteList = dataLaunch?.state?.timeApplyWhiteList.open_date;
+  const timeTokenClaimedIn = dataLaunch?.state?.timeClaimed.open_date;
+  const timeTokenClaimedEndIn = dataLaunch?.state?.timeClaimed.close_date;
+
+  const now = dayjs(new Date());
+
+  const statusWhiteList = () => {
+    if (
+      now.isBefore(dayjs(timeOpentWhiteList)) ||
+      now.isAfter(dayjs(timeCloseWhiteList))
+    ) {
+      return {
+        startDate: timeAllOpent,
+        endDate: timeOpentWhiteList,
+      };
+    } else if (
+      now.isAfter(dayjs(timeOpentWhiteList)) &&
+      now.isBefore(dayjs(timeCloseWhiteList))
+    ) {
+      return {
+        startDate: timeOpentWhiteList,
+        endDate: timeCloseWhiteList,
+      };
+    } else if (now.isAfter(dayjs(timeCloseWhiteList))) {
+      return {
+        startDate: new Date(),
+        endDate: timeTokenClaimedIn,
+      };
+    } else if (now.isAfter(dayjs(timeTokenClaimedIn))) {
+      return {
+        startDate: new Date(),
+        endDate: timeTokenClaimedEndIn,
+      };
+    } else now.isAfter(dayjs(timeTokenClaimedEndIn));
+    {
+      return {
+        startDate: timeTokenClaimedEndIn,
+        endDate: timeCloseWhiteList,
+      };
+    }
+  };
+  const { remain } = useSaleCountdown(statusWhiteList());
+
   return (
     <div className={styles.openInTime}>
       <div className={styles.openInTimeItem}>
