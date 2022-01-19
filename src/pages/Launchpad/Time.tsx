@@ -22,16 +22,19 @@ const Time = React.forwardRef((props: TimeProps, ref: any) => {
   const timeAllClose = dataLaunch?.state?.time.close_date;
   const timeCloseWhiteList = dataLaunch?.state?.timeApplyWhiteList.close_date;
   const timeOpentWhiteList = dataLaunch?.state?.timeApplyWhiteList.open_date;
+  const timeWhiteListResult = dataLaunch?.state?.timeApplyWhiteList.result_date;
   const timeTokenClaimedIn = dataLaunch?.state?.timeClaimed.open_date;
   const timeTokenClaimedEndIn = dataLaunch?.state?.timeClaimed.close_date;
 
   const now = dayjs(new Date());
 
   const statusWhiteList = () => {
-    if (
-      now.isBefore(dayjs(timeOpentWhiteList)) ||
-      now.isAfter(dayjs(timeCloseWhiteList))
-    ) {
+    if (now.isBefore(dayjs(timeAllOpent))) {
+      return {
+        startDate: now,
+        endDate: timeAllOpent,
+      };
+    } else if (now.isBefore(dayjs(timeOpentWhiteList))) {
       return {
         startDate: timeAllOpent,
         endDate: timeOpentWhiteList,
@@ -44,21 +47,36 @@ const Time = React.forwardRef((props: TimeProps, ref: any) => {
         startDate: timeOpentWhiteList,
         endDate: timeCloseWhiteList,
       };
-    } else if (now.isAfter(dayjs(timeCloseWhiteList))) {
+    } else if (
+      now.isAfter(dayjs(timeCloseWhiteList)) &&
+      now.isBefore(dayjs(timeWhiteListResult))
+    ) {
+      return {
+        startDate: new Date(),
+        endDate: timeWhiteListResult,
+      };
+    } else if (
+      now.isAfter(dayjs(timeWhiteListResult)) &&
+      now.isBefore(dayjs(timeTokenClaimedIn))
+    ) {
       return {
         startDate: new Date(),
         endDate: timeTokenClaimedIn,
       };
-    } else if (now.isAfter(dayjs(timeTokenClaimedIn))) {
+    } else if (
+      now.isAfter(dayjs(timeTokenClaimedIn)) &&
+      now.isBefore(dayjs(timeTokenClaimedEndIn))
+      //  &&
+      // dayjs(timeTokenClaimedEndIn).isBefore(dayjs(timeAllClose))
+    ) {
       return {
         startDate: new Date(),
         endDate: timeTokenClaimedEndIn,
       };
-    } else now.isAfter(dayjs(timeTokenClaimedEndIn));
-    {
+    } else {
       return {
-        startDate: timeTokenClaimedEndIn,
-        endDate: timeCloseWhiteList,
+        startDate: new Date(),
+        endDate: new Date(),
       };
     }
   };

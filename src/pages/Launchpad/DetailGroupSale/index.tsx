@@ -8,12 +8,13 @@ import Button from '@/components/Button';
 import { Link } from 'umi';
 import { useSaleCountdown } from '@/utils/hooks/sale';
 import { api } from '@/utils/apis';
+import dayjs from 'dayjs';
 
 interface DetailGroupSaleProps {
   className?: string;
   label?: string;
   disabled?: boolean;
-  percent?: number;
+  activeTab?: string;
   id?: any;
   dataLaunch: any;
 }
@@ -23,23 +24,33 @@ const DetailGroupSale = React.forwardRef(
       className,
       label,
       disabled = false,
-      percent = 0,
+      activeTab,
       dataLaunch,
       id,
       ...rest
     } = props;
     const classes: string = classNames(styles.default, className);
+    const now = dayjs(new Date());
     const open_date = new Date(
       new Date(dataLaunch?.open_date).getTime() - 7 * 60 * 60 * 1000,
     );
     const close_date = new Date(
       new Date(dataLaunch?.close_date).getTime() - 7 * 60 * 60 * 1000,
     );
-    const { remain } = useSaleCountdown({
-      startDate: open_date,
-      endDate: close_date,
-      nonUpdate: false,
-    });
+    const time = () => {
+      if (now.isBefore(dayjs(open_date))) {
+        return {
+          startDate: now,
+          endDate: open_date,
+        };
+      } else {
+        return {
+          startDate: open_date,
+          endDate: close_date,
+        };
+      }
+    };
+    const { remain } = useSaleCountdown(time());
     const [getSchedule, setSchedule]: any = useState([]);
     const openApplyWhiteList = new Date(
       new Date(getSchedule[0]?.open_date).getTime() - 7 * 60 * 60 * 1000,
@@ -58,8 +69,9 @@ const DetailGroupSale = React.forwardRef(
 
     // mock data
 
-    const timeTokenClaimedIn = new Date('2022-01-18T12:55:34.571');
-    const timeTokenClaimedEndIn = new Date('2022-01-18T12:59:34.571');
+    const timeWhiteListResult = new Date('2022-01-20T18:00:34.571');
+    const timeTokenClaimedIn = new Date('2022-01-20T18:30:34.571');
+    const timeTokenClaimedEndIn = new Date('2022-20-19T22:05:34.571');
 
     return (
       <div className={styles.DetailGroupSaleWrapper}>
@@ -89,13 +101,13 @@ const DetailGroupSale = React.forwardRef(
             </div>
           </div>
           <div className={styles.iconLink}>
-            <a href={dataLaunch?.web_link}>
+            <a href={dataLaunch?.web_link} target="_blank">
               <img src="/assets/images/ic-link.svg" />
             </a>
-            <a href={dataLaunch?.twitter_link}>
+            <a href={dataLaunch?.twitter_link} target="_blank">
               <img src="/assets/images/Twitter.svg" />
             </a>
-            <a href={dataLaunch?.telegram_link}>
+            <a href={dataLaunch?.telegram_link} target="_blank">
               <img src="/assets/images/ic-telegram.svg" />
             </a>
           </div>
@@ -131,18 +143,29 @@ const DetailGroupSale = React.forwardRef(
               Progress
             </Text>
             <div className={styles.progress}>
-              <Progress percent={percent} />
+              <Progress
+                percent={
+                  activeTab === 'next-ido'
+                    ? 0
+                    : activeTab === 'past-ido'
+                    ? 100
+                    : 0
+                }
+              />
             </div>
           </div>
           <div className={styles.flexBetween}>
-            <div>
-              <Text type="body-p1-regular" className={styles.title}>
-                Open in
-              </Text>
-              <Text type="body-p1-bold" color="neutral-100">
-                {`${remain.days} days: ${remain.hours}h : ${remain.minutes}m : ${remain.seconds}s`}
-              </Text>
-            </div>
+            {activeTab === 'past-ido' ? null : (
+              <div>
+                <Text type="body-p1-regular" className={styles.title}>
+                  {activeTab === 'next-ido' ? 'Open in' : 'End in'}
+                </Text>
+                <Text type="body-p1-bold" color="neutral-100">
+                  {`${remain.days} days: ${remain.hours}h : ${remain.minutes}m : ${remain.seconds}s`}
+                </Text>
+              </div>
+            )}
+
             <Link
               to={{
                 pathname: `/launchpad/${dataLaunch.id}`,
@@ -152,6 +175,7 @@ const DetailGroupSale = React.forwardRef(
                   timeApplyWhiteList: {
                     open_date: openApplyWhiteList,
                     close_date: closeApplyWhiteList,
+                    result_date: timeWhiteListResult,
                   },
                   timeClaimed: {
                     open_date: timeTokenClaimedIn,

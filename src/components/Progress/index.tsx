@@ -29,7 +29,7 @@ const Progress = React.forwardRef((props: ProgressProps, ref: any) => {
       </div>
       <div className={styles.numberProgress}>
         <Text type="body-p1-bold" color="neutral-100">
-          {percent === 0 ? '0%' : percent === 40 ? '40%' : '100%'}
+          0%
         </Text>
         <Text type="body-p1-bold" color="neutral-100">
           100%

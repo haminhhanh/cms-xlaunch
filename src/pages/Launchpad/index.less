@@ -250,10 +250,45 @@
             border-left: none;
           }
           .heading {
-            margin-bottom: 5px;
+            margin-bottom: 13px;
             line-height: 1;
             &:last-child {
               margin-bottom: 0;
+            }
+          }
+          .text {
+            margin-bottom: 8px;
+          }
+          .progressClaim {
+            .progressWrapper {
+              margin-bottom: 15px;
+              width: 100%;
+              height: 6px;
+              border-radius: 5px;
+              background: #f1f5f9;
+              .progressContent {
+                position: relative;
+                height: 6px;
+                border-radius: 5px;
+                background: linear-gradient(
+                  92.62deg,
+                  #323be0 -26.42%,
+                  #b13acd 108.59%
+                );
+                .progressIcon {
+                  position: absolute;
+                  width: 16px;
+                  height: 16px;
+                  background-color: @neutral-100;
+                  border-radius: 100%;
+                  right: 0;
+                  top: 50%;
+                  transform: translate(0, -50%);
+                }
+              }
+            }
+            .progressPercent {
+              &:extend(.flex);
             }
           }
           .UPCOMING {

@@ -12,6 +12,7 @@ import { useLocation } from 'umi';
 import { api } from '@/utils/apis';
 import dayjs from 'dayjs';
 import { useMount } from '@umijs/hooks';
+import Progress from '@/components/Progress';
 
 function LaunchPadDetail() {
   const intl = useIntl();
@@ -19,8 +20,14 @@ function LaunchPadDetail() {
   const [stepTab, setStepTab] = useState('Approve');
   const dataLaunch: any = useLocation();
   const idLaunch = dataLaunch?.state?.dataDetailLaunch?.id;
-  const timeAll = dataLaunch?.state?.time;
-  const timeApplyWhiteList = dataLaunch?.state?.timeApplyWhiteList;
+  const timeAllOpent = dataLaunch?.state?.time.open_date;
+  const timeAllClose = dataLaunch?.state?.time.close_date;
+  const timeCloseWhiteList = dataLaunch?.state?.timeApplyWhiteList.close_date;
+  const timeOpentWhiteList = dataLaunch?.state?.timeApplyWhiteList.open_date;
+  const timeWhiteListResult = dataLaunch?.state?.timeApplyWhiteList.result_date;
+  const timeTokenClaimedIn = dataLaunch?.state?.timeClaimed.open_date;
+  const timeTokenClaimedEndIn = dataLaunch?.state?.timeClaimed.close_date;
+
   const [getAllToken, setAllToken]: any = useState([]);
   const getToken = getAllToken?.find(
     (item: any) => item.launch_id === idLaunch,
@@ -30,20 +37,35 @@ function LaunchPadDetail() {
 
   useMount(() => {
     if (
-      now.isBefore(dayjs(timeApplyWhiteList?.open_date)) ||
-      now.isBefore(dayjs(timeAll?.open_date))
+      now.isBefore(dayjs(timeOpentWhiteList)) ||
+      now.isBefore(dayjs(timeAllOpent))
     ) {
       setJoinWhiteList('notOpen');
     } else if (
-      now.isAfter(dayjs(timeApplyWhiteList?.close_date)) ||
-      now.isAfter(dayjs(timeAll?.close_date))
-    ) {
-      setJoinWhiteList('notOpenPast');
-    } else if (
-      now.isAfter(dayjs(timeApplyWhiteList?.open_date)) &&
-      now.isBefore(dayjs(timeAll?.close_date))
+      now.isAfter(dayjs(timeOpentWhiteList)) &&
+      now.isBefore(dayjs(timeCloseWhiteList))
     ) {
       setJoinWhiteList('open');
+    } else if (
+      now.isAfter(dayjs(timeCloseWhiteList)) &&
+      now.isBefore(dayjs(timeWhiteListResult))
+    ) {
+      setJoinWhiteList('applieWhiteList');
+    } else if (
+      now.isAfter(dayjs(timeWhiteListResult)) &&
+      now.isBefore(dayjs(timeTokenClaimedIn))
+    ) {
+      setJoinWhiteList('winWhiteList');
+    } else if (
+      now.isAfter(dayjs(timeTokenClaimedIn)) &&
+      now.isBefore(dayjs(timeTokenClaimedEndIn))
+    ) {
+      setJoinWhiteList('tokenClaimedEndIn');
+    } else if (
+      now.isAfter(dayjs(timeTokenClaimedEndIn)) ||
+      now.isAfter(dayjs(timeAllClose))
+    ) {
+      setJoinWhiteList('closeOpen');
     }
   });
 
@@ -51,8 +73,6 @@ function LaunchPadDetail() {
     switch (status) {
       case 'notOpenNow':
         return 'Start to join Whitelist in';
-      case 'notOpenPast':
-        return 'End to join Whitelist in';
       case 'open':
         return 'End to join Whitelist in';
       case 'applieWhiteList':
@@ -144,6 +164,7 @@ function LaunchPadDetail() {
       })
       .catch(function (error: any) {});
   }, []);
+  console.log('joinWhiteList', joinWhiteList);
 
   return (
     <div className={styles.wrapperLaunchDetail}>
@@ -154,7 +175,14 @@ function LaunchPadDetail() {
             changeStatus={setJoinWhiteList}
           />
           <div className={styles.progress}>
-            <div className={styles.progressItemActive}>
+            <div
+              className={
+                joinWhiteList === 'tokenClaimedEndIn' ||
+                joinWhiteList === 'closeOpen'
+                  ? styles.progressItem
+                  : styles.progressItemActive
+              }
+            >
               <div className={styles.UPCOMING}>
                 <Text
                   type="body-p1-bold"
@@ -176,9 +204,7 @@ function LaunchPadDetail() {
                       From
                     </Text>
                     <Text type="body-p2-bold" color="neutral-100">
-                      {dayjs(timeApplyWhiteList?.open_date).format(
-                        ' h:mm A, D MMM YYYY',
-                      )}
+                      {dayjs(timeOpentWhiteList).format(' h:mm A, D MMM YYYY')}
                     </Text>
                   </div>
                   <div className={styles.timeItem}>
@@ -186,44 +212,111 @@ function LaunchPadDetail() {
                       To
                     </Text>
                     <Text type="body-p2-bold" color="neutral-100">
-                      {dayjs(new Date(timeApplyWhiteList?.close_date)).format(
+                      {dayjs(new Date(timeCloseWhiteList)).format(
                         ' h:mm A, D MMM YYYY',
                       )}
                     </Text>
                   </div>
                 </div>
-                <div className={styles.timeJoin}>
-                  <Text
-                    type="body-p2-regular"
-                    color="neutral-100"
-                    className={styles.titleText}
-                  >
-                    {titleTimeSchedule(joinWhiteList)}
-                  </Text>
-                  <Time />
-                </div>
+                {joinWhiteList === 'tokenClaimedEndIn' ||
+                joinWhiteList === 'closeOpen' ? null : (
+                  <div className={styles.timeJoin}>
+                    <Text
+                      type="body-p2-regular"
+                      color="neutral-100"
+                      className={styles.titleText}
+                    >
+                      {titleTimeSchedule(joinWhiteList)}
+                    </Text>
+                    <Time />
+                  </div>
+                )}
               </div>
             </div>
-            <div className={styles.progressItem}>
-              <Text
-                type="body-p1-bold"
-                color="neutral-100"
-                className={styles.heading}
-              >
-                CLAIMABLE
-              </Text>
-              <Text type="body-p2-regular" color="neutral-150">
-                05:00 Pm, 16 May 2021
-              </Text>
+
+            <div
+              className={
+                joinWhiteList === 'tokenClaimedEndIn'
+                  ? styles.progressItemActive
+                  : styles.progressItem
+              }
+            >
+              <div>
+                <Text
+                  type="body-p1-bold"
+                  color="neutral-100"
+                  className={styles.heading}
+                >
+                  CLAIMABLE
+                </Text>
+
+                {joinWhiteList === 'tokenClaimedEndIn' ||
+                joinWhiteList === 'closeOpen' ? (
+                  <div>
+                    <Text
+                      type="body-p2-regular"
+                      color="neutral-150"
+                      className={styles.text}
+                    >
+                      Claim Token Period
+                    </Text>
+                    <Text
+                      type="body-p2-regular"
+                      color="neutral-100"
+                      className={styles.text}
+                    >
+                      Token Claimed end in
+                    </Text>
+                    <Time />
+                    <div className={styles.progressClaim}>
+                      <Text
+                        type="body-p2-regular"
+                        color="neutral-100"
+                        className={styles.text}
+                      >
+                        Claim Progress
+                      </Text>
+                      <div className={styles.progressWrapper}>
+                        <div
+                          className={styles.progressContent}
+                          style={{ width: '100%' }}
+                        >
+                          <div className={styles.progressIcon} />
+                        </div>
+                      </div>
+                      <div className={styles.progressPercent}>
+                        <Text type="body-p2-regular" color="neutral-100">
+                          100%
+                        </Text>
+                        <Text type="body-p2-regular" color="neutral-100">
+                          1,000,000/1,000,000
+                        </Text>
+                      </div>
+                    </div>
+                  </div>
+                ) : (
+                  <Text type="body-p2-regular" color="neutral-150">
+                    05:00 Pm, 16 May 2021
+                  </Text>
+                )}
+              </div>
             </div>
-            <div className={styles.progressItem}>
-              <Text
-                type="body-p1-bold"
-                color="neutral-100"
-                className={styles.heading}
-              >
-                END
-              </Text>
+            <div
+              className={
+                joinWhiteList === 'closeOpen'
+                  ? styles.progressItemActive
+                  : styles.progressItem
+              }
+            >
+              <div>
+                <Text
+                  type="body-p1-bold"
+                  color="neutral-100"
+                  className={styles.heading}
+                >
+                  END
+                </Text>
+              </div>
             </div>
           </div>
         </div>
@@ -244,13 +337,13 @@ function LaunchPadDetail() {
                 </div>
               </div>
               <div className={styles.iconLink}>
-                <a href="#">
+                <a href="#" target="_blank">
                   <img src="/assets/images/ic-link.svg" />
                 </a>
-                <a href="#">
+                <a href="#" target="_blank">
                   <img src="/assets/images/ic-telegram.svg" />
                 </a>
-                <a href="#">
+                <a href="#" target="_blank">
                   <img src="/assets/images/Twitter.svg" />
                 </a>
               </div>

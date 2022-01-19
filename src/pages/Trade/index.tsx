@@ -36,7 +36,7 @@ export default function TradePage() {
   return (
     <div className={styles.tradePageBody}>
       <h1>Swap</h1>
-      {/* <Form onFinish={onFinish} form={form} onFieldsChange={onFieldsChange}>
+      <Form onFinish={onFinish} form={form} onFieldsChange={onFieldsChange}>
         <div>
           <div>
             <h4>Exchange</h4>
@@ -97,7 +97,7 @@ export default function TradePage() {
         </FormItem>
 
         <Button>Unlock Wallet</Button>
-      </Form> */}
+      </Form>
     </div>
   );
 }

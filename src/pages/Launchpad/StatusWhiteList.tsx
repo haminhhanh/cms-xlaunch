@@ -38,16 +38,7 @@ const StatusWhiteList = React.forwardRef(
               Join Whitelist
             </Text>
           );
-        case 'notOpenPast':
-          return (
-            <Text
-              type="subheading-p1-bold"
-              color="neutral-100"
-              className={styles.flexWhiteList}
-            >
-              Join Whitelist
-            </Text>
-          );
+
         case 'open':
           return (
             <Text
@@ -76,6 +67,15 @@ const StatusWhiteList = React.forwardRef(
               </Text>
             </div>
           );
+        case 'tokenClaimedEndIn':
+          return (
+            <div className={styles.flexWhiteList}>
+              <img src="/assets/images/ic-whitelist-win.svg" />
+              <Text type="subheading-p1-bold" color="green">
+                Win Whitelist
+              </Text>
+            </div>
+          );
         case 'notWinWhiteList':
           return (
             <div className={styles.flexWhiteList}>
@@ -88,9 +88,9 @@ const StatusWhiteList = React.forwardRef(
         case 'closeOpen':
           return (
             <div className={styles.flexWhiteList}>
-              <img src="/assets/images/ic-whitelist-fail.svg" />
-              <Text type="subheading-p1-bold" color="red">
-                Fail Whitelist
+              <img src="/assets/images/ic-whitelist-win.svg" />
+              <Text type="subheading-p1-bold" color="green">
+                Win Whitelist
               </Text>
             </div>
           );
@@ -103,16 +103,19 @@ const StatusWhiteList = React.forwardRef(
       switch (status) {
         case 'notOpen':
           return 'The whitelist is not yet open';
-        case 'notOpenPast':
-          return 'The whitelist is not yet open';
+
         case 'open':
           return 'The whitelist is open now';
         case 'applieWhiteList':
           return 'Allocation ressult will be announced on Thurday, Dec 16, 2021';
         case 'winWhiteList':
           return 'Congrats! Your guranteed allocation or this pool is 50$ BUSD';
+        case 'tokenClaimedEndIn':
+          return 'Congrats! Your guranteed allocation or this pool is 50$ BUSD';
         case 'notWinWhiteList':
           return 'Unfortunately, you did not win a guaranteed allocation for this pool. However, you can join FCFS Phase if there is any token left from Phase 1';
+        case 'closeOpen':
+          return 'Congrats! Your guranteed allocation or this pool is 50$ BUSD';
         default:
           '';
       }
@@ -124,14 +127,9 @@ const StatusWhiteList = React.forwardRef(
             {title(status)}
             <Text type="body-p1-regular" color="neutral-150">
               {textNote(status)}
-              {/* {status === 'winWhiteList' ? (
-                <Text type="body-p1-bold" color="neutral-100">
-                  50$ BUSD
-                </Text>
-              ) : null} */}
             </Text>
           </div>
-          {status === 'notOpen' || status === 'notOpenPast' ? (
+          {status === 'notOpen' ? (
             <div className={styles.button}>
               <Button type="disabled">Apply Whitelist</Button>
             </div>
@@ -142,7 +140,7 @@ const StatusWhiteList = React.forwardRef(
                   changeStatus('applieWhiteList');
                 }}
               >
-                <a href="https://forms.gle/KBUsGSTD5D71Guac6">
+                <a href="https://forms.gle/KBUsGSTD5D71Guac6" target="_blank">
                   Apply Whitelist
                 </a>
               </Button>

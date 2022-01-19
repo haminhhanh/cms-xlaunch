@@ -21,6 +21,8 @@ export const useSaleCountdown = (props: SaleCountdownProps) => {
   const start = useMemo(() => dayjs(props.startDate), []);
   const end = useMemo(() => dayjs(props.endDate), []);
 
+  console.log('start', start, end);
+
   useUpdateEffect(() => {
     let timer: any;
 

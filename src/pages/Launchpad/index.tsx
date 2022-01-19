@@ -62,7 +62,9 @@ export default function LaunchpadPage() {
             and implementation capacities into account
           </Text>
           <Button>
-            <a href="https://forms.gle/329KUgXhPPjqPdtr6">Apply for IDO</a>
+            <a target="_blank" href="https://forms.gle/329KUgXhPPjqPdtr6">
+              Apply for IDO
+            </a>
           </Button>
         </div>
         <div className={styles.right}>
@@ -199,16 +201,7 @@ export default function LaunchpadPage() {
         )?.map((item: any) => {
           return (
             <div className={styles.ListGroupSaleItem} key={item?.id}>
-              <DetailGroupSale
-                dataLaunch={item}
-                percent={
-                  activeTab === 'past-ido'
-                    ? 100
-                    : activeTab === 'open-ido'
-                    ? 0
-                    : undefined
-                }
-              />
+              <DetailGroupSale dataLaunch={item} activeTab={activeTab} />
             </div>
           );
         })}
