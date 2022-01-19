@@ -2,9 +2,11 @@ import Button from '@/components/Button';
 import RcCheckBox from '@/components/Checkbox';
 import FormItem from '@/components/FormItem';
 import Input from '@/components/Input';
+import Text from '@/components/Text';
 import Form from 'rc-field-form';
 import { useRef } from 'react';
 import styles from './index.less';
+import SelectToken from './SelectToken';
 
 export default function TradePage() {
   const [form] = Form.useForm();
@@ -15,88 +17,116 @@ export default function TradePage() {
   };
 
   const onFieldsChange = () => {
-    const checkbox = form.getFieldValue('change');
-    if (checkbox !== refFieldCheckbox.current) {
-      refFieldCheckbox.current = checkbox;
+    const priceToken1 = form.getFieldValue('priceToken1');
+    const priceToken2 = form.getFieldValue('priceToken2');
+    console.log({
+      priceToken1,
+      priceToken2,
+    });
 
-      const priceToken1 = form.getFieldValue('priceToken1');
-      const priceToken2 = form.getFieldValue('priceToken2');
-      console.log({
-        priceToken1,
-        priceToken2,
-      });
-
-      form.setFieldsValue({
-        priceToken1: priceToken2,
-        priceToken2: priceToken1,
-      });
-    }
+    form.setFieldsValue({
+      priceToken1: priceToken2,
+      priceToken2: 2 * priceToken1,
+    });
   };
 
   return (
     <div className={styles.tradePageBody}>
-      <h1>Swap</h1>
+      <h1 className={styles.title}>Swap</h1>
       <Form onFinish={onFinish} form={form} onFieldsChange={onFieldsChange}>
-        <div>
-          <div>
-            <h4>Exchange</h4>
-            <p>Trade tokens in an instant</p>
+        <div className={styles.tradeForm}>
+          <div className={styles.tradeFormHeading}>
+            <div className={styles.border}>
+              <div className={styles.left}>
+                <Text type="heading-p2-bold" color="neutral-100">
+                  Exchange
+                </Text>
+                <Text type="body-p1-regular" color="neutral-200">
+                  Trade tokens in an instant
+                </Text>
+              </div>
+              <div className={styles.right}>
+                <button>
+                  <img src="/assets/images/ic-settings.svg" alt="" />
+                </button>
+                <button>
+                  <img src="/assets/images/ic-reload.svg" alt="" />
+                </button>
+              </div>
+            </div>
           </div>
+          <div className={styles.tradeFormContent}>
+            <div className={styles.tradeFormToken}>
+              <div className={styles.tradeFormItem}>
+                <SelectToken />
+              </div>
 
-          <div>
-            <img src="/assets/images/ic-settings.svg" alt="" />
-            <img src="/assets/images/ic-reload.svg" alt="" />
+              <div className={styles.buttonChange}>
+                <button>
+                  <img src="/assets/images/ic-arrow-swap.svg" alt="" />
+                </button>
+              </div>
+              <div className={styles.tradeFormItem}>
+                <SelectToken />
+              </div>
+            </div>
+            <div className={styles.tradeFormInput}>
+              <div className={styles.tradeFormItem}>
+                <FormItem dependencies={['priceToken2']}>
+                  {(props: any) => {
+                    return (
+                      <FormItem
+                        name="priceToken1"
+                        shouldUpdate={(prevValue: any, nextValue: any) =>
+                          prevValue.priceToken2 !== nextValue.priceToken2
+                        }
+                      >
+                        <Input
+                          label="From"
+                          placeholder="0.0"
+                          defaultValue={props?.value?.priceToken2 || 0}
+                          className={styles.input}
+                        />
+                      </FormItem>
+                    );
+                  }}
+                </FormItem>
+              </div>
+
+              <div className={styles.buttonChange}>
+                <button>
+                  <img src="/assets/images/ic-arrow-swap.svg" alt="" />
+                </button>
+              </div>
+              <div className={styles.tradeFormItem}>
+                <FormItem dependencies={['priceToken1']}>
+                  {(props: any) => {
+                    console.log(props?.value?.priceToken1);
+
+                    return (
+                      <FormItem
+                        name="priceToken2"
+                        shouldUpdate={(prevValue: any, nextValue: any) =>
+                          prevValue.priceToken1 !== nextValue.priceToken1
+                        }
+                      >
+                        <Input
+                          label="To"
+                          placeholder="0.0"
+                          defaultValue={props?.value?.priceToken1 || 0}
+                          className={styles.input}
+                        />
+                      </FormItem>
+                    );
+                  }}
+                </FormItem>
+              </div>
+            </div>
+            <div className={styles.button}>
+              <Button>Unlock Wallet</Button>
+            </div>
           </div>
         </div>
-
-        <FormItem dependencies={['priceToken2']}>
-          {(props: any) => {
-            return (
-              <FormItem
-                name="priceToken1"
-                shouldUpdate={(prevValue: any, nextValue: any) =>
-                  prevValue.priceToken2 !== nextValue.priceToken2
-                }
-              >
-                <Input
-                  label="Token 1"
-                  placeholder={'token1'}
-                  defaultValue={props?.value?.priceToken2 || 0}
-                />
-              </FormItem>
-            );
-          }}
-        </FormItem>
-
-        <div>
-          <FormItem name="change">
-            <RcCheckBox />
-          </FormItem>
-          <img src="/assets/images/ic-arrow-swap.svg" alt="" />
-        </div>
-
-        <FormItem dependencies={['priceToken1']}>
-          {(props: any) => {
-            console.log(props?.value?.priceToken1);
-
-            return (
-              <FormItem
-                name="priceToken2"
-                shouldUpdate={(prevValue: any, nextValue: any) =>
-                  prevValue.priceToken1 !== nextValue.priceToken1
-                }
-              >
-                <Input
-                  label="Token 2"
-                  placeholder={'token2'}
-                  defaultValue={props?.value?.priceToken1 || 0}
-                />
-              </FormItem>
-            );
-          }}
-        </FormItem>
-
-        <Button>Unlock Wallet</Button>
       </Form>
     </div>
   );

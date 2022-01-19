@@ -123,7 +123,7 @@ const Input = React.forwardRef((props: InputProps, ref: any) => {
   };
 
   return (
-    <div className={styles.wrapperInput}>
+    <div className={`${classes} ${styles.wrapperInput}`}>
       {label && type !== 'hidden' && (
         <Text
           type="body-p1-regular"
@@ -140,7 +140,6 @@ const Input = React.forwardRef((props: InputProps, ref: any) => {
         ref={inputRef}
         type={implicitType()}
         disabled={disabled}
-        className={classes}
         placeholder={placeholder}
         onClick={handleClick}
         onBlur={handleBlur}
