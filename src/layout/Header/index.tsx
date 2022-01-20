@@ -11,6 +11,7 @@ import {
   useWalletState,
 } from '@/utils/hooks/connect/wallet';
 import { WALLET_TYPE } from '@/utils/constants/wallet';
+import ModalYourWallet from './modalYourWallet';
 
 import styles from './index.less';
 
@@ -36,10 +37,9 @@ const headers = [
 function Header() {
   const location = useLocation();
   const intl = useIntl();
-  const walletInfo = useWalletInfo();
   const isConnected = useIsConnected();
   const [wallet] = useWalletState();
-  const { disconnectWallet, getWalletBalanceRequest } = useWallet();
+  const { getWalletBalanceRequest } = useWallet();
   useEffect(() => {
     if (wallet?.walletInfo?.address) {
       getWalletBalanceRequest.run(wallet?.walletInfo?.address);
@@ -75,10 +75,6 @@ function Header() {
           return;
       }
     }
-  };
-
-  const onDisconnectWallet = () => {
-    disconnectWallet();
   };
 
   return (
@@ -127,14 +123,14 @@ function Header() {
             {isConnected && (
               <>
                 <address className={styles.accountInfo}>
-                  <div className={styles.accountBalance}>
+                  {/* <div className={styles.accountBalance}>
                     <div className="total bg-dark-2">{walletInfo?.balance}</div>
                     <div className="address">
                       <span className="lighter">
                         {walletInfo?.formattedAddress}
                       </span>
                     </div>
-                  </div>
+                  </div> */}
 
                   <div className="wallet-box">
                     {/* <div className="d-flex justify-between">
@@ -162,9 +158,8 @@ function Header() {
                       </aside>
                     </div>
                     <div className="hr"></div> */}
-                    <Button onClick={onDisconnectWallet}>
-                      {intl.formatMessage({ id: 'navbar.disconnect.wallet' })}
-                    </Button>
+
+                    <ModalYourWallet />
                   </div>
                 </address>
                 {/* <Link href={Links.account}>

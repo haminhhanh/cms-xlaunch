@@ -74,9 +74,19 @@ export default function LaunchpadPage() {
                 Wallet Address:
               </Text>
             </span>
-            <span className={styles.itemContent}>
+            <Text
+              type="subheading-p1-bold"
+              color="primary-violet"
+              className={styles.itemContent}
+            >
+              {walletInfo?.formattedAddress}
+            </Text>
+            <button
+              className={styles.itemContent}
+              onClick={() => navigator.clipboard.writeText(walletInfo?.address)}
+            >
               <img src="/assets/images/ic-copy.svg" alt="copy" />
-            </span>
+            </button>
           </div>
           <div className={styles.flex}>
             <div className={styles.leftContent}>

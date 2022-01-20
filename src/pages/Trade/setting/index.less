@@ -29,6 +29,23 @@
 .SettingTradeBody {
   .title {
     margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    .tooltip {
+      border: 2px solid @yellow;
+      width: 20px;
+      height: 20px;
+      margin-left: 10px;
+      border-radius: 100%;
+      display: grid;
+      align-items: center;
+      justify-content: center;
+      .tooltipText {
+        font-size: 13px;
+        color: @yellow;
+        font-weight: bold;
+      }
+    }
   }
   .SlippageTolerance {
     margin-bottom: 24px;

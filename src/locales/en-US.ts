@@ -8,7 +8,7 @@ export default {
   'navbar.home': 'Home',
   'navbar.metamask': 'Metamask',
   'navbar.connect.wallet': 'Connect Wallet',
-  'navbar.disconnect.wallet': 'Disconnect Wallet',
+  'navbar.disconnect.wallet': 'Log out',
   'navbar.my.account': 'My Account',
   'navbar.connected.network': 'Connected network',
   'navbar.wallet': 'Wallet',

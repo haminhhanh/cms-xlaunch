@@ -4,6 +4,8 @@ import styles from './index.less';
 import Text from '@/components/Text';
 import classNames from 'classnames';
 import Input from '@/components/Input';
+import Tooltip from 'rc-tooltip';
+import 'rc-tooltip/assets/bootstrap.css';
 
 interface SettingTradeProps {
   className?: string;
@@ -36,13 +38,22 @@ const SettingTrade = React.forwardRef((props: SettingTradeProps, ref: any) => {
       >
         <div className={styles.SettingTradeBody}>
           <div className={styles.SlippageTolerance}>
-            <Text
-              type="body-p1-bold"
-              color="neutral-100"
-              className={styles.title}
-            >
-              Slippage tolerance
-            </Text>
+            <div className={styles.title}>
+              <Text type="body-p1-bold" color="neutral-100">
+                Slippage tolerance
+              </Text>
+
+              <div className={styles.tooltip}>
+                <Tooltip
+                  placement="top"
+                  trigger={['hover']}
+                  overlay={<span>Slippage tolerance</span>}
+                >
+                  <p className={styles.tooltipText}>?</p>
+                </Tooltip>
+              </div>
+            </div>
+
             <div className={styles.buttonGroup}>
               <button>
                 <Text type="body-p1-medium" color="neutral-100">
@@ -66,13 +77,21 @@ const SettingTrade = React.forwardRef((props: SettingTradeProps, ref: any) => {
             </div>
           </div>
           <div className={styles.TransactionDeadline}>
-            <Text
-              type="body-p1-bold"
-              color="neutral-100"
-              className={styles.title}
-            >
-              Transaction deadline
-            </Text>
+            <div className={styles.title}>
+              <Text type="body-p1-bold" color="neutral-100">
+                Transaction deadline
+              </Text>
+              <div className={styles.tooltip}>
+                <Tooltip
+                  placement="right"
+                  trigger={['hover']}
+                  overlay={<span>Transaction deadline</span>}
+                >
+                  <p className={styles.tooltipText}>?</p>
+                </Tooltip>
+              </div>
+            </div>
+
             <div className={styles.TransactionDeadlineInput}>
               <Input placeholder="0" className={styles.input} type="number" />
               <Text type="body-p1-medium" color="neutral-100">
