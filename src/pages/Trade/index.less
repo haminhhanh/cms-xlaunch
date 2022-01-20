@@ -43,14 +43,15 @@
         justify-content: space-between;
         align-items: center;
         .right {
+          display: flex;
+          align-items: center;
+          .iconSetting {
+            margin-right: 26px;
+          }
           button {
             border: none;
             background: none;
-            margin-right: 26px;
             cursor: pointer;
-            &:last-child {
-              margin-right: 0;
-            }
           }
         }
       }
@@ -109,7 +110,7 @@
     align-items: center;
     justify-content: space-between;
     background: @neutral-400;
-    padding: 30px 40px 30px 24px;
+    padding: 30px 25px 30px 24px;
     width: 100%;
     border-radius: 8px;
     .token {

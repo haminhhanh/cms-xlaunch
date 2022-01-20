@@ -7,26 +7,28 @@ import Form from 'rc-field-form';
 import { useRef } from 'react';
 import styles from './index.less';
 import SelectToken from './SelectToken';
+import SettingTrade from './setting';
+import TransactionTrade from './transaction';
 
 export default function TradePage() {
   const [form] = Form.useForm();
   const refFieldCheckbox = useRef();
 
   const onFinish = (values: any) => {
-    console.log(values);
+    // console.log(values);
   };
 
   const onFieldsChange = () => {
     const priceToken1 = form.getFieldValue('priceToken1');
     const priceToken2 = form.getFieldValue('priceToken2');
-    console.log({
-      priceToken1,
-      priceToken2,
-    });
+    // console.log({
+    //   priceToken1,
+    //   priceToken2,
+    // });
 
     form.setFieldsValue({
       priceToken1: priceToken2,
-      priceToken2: 2 * priceToken1,
+      priceToken2: priceToken1,
     });
   };
 
@@ -46,12 +48,10 @@ export default function TradePage() {
                 </Text>
               </div>
               <div className={styles.right}>
-                <button>
-                  <img src="/assets/images/ic-settings.svg" alt="" />
-                </button>
-                <button>
-                  <img src="/assets/images/ic-reload.svg" alt="" />
-                </button>
+                <div className={styles.iconSetting}>
+                  <SettingTrade />
+                </div>
+                <TransactionTrade />
               </div>
             </div>
           </div>

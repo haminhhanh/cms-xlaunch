@@ -10,6 +10,7 @@ export interface TextProps {
     | 'body-p2-regular'
     | 'body-p2-bold'
     | 'body-p1-regular'
+    | 'body-p1-medium'
     | 'body-p1-bold'
     | 'subheading-p1-regular'
     | 'subheading-p1-bold'
