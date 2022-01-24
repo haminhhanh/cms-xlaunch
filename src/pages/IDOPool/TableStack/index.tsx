@@ -4,6 +4,8 @@ import classNames from 'classnames';
 import 'rc-checkbox/assets/index.css';
 import Text from '@/components/Text';
 import Button from '@/components/Button';
+import { useIsConnected } from '@/utils/hooks/connect/wallet';
+import ConnectWalletModal from '@/components/ConnectWalletModal';
 
 interface TableStackProps {
   className?: string;
@@ -15,6 +17,7 @@ const TableStack = React.forwardRef((props: TableStackProps, ref: any) => {
 
   const classes: string = classNames(styles.default, className);
   const [dropDown, setDropDown] = useState(false);
+  const isConnected = useIsConnected();
 
   return (
     <div className={styles.TableStackWrapper}>
@@ -55,6 +58,14 @@ const TableStack = React.forwardRef((props: TableStackProps, ref: any) => {
               0.00
             </Text>
           </div>
+          <div className={styles.infoItem}>
+            <Text type="body-p2-regular" color="neutral-200">
+              Remaining unlock
+            </Text>
+            <Text type="body-p1-bold" color="neutral-100">
+              2,476,213 Blocks
+            </Text>
+          </div>
         </div>
         <button
           className={styles.dropDown}
@@ -69,6 +80,14 @@ const TableStack = React.forwardRef((props: TableStackProps, ref: any) => {
       {dropDown ? (
         <div className={styles.TableStackDetail}>
           <div className={styles.left}>
+            <div className={styles.Reward}>
+              <Text type="body-p1-regular" color="neutral-150">
+                Rewards end in
+              </Text>
+              <Text type="body-p1-bold" color="primary-violet">
+                3.267.325 Blogs
+              </Text>
+            </div>
             <div className={styles.flex}>
               <a href="#">
                 <Text type="body-p1-regular" color="neutral-100">
@@ -148,7 +167,18 @@ const TableStack = React.forwardRef((props: TableStackProps, ref: any) => {
                   <img src="/assets/images/ic-plus.svg" />
                 </Button>
               </div>
-              <Button className={styles.buttonHarvest}>Harvest</Button>
+              {!isConnected && (
+                <ConnectWalletModal>
+                  <Button className={styles.buttonHarvest}>
+                    Connect Wallet
+                  </Button>
+                </ConnectWalletModal>
+              )}
+              {isConnected && (
+                <Button className={styles.buttonHarvest}>
+                  Approve Contract
+                </Button>
+              )}
             </div>
           </div>
         </div>

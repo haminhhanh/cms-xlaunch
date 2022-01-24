@@ -1,0 +1,24 @@
+@import '../../../global/colors.less';
+
+.InputSearchWrapper {
+  position: relative;
+  .InputSearch {
+    background: @neutral-500;
+    border: 1px solid @neutral-300;
+    border-radius: 8px;
+    padding: 14px 20px;
+    width: 100%;
+    &::placeholder {
+      font-weight: normal;
+      font-size: 16px;
+      line-height: 24px;
+      color: @neutral-200;
+    }
+  }
+  img {
+    position: absolute;
+    top: 50%;
+    right: 23px;
+    transform: translate(0%, -50%);
+  }
+}

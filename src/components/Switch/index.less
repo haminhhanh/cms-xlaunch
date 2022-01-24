@@ -1,0 +1,48 @@
+@import '../../global/colors.less';
+
+.wrapperSwitch {
+  position: relative;
+  display: inline-block;
+  box-sizing: border-box;
+  width: 56px;
+  height: 28px;
+  line-height: 20px;
+  padding: 0;
+  vertical-align: middle;
+  border-radius: 20px 20px;
+  border: 1px solid @neutral-400;
+  background-color: @neutral-400;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.35, 0, 0.25, 1);
+  &::after {
+    position: absolute;
+    width: 23px;
+    height: 23px;
+    left: 0px;
+    top: 1px;
+    border-radius: 50% 50%;
+    background-color: #fff;
+    content: ' ';
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgb(0 0 0 / 26%);
+    transform: scale(1);
+    transition: left 0.3s cubic-bezier(0.35, 0, 0.25, 1);
+    -webkit-animation-timing-function: cubic-bezier(0.35, 0, 0.25, 1);
+    animation-timing-function: cubic-bezier(0.35, 0, 0.25, 1);
+    -webkit-animation-duration: 0.3s;
+    animation-duration: 0.3s;
+    -webkit-animation-name: rcSwitchOff;
+    animation-name: rcSwitchOff;
+  }
+}
+.Switch {
+  :global {
+    .rc-switch-checked {
+      border: 1px solid @primary-violet;
+      background-color: @primary-violet;
+      &::after {
+        left: 30px;
+      }
+    }
+  }
+}

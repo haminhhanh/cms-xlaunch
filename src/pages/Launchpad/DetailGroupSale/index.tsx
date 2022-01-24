@@ -69,9 +69,9 @@ const DetailGroupSale = React.forwardRef(
 
     // mock data
 
-    const timeWhiteListResult = new Date('2022-01-20T18:00:34.571');
-    const timeTokenClaimedIn = new Date('2022-01-20T18:30:34.571');
-    const timeTokenClaimedEndIn = new Date('2022-20-19T22:05:34.571');
+    const timeWhiteListResult = new Date('2022-01-26T18:00:34.571');
+    const timeTokenClaimedIn = new Date('2022-01-26T18:30:34.571');
+    const timeTokenClaimedEndIn = new Date('2022-28-19T22:05:34.571');
 
     return (
       <div className={styles.DetailGroupSaleWrapper}>

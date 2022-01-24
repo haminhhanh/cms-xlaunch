@@ -31,6 +31,29 @@
         .text {
           margin-right: 50px;
         }
+        p:hover {
+          color: @neutral-100;
+          transition: all 0.3s;
+        }
+      }
+      .connectWallet {
+        display: flex;
+        align-items: center;
+        .buttonNetWork {
+          background: @neutral-400;
+          border-radius: 8px;
+          padding: 0px 24px;
+          border: none;
+          display: flex;
+          align-items: center;
+          margin-right: 16px;
+          height: 48px;
+          img {
+            margin-right: 8px;
+            width: 24px;
+            height: 24px;
+          }
+        }
       }
     }
   }
@@ -73,5 +96,39 @@
       linear-gradient(92.62deg, #323be0 -26.42%, #b13acd 108.59%);
     width: 220px;
     margin: 0 auto;
+  }
+}
+
+// model select network
+
+.ModelSelectNetWork {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .netWorkItem {
+    padding: 12px 24px;
+    background: @neutral-400;
+    border: 1px solid @neutral-400;
+    border-radius: 4px;
+    text-align: center;
+    margin-right: 8px;
+    width: 117px;
+    cursor: pointer;
+    &:last-child {
+      margin-right: 0;
+    }
+    img {
+      margin-bottom: 4px;
+    }
+  }
+}
+.modelNetWork {
+  :global {
+    .rc-dialog-content {
+      max-width: 468px;
+      width: 100%;
+      margin: 0 auto;
+    }
   }
 }

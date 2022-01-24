@@ -9,6 +9,8 @@ import styles from './index.less';
 import SelectToken from './SelectToken';
 import SettingTrade from './setting';
 import TransactionTrade from './transaction';
+import { useIsConnected } from '@/utils/hooks/connect/wallet';
+import ConnectWalletModal from '@/components/ConnectWalletModal';
 
 export default function TradePage() {
   const [form] = Form.useForm();
@@ -17,6 +19,7 @@ export default function TradePage() {
   const onFinish = (values: any) => {
     // console.log(values);
   };
+  const isConnected = useIsConnected();
 
   const onFieldsChange = () => {
     const priceToken1 = form.getFieldValue('priceToken1');
@@ -122,9 +125,18 @@ export default function TradePage() {
                 </FormItem>
               </div>
             </div>
-            <div className={styles.button}>
-              <Button>Unlock Wallet</Button>
-            </div>
+            {isConnected && (
+              <div className={styles.button}>
+                <Button>Trade</Button>
+              </div>
+            )}
+            {!isConnected && (
+              <ConnectWalletModal>
+                <div className={styles.button}>
+                  <Button>Unlock Wallet</Button>
+                </div>
+              </ConnectWalletModal>
+            )}
           </div>
         </div>
       </Form>

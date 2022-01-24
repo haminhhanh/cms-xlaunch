@@ -60,7 +60,6 @@ export const useWallet = () => {
   const provider: any = walletState?.walletType
     ? window[WALLET_MAPPINGS[walletState.walletType]]
     : null;
-
   const getWalletBalanceRequest = useRequest(
     async (address) => {
       const balance = provider.request({

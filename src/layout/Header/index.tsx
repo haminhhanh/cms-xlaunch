@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import { useLocation, Link, useIntl } from 'umi';
-
 import Button from '../../components/Button';
 import Text from '../../components/Text';
 import ConnectWalletModal from '@/components/ConnectWalletModal';
@@ -12,7 +11,7 @@ import {
 } from '@/utils/hooks/connect/wallet';
 import { WALLET_TYPE } from '@/utils/constants/wallet';
 import ModalYourWallet from './modalYourWallet';
-
+import ModelSelectNetWork from './modelSelectNetWork';
 import styles from './index.less';
 
 const headers = [
@@ -122,18 +121,11 @@ function Header() {
 
             {isConnected && (
               <>
-                <address className={styles.accountInfo}>
-                  {/* <div className={styles.accountBalance}>
-                    <div className="total bg-dark-2">{walletInfo?.balance}</div>
-                    <div className="address">
-                      <span className="lighter">
-                        {walletInfo?.formattedAddress}
-                      </span>
-                    </div>
-                  </div> */}
-
-                  <div className="wallet-box">
-                    {/* <div className="d-flex justify-between">
+                <div className={styles.connectWallet}>
+                  <ModelSelectNetWork />
+                  <address className={styles.accountInfo}>
+                    <div className="wallet-box">
+                      {/* <div className="d-flex justify-between">
                       <aside>
                         <span className="neutral-100">
                           {intl.formatMessage({ id: 'navbar.wallet' })}
@@ -159,14 +151,10 @@ function Header() {
                     </div>
                     <div className="hr"></div> */}
 
-                    <ModalYourWallet />
-                  </div>
-                </address>
-                {/* <Link href={Links.account}>
-                  <Button className="link-account">
-                    {intl.formatMessage({ id: 'navbar.my.account' })}
-                  </Button>
-                </Link> */}
+                      <ModalYourWallet />
+                    </div>
+                  </address>
+                </div>
               </>
             )}
           </div>

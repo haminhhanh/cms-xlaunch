@@ -10,6 +10,10 @@ export const connectBinanceChainWalletService = async () => {
   const accounts = await window?.BinanceChain.request({
     method: 'eth_accounts',
   });
+  let chainIdReq = await window?.BinanceChain.request({
+    method: 'eth_chainId',
+  });
+  console.log('chainIdReq', chainIdReq);
 
   return accounts[0];
 };

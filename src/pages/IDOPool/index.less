@@ -33,44 +33,80 @@
     margin-bottom: 56px;
     text-align: center;
   }
-  .table {
-    border: 1px solid @neutral-300;
-    border-radius: 8px 8px 0px 0px;
-    background: @neutral-500;
-  }
-  .tab {
-    margin-right: 34px;
-    .tabLaunch {
-      .tabButton,
-      .tabButtonActive {
-        padding: 8px 26px;
-      }
-    }
-  }
-  .tabWrapper {
+  .content {
     display: flex;
-    align-items: center;
-    margin-bottom: 46px;
-    .tabLaunch {
-      text-align: center;
-      background: @neutral-500;
-      border: 1px solid @neutral-300;
-      box-sizing: border-box;
-      border-radius: 8px;
-      padding: 4px;
-      width: fit-content;
+    align-items: flex-start;
+    .left {
+      width: 100%;
+      margin-right: 28px;
+      .tabWrapper {
+        margin-bottom: 46px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        .tabWrapperLeft {
+          display: flex;
+          align-items: center;
+          .tabLaunch {
+            text-align: center;
+            background: @neutral-500;
+            border: 1px solid @neutral-300;
+            box-sizing: border-box;
+            border-radius: 8px;
+            padding: 4px;
+            width: fit-content;
 
-      .tabButtonActive {
-        background: #b13acd;
-        border-radius: 8px;
-        &:last-child {
-          margin-right: 0;
+            .tabButtonActive {
+              background: #b13acd;
+              border-radius: 8px;
+              &:last-child {
+                margin-right: 0;
+              }
+              &:extend(.tabButton);
+              p {
+                color: @neutral-100;
+              }
+            }
+          }
         }
-        &:extend(.tabButton);
-        p {
-          color: @neutral-100;
+        .tabWrapperRight {
+          button {
+            cursor: pointer;
+            border: none;
+            background: none;
+            padding: 0;
+            &:first-child {
+              margin-right: 23px;
+            }
+          }
         }
       }
+      .tab {
+        margin-right: 34px;
+        .tabLaunch {
+          .tabButton,
+          .tabButtonActive {
+            padding: 8px 26px;
+          }
+        }
+      }
+      .table {
+        border: 1px solid @neutral-300;
+        border-radius: 8px 8px 0px 0px;
+        background: @neutral-500;
+      }
     }
+
+    .stakeWrapper {
+      max-width: 470px;
+      width: 100%;
+      .search {
+        margin-bottom: 40px;
+      }
+    }
+  }
+
+  .switch {
+    margin-right: 16px;
   }
 }
