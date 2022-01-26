@@ -1,106 +1,51 @@
-import 'rc-dialog/assets/index.css';
-import 'rc-checkbox/assets/index.css';
 import styles from './index.less';
 import '@/global/theme.less';
-import Step from '@/components/Step';
-import Card from '@/components/Card';
-import Progress from '@/components/Progress';
 import Text from '@/components/Text';
+import Button from '@/components/Button';
 
 export default function IndexPage() {
+  const dashboard = [
+    {
+      name: 'Total users',
+      value: '1000',
+    },
+    {
+      name: 'Total launchpads',
+      value: '1000',
+    },
+    {
+      name: 'Total transactions',
+      value: '1000',
+    },
+  ];
   return (
-    <div className={styles.home}>
-      <div className={styles.landingPage}>
-        <div className={styles.backgroundImg}>
-          <div className={styles.container}>
-            <div className={styles.backgroundLogo}>
-              <img src="/assets/images/home-logo.png" />
+    <div className={styles.dashboard}>
+      <div className={styles.dashboardInfo}>
+        {dashboard.map((item) => {
+          return (
+            <div className={styles.dashboardItem} key={item.name}>
+              <Text
+                type="subheading-p1-regular"
+                className={styles.label}
+                color="neutral-200"
+              >
+                {item.name}
+              </Text>
+              <Text
+                type="heading-p2-bold"
+                color="neutral-100"
+                className={styles.text}
+              >
+                {item.value}
+              </Text>
+              <Button type="primary">
+                <Text type="body-p1-regular" color="neutral-100">
+                  Read more
+                </Text>
+              </Button>
             </div>
-            <div className={styles.AboutUs}>
-              <div className={styles.header}>
-                <img src="/assets/images/ABOUTUS.png" />
-                <div className={styles.title}>About us</div>
-              </div>
-              <div className={styles.content}>
-                <div className={styles.item}>
-                  <Text type="body-p1-regular" color="neutral-100">
-                    WHAT IS AGILE PAD?
-                  </Text>
-                  <Text type="body-p1-regular" color="neutral-100">
-                    The Agile Launch Pad is a decentralized IDO platform for the
-                    Binance Smart Chain Network. ABPad will empower crypto
-                    currency projects with the ability to distribute tokens and
-                    raise liquidity.
-                  </Text>
-                </div>
-                <div className={styles.item}>
-                  <Text type="body-p1-regular" color="neutral-100">
-                    WHY CHOOSE US?
-                  </Text>
-                  <Text type="body-p1-regular" color="neutral-100">
-                    AgilePad is creating fair decentralized launches, you can
-                    choose between a lottery tier or a guaranteed allocation
-                    tier and if you win the lottery you get a guaranteed
-                    allocation to participate in our IDO system. We are based on
-                    a first-come-first-serve basis where automated bots can fill
-                    the whitelist spots in a matter of seconds.
-                  </Text>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div className={styles.content}>
-        <div className={styles.step}>
-          <div>
-            <div className={styles.header}>
-              <div>
-                <img src="/assets/images/STEP.svg" />
-              </div>
-              <div className={styles.title}>Step</div>
-            </div>
-            <div style={{ position: 'relative' }}>
-              <div className={styles.backgroundColor}></div>
-              <div className={styles.listStep}>
-                <Step label="Connect Wallet, KYC" step={1} />
-                <img src="/assets/images/Arrow.svg" />
-                <Step label="Swap" step={2} />
-                <img src="/assets/images/Arrow.svg" />
-                <Step label="Stake to IDO Pools" step={3} />
-                <img src="/assets/images/Arrow.svg" />
-                <Step label="Launchpad" step={4} />
-                <img src="/assets/images/Arrow.svg" />
-                <Step label="Claim" step={5} />
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className={styles.tier}>
-          <div className={styles.header}>
-            <div>
-              <img src="/assets/images/TIER.svg" />
-            </div>
-            <div className={styles.title}>Tier</div>
-          </div>
-          <div className={styles.listCard}>
-            <div className={styles.listCardItem}>
-              <Card />
-            </div>
-            <div className={styles.listCardItem}>
-              <Card />
-            </div>
-            <div className={styles.listCardItem}>
-              <Card />
-            </div>
-            <div className={styles.listCardItem}>
-              <Card />
-            </div>
-            <div className={styles.listCardItem}>
-              <Card />
-            </div>
-          </div>
-        </div>
+          );
+        })}
       </div>
     </div>
   );

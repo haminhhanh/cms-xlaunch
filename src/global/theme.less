@@ -40,3 +40,24 @@ body {
     cursor: pointer;
   }
 }
+table {
+  width: 100%;
+  margin-bottom: 50px;
+  // border: 1px solid @neutral-300;
+}
+thead {
+  background: @neutral-500;
+}
+th {
+  padding: 20px;
+  z-index: 10;
+  border: 1px solid @neutral-300;
+}
+tr {
+  background: @neutral-600;
+}
+tbody {
+  tr:nth-child(even) {
+    background: @neutral-400 !important;
+  }
+}

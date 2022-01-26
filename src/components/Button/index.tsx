@@ -5,7 +5,7 @@ interface ButtonProps {
   onClick?: (
     event: React.MouseEvent<HTMLButtonElement | HTMLAnchorElement, MouseEvent>,
   ) => void;
-  type?: 'primary' | 'secondary' | 'disabled' | 'comming';
+  type?: 'primary' | 'secondary' | 'disabled' | 'comming' | 'action';
   disabled?: boolean;
   className?: string;
   loading?: boolean;

@@ -11,6 +11,7 @@ interface InputProps {
   placeholder?: string;
   onClick?: () => void;
   label?: string;
+  labelBehind?: string;
   min?: number;
   max?: number;
   maxLength?: number;
@@ -27,6 +28,7 @@ const Input = React.forwardRef((props: InputProps, ref: any) => {
     type = 'text',
     placeholder = '',
     label = '',
+    labelBehind = '',
     onClick,
     maxLength,
     suffix,
@@ -127,7 +129,7 @@ const Input = React.forwardRef((props: InputProps, ref: any) => {
       {label && type !== 'hidden' && (
         <Text
           type="body-p1-regular"
-          color="neutral-250"
+          color="neutral-150"
           className={styles.inputLabel}
           onClick={handleClickLabel}
           align="left"
@@ -135,18 +137,30 @@ const Input = React.forwardRef((props: InputProps, ref: any) => {
           {label}
         </Text>
       )}
-
-      <input
-        ref={inputRef}
-        type={implicitType()}
-        disabled={disabled}
-        placeholder={placeholder}
-        onClick={handleClick}
-        onBlur={handleBlur}
-        maxLength={maxLength}
-        onKeyDown={onKeyDown}
-        {...rest}
-      />
+      <div style={{ display: 'flex', alignItems: 'center', width: '100%' }}>
+        <input
+          ref={inputRef}
+          type={implicitType()}
+          disabled={disabled}
+          placeholder={placeholder}
+          onClick={handleClick}
+          onBlur={handleBlur}
+          maxLength={maxLength}
+          onKeyDown={onKeyDown}
+          {...rest}
+        />
+        {labelBehind && type !== 'hidden' && (
+          <Text
+            type="body-p1-regular"
+            color="neutral-150"
+            className={styles.inputLabelBehind}
+            onClick={handleClickLabel}
+            align="left"
+          >
+            {labelBehind}
+          </Text>
+        )}
+      </div>
 
       {isTypePassword && !disabled && (
         <img

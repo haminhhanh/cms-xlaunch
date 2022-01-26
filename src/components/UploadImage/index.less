@@ -1,0 +1,33 @@
+@import '../../global/colors.less';
+
+.UploadImageWrapper {
+  position: relative;
+  text-align: center;
+  margin-bottom: 50px;
+
+  .fileInput {
+    position: relative;
+    text-align: right;
+    -moz-opacity: 0;
+    opacity: 0;
+    z-index: 2;
+    width: 100%;
+    height: 255px;
+  }
+  .fakeFile {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 1;
+    width: 100%;
+    height: 255px;
+    display: grid;
+    align-items: center;
+  }
+  .text {
+  }
+  img {
+    width: 255px;
+    height: 255px;
+  }
+}

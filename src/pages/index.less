@@ -1,115 +1,37 @@
-.home {
-  .landingPage {
-    .backgroundImg {
-      position: relative;
-      max-width: 1920px;
-      width: 100%;
-      background-image: linear-gradient(
-          180deg,
-          #000000 -36.3%,
-          rgba(1, 1, 1, 0) 18.75%,
-          rgba(1, 1, 1, 0.4322) 66.74%,
-          #000000 96.79%
-        ),
-        url('/assets/images/home-landingpage.png');
+@import '../global/colors.less';
 
-      background-position: center;
-      background-repeat: no-repeat;
-      background-size: cover;
-      height: auto;
-      padding: 100px 0 0 0;
-      @media only screen and (max-width: 1460px) {
-        padding: 100px 20px 0 20px;
+.dashboard {
+  .dashboardInfo {
+    padding: 20px;
+    margin: 20px 0px 500px 0px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    .dashboardItem {
+      text-align: center;
+      background: @neutral-500;
+      text-align: center;
+      padding: 20px 15px 30px 15px;
+      border-radius: 5px;
+      width: calc(33.33% - 28px);
+      margin: 0 auto;
+      &:first-child {
+        margin-left: 0;
       }
-
-      .container {
-        max-width: 1460px;
-        width: 100%;
+      &:last-child {
+        margin-right: 0;
+      }
+      button {
         margin: 0 auto;
-        display: flex;
-        align-self: center;
-        .backgroundLogo {
-          margin-right: 100px;
-        }
-        .AboutUs {
-          text-align: left;
-          margin-top: 50px;
-        }
-        .content {
-          .item {
-            margin-bottom: 32px;
-          }
-        }
+        background: linear-gradient(@neutral-500, @neutral-500) padding-box,
+          linear-gradient(92.62deg, #323be0 -26.42%, #b13acd 108.59%);
+      }
+      .label {
+        margin-bottom: 10px;
+      }
+      .text {
+        margin-bottom: 20px;
       }
     }
   }
-  .content {
-    width: 100%;
-    max-width: 1460px;
-    margin: 0 auto;
-    @media only screen and (max-width: 1460px) {
-      padding: 0 20px;
-    }
-    .step {
-      margin-bottom: 96px;
-      img {
-        margin-bottom: 5px;
-      }
-      .backgroundColor {
-        background: linear-gradient(
-            180deg,
-            rgba(187, 20, 226, 0.4) 0%,
-            rgba(40, 50, 227, 0.4) 100%
-          ),
-          url('/assets/images/Ellipse-home.png');
-
-        position: absolute;
-        height: 141px;
-        left: 0;
-        right: 0;
-        z-index: 1;
-        display: block;
-        filter: blur(300px);
-        background-position: center;
-        background-size: cover;
-      }
-
-      .header {
-        text-align: center;
-      }
-      .listStep {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        flex-wrap: wrap;
-      }
-    }
-
-    .tier {
-      .listCard {
-        display: flex;
-        justify-content: center;
-        flex-wrap: wrap;
-        margin: 0 -14px;
-        .listCardItem {
-          width: calc(33.33% - 28px);
-          margin: 0 14px 40px;
-        }
-      }
-    }
-  }
-}
-.title {
-  background: -webkit-linear-gradient(
-    92.75deg,
-    #323be0 -57.33%,
-    #b13acd 106.46%
-  );
-  font-weight: bold;
-  font-size: 38px;
-  line-height: 46px;
-  margin-top: -25px;
-  margin-bottom: 40px;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
 }
