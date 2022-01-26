@@ -23,16 +23,16 @@ const linkSideBar = [
     path: '/manage-users',
     icon: <ManageAccountsIcon />,
   },
-  {
-    name: 'Manage project managers',
-    path: '/manage-project-managers',
-    icon: <WorkIcon />,
-  },
-  {
-    name: 'Manage admin',
-    path: '/manage-admin',
-    icon: <AdminPanelSettingsIcon />,
-  },
+  // {
+  //   name: 'Manage project managers',
+  //   path: '/manage-project-managers',
+  //   icon: <WorkIcon />,
+  // },
+  // {
+  //   name: 'Manage admin',
+  //   path: '/manage-admin',
+  //   icon: <AdminPanelSettingsIcon />,
+  // },
   {
     name: 'Wallet & supported chain',
     path: '/wallet-supported-chain',
@@ -69,16 +69,16 @@ const linkSideBar = [
     ],
     icon: <PaidIcon />,
   },
-  {
-    name: 'Manage transactions',
-    path: '/manage-transactions',
-    icon: <PaidIcon />,
-  },
-  {
-    name: 'Setting',
-    path: '/setting',
-    icon: <SettingsIcon />,
-  },
+  // {
+  //   name: 'Manage transactions',
+  //   path: '/manage-transactions',
+  //   icon: <PaidIcon />,
+  // },
+  // {
+  //   name: 'Setting',
+  //   path: '/setting',
+  //   icon: <SettingsIcon />,
+  // },
 ];
 
 const onClick = () => {};

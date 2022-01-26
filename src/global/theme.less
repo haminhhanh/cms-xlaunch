@@ -61,3 +61,34 @@ tbody {
     background: @neutral-400 !important;
   }
 }
+.main {
+  padding: 30px;
+  margin-bottom: 100px;
+  .header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    justify-content: space-between;
+    .button {
+      margin-right: 20px;
+    }
+    .InputSearch {
+      width: 100%;
+      margin-right: 20px;
+    }
+  }
+  .groupAction {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    button {
+      margin-right: 10px;
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+  }
+  .Pagination {
+    float: right;
+  }
+}
