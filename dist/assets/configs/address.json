@@ -1,0 +1,46 @@
+{
+  "hardCap": {
+    "name": "RaceMaster",
+    "symbol": "RM",
+    "owner": "0xB090929a31F2ad4b7C1A3A4C5B00535D01F8442a",
+    "totalSupply": "1000000000000000000000000000",
+    "address": "0xf3878D5Fe4958AB11c0E03C0a7b560De0258C47F"
+  },
+  "softCap": {
+    "name": "RaceMasterSoft",
+    "symbol": "RMS",
+    "owner": "0xB090929a31F2ad4b7C1A3A4C5B00535D01F8442a",
+    "address": "0x0ae692b0EF7DfF6bc502E11b0caFDD232f998255"
+  },
+  "nft": {
+    "name": "RaceMasterNFT",
+    "symbol": "RNFT",
+    "owner": "0xB090929a31F2ad4b7C1A3A4C5B00535D01F8442a",
+    "address": "0xEA03608C2D27A2D3bb2755B6B919015961D93DD6"
+  },
+  "tokenTransferProxy": {
+    "address": "0x486E51B6Aba85CECdCBda1f1b1Bce9fdD2a0929b"
+  },
+  "mysterySale": {
+    "bucket": "10000",
+    "sold": "0",
+    "startTime": 0,
+    "endTime": 1640429363000,
+    "price": "2000000000000000",
+    "address": "0xe7D17fC0d15a06311344592b98bc9b61f7c302fd"
+  },
+  "marketplace": {
+    "address": "0x811a70E030e16a51B1221D02bECD97569580a982",
+    "owner": "0xB090929a31F2ad4b7C1A3A4C5B00535D01F8442a"
+  },
+  "auction": {
+    "owner": "0xB090929a31F2ad4b7C1A3A4C5B00535D01F8442a",
+    "address": "0x4d0d259A44205F444CAeC13E3422d4911e3A6670"
+  },
+  "gameForwarder": {
+    "address": "0x10BdA93D72A0B47E92f0845a600FDBfbce9E1F36"
+  },
+  "gameWalletBridge": {
+    "address": "0x368960dd23DE73376e161d9a6dDbabB1b1a9D809"
+  }
+}
