@@ -59,7 +59,7 @@ function EditSupportChain() {
           </Link>
         </div>
       </div>
-      <div className={styles.table}>
+      <div className="table">
         <table>
           <thead>
             {columns.map((item: any, index) => {

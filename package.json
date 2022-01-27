@@ -1,15 +1,15 @@
 {
-  "private": true,
   "homepage": "https://haminhhanh.github.io/cms-xlaunch",
+  "private": true,
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "start": "umi dev",
     "build": "umi build",
     "postinstall": "umi generate tmp",
     "prettier": "prettier --write '**/*.{js,jsx,tsx,ts,less,md,json}'",
     "test": "umi-test",
-    "test:coverage": "umi-test --coverage",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "test:coverage": "umi-test --coverage"
   },
   "gitHooks": {
     "pre-commit": "lint-staged"

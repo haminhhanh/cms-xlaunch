@@ -52,6 +52,7 @@ th {
   padding: 20px;
   z-index: 10;
   border: 1px solid @neutral-300;
+  text-align: center;
 }
 tr {
   background: @neutral-600;
@@ -69,6 +70,9 @@ tbody {
     align-items: center;
     margin-bottom: 20px;
     justify-content: space-between;
+    padding: 20px;
+    background: @neutral-500;
+    border-radius: 8px;
     .button {
       margin-right: 20px;
     }
@@ -76,6 +80,11 @@ tbody {
       width: 100%;
       margin-right: 20px;
     }
+  }
+  .table {
+    padding: 30px 20px;
+    background: @neutral-500;
+    border-radius: 8px;
   }
   .groupAction {
     display: flex;
@@ -89,6 +98,6 @@ tbody {
     }
   }
   .Pagination {
-    float: right;
+    text-align: right;
   }
 }

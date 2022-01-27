@@ -3,6 +3,7 @@ import Text from '../../components/Text';
 import styles from './index.less';
 import InputSearch from '@/components/InputSearch';
 import Breadcrumb from '@/components/Breadcrumb';
+import Button from '@/components/Button';
 import FilterListIcon from '@mui/icons-material/FilterList';
 import DoneIcon from '@mui/icons-material/Done';
 import CloseIcon from '@mui/icons-material/Close';
@@ -66,10 +67,10 @@ function ManageUser() {
   ];
   const onChangePage = () => {};
   return (
-    <div className={styles.ManageUserWrapper}>
+    <div className={`${styles.ManageUserWrapper} main`}>
       <Breadcrumb>Users List</Breadcrumb>
-      <div className={styles.ManageUserTop}>
-        <div className={styles.InputSearch}>
+      <div className={`${styles.ManageUserTop} header`}>
+        <div className="InputSearch">
           <InputSearch />
         </div>
 
@@ -77,7 +78,7 @@ function ManageUser() {
           <FilterListIcon sx={{ fontSize: 35, cursor: 'pointer' }} />
         </div>
       </div>
-      <div className={styles.table}>
+      <div className="table">
         <table>
           <thead>
             {columns.map((item: any, index) => {
@@ -119,18 +120,18 @@ function ManageUser() {
                     </Text>
                   </th>
                   <th>
-                    <button>
+                    <Button type="action">
                       <Text type="body-p2-regular" color="neutral-100">
                         Details
                       </Text>
-                    </button>
+                    </Button>
                   </th>
                 </tr>
               );
             })}
           </tbody>
         </table>
-        <div className={styles.Pagination}>
+        <div className="Pagination">
           <PaginationPage total={10} pageSize={3} onChange={onChangePage} />
         </div>
       </div>

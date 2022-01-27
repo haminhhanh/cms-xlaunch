@@ -2,6 +2,7 @@ import styles from './index.less';
 import '@/global/theme.less';
 import Text from '@/components/Text';
 import Button from '@/components/Button';
+import Breadcrumb from '@/components/Breadcrumb';
 
 export default function IndexPage() {
   const dashboard = [
@@ -20,6 +21,7 @@ export default function IndexPage() {
   ];
   return (
     <div className={styles.dashboard}>
+      <Breadcrumb>Dashboard</Breadcrumb>
       <div className={styles.dashboardInfo}>
         {dashboard.map((item) => {
           return (

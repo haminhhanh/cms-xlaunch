@@ -5,6 +5,7 @@ import InputSearch from '@/components/InputSearch';
 import Breadcrumb from '@/components/Breadcrumb';
 import Button from '@/components/Button';
 import PaginationPage from '@/components/Pagination';
+import { Link } from 'umi';
 
 function EditLaunchPad() {
   const columns = [
@@ -77,7 +78,9 @@ function EditLaunchPad() {
       <Breadcrumb>Edit LaunchPad</Breadcrumb>
       <div className={styles.EditLaunchPadTop}>
         <div className={styles.button}>
-          <Button>Add LaunchPad</Button>
+          <Link to="/create-launchPad">
+            <Button>Add LaunchPad</Button>
+          </Link>
         </div>
         <div className={styles.InputSearch}>
           <InputSearch />

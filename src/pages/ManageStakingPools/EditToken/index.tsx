@@ -75,22 +75,22 @@ function EditToken() {
   ];
   const onChangePage = () => {};
   return (
-    <div className={styles.EditTokenWrapper}>
+    <div className={`${styles.EditTokenWrapper} main`}>
       <Breadcrumb>Edit Token in Staking Pools</Breadcrumb>
-      <div className={styles.EditTokenTop}>
+      <div className="header">
         <div className={styles.button}>
           <Link to="/create-token">
-            <Button>Add LaunchPad</Button>
+            <Button>Add Token</Button>
           </Link>
         </div>
-        <div className={styles.InputSearch}>
+        <div className="InputSearch">
           <InputSearch />
         </div>
-        <div className={styles.filter}>
+        <div className="filter">
           <FilterListIcon sx={{ fontSize: 35, cursor: 'pointer' }} />
         </div>
       </div>
-      <div className={styles.table}>
+      <div className="table">
         <table>
           <thead>
             {columns.map((item: any, index) => {
@@ -134,7 +134,7 @@ function EditToken() {
                     </Text>
                   </th>
                   <th>
-                    <div className={styles.groupAction}>
+                    <div className="groupAction">
                       <Button type="action">
                         <Text type="body-p2-regular" color="neutral-100">
                           Delete
@@ -152,7 +152,7 @@ function EditToken() {
             })}
           </tbody>
         </table>
-        <div className={styles.Pagination}>
+        <div className="Pagination">
           <PaginationPage total={10} pageSize={3} onChange={onChangePage} />
         </div>
       </div>

@@ -1,13 +1,13 @@
 import React, { useEffect } from 'react';
 import styles from './index.less';
-import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import Account from './Account';
 
 function Header() {
   return (
     <div className={styles.headerWrapper}>
       <div className={styles.headerContainer}>
         <div className={styles.headerAccount}>
-          <AccountCircleIcon sx={{ fontSize: 35, cursor: 'pointer' }} />
+          <Account />
         </div>
       </div>
     </div>

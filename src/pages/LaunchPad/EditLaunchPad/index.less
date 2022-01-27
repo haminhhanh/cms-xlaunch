@@ -1,3 +1,5 @@
+@import '../../../global/colors.less';
+
 .EditLaunchPadWrapper {
   padding: 30px;
   margin-bottom: 100px;
@@ -7,6 +9,9 @@
     align-items: center;
     margin-bottom: 20px;
     justify-content: space-between;
+    padding: 20px;
+    background: @neutral-500;
+    border-radius: 8px;
     .button {
       margin-right: 20px;
     }
@@ -15,7 +20,7 @@
     }
   }
   .Pagination {
-    float: right;
+    text-align: right;
   }
   .groupAction {
     display: flex;
@@ -27,5 +32,10 @@
         margin-right: 0;
       }
     }
+  }
+  .table {
+    padding: 30px 20px;
+    background: @neutral-500;
+    border-radius: 8px;
   }
 }
