@@ -6,7 +6,7 @@ function Header() {
   return (
     <div className={styles.headerWrapper}>
       <div className={styles.headerContainer}>
-        <div className={styles.headerAccount}>
+        <div>
           <AccountCircleIcon sx={{ fontSize: 35, cursor: 'pointer' }} />
         </div>
       </div>

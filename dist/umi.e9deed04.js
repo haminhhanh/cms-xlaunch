@@ -8315,9 +8315,9 @@
       return Math.log10 ? Math.log10(e) : Math.log(e) / Math.LN10;
     }
     const vl = {};
-    for (let Uy = 0; Uy < 10; Uy++) vl[String(Uy)] = String(Uy);
-    for (let Uy = 0; Uy < 26; Uy++)
-      vl[String.fromCharCode(65 + Uy)] = String(10 + Uy);
+    for (let Ry = 0; Ry < 10; Ry++) vl[String(Ry)] = String(Ry);
+    for (let Ry = 0; Ry < 26; Ry++)
+      vl[String.fromCharCode(65 + Ry)] = String(10 + Ry);
     const yl = Math.floor(ml(pl));
     function gl(e) {
       (e = e.toUpperCase()), (e = e.substring(4) + e.substring(0, 2) + '00');
@@ -14589,76 +14589,25 @@
     var Sy = Oy,
       Ly = n('k5pK'),
       xy = n.n(Ly),
-      jy = n('JxQ4'),
-      Ey = n.n(jy),
-      Ty = n('yGo1'),
-      Ay = n.n(Ty),
-      Dy = () => {};
-    function Cy() {
-      return Object(yy['jsx'])('div', {
-        className: Ey.a.SideBarWrapper,
-        children: Object(yy['jsx'])(sy, {
-          mode: 'horizontal',
-          onClick: Dy,
-          className: Ey.a.menuSideBar,
-          triggerSubMenuAction: 'click',
-          children: Object(yy['jsxs'])(
-            Sv,
-            {
-              title: Object(yy['jsx'])(Ay.a, {
-                sx: { fontSize: 35, cursor: 'pointer' },
-                className: 'submenu-title-wrapper',
-              }),
-              children: [
-                Object(yy['jsx'])(
-                  iv,
-                  {
-                    children: Object(yy['jsx'])(uy['a'], {
-                      to: '/',
-                      children: Object(yy['jsx'])(cm['a'], {
-                        type: 'subheading-p1-regular',
-                        color: 'neutral-100',
-                        children: 'Admin account',
-                      }),
-                    }),
-                  },
-                  '1-1',
-                ),
-                Object(yy['jsx'])(
-                  iv,
-                  {
-                    children: Object(yy['jsx'])(cm['a'], {
-                      type: 'subheading-p1-regular',
-                      color: 'neutral-100',
-                      children: 'Log out',
-                    }),
-                  },
-                  '1-1',
-                ),
-              ],
-            },
-            '1',
-          ),
-        }),
-      });
-    }
-    var Yy = Cy;
-    function Py() {
+      jy = n('yGo1'),
+      Ey = n.n(jy);
+    function Ty() {
       return Object(yy['jsx'])('div', {
         className: xy.a.headerWrapper,
         children: Object(yy['jsx'])('div', {
           className: xy.a.headerContainer,
           children: Object(yy['jsx'])('div', {
-            className: xy.a.headerAccount,
-            children: Object(yy['jsx'])(Yy, {}),
+            children: Object(yy['jsx'])(Ey.a, {
+              sx: { fontSize: 35, cursor: 'pointer' },
+            }),
           }),
         }),
       });
     }
-    var Ry = Py,
-      Ny = n('fNo9'),
-      Iy = n.n(Ny),
-      Fy = (e) => {
+    var Ay = Ty,
+      Dy = n('fNo9'),
+      Cy = n.n(Dy),
+      Yy = (e) => {
         var t = e.children,
           n = pc(),
           r = n.loading;
@@ -14666,22 +14615,22 @@
           um(),
           r
             ? Object(yy['jsx'])('div', {
-                className: Iy.a.main,
+                className: Cy.a.main,
                 children: 'Loading...',
               })
             : Object(yy['jsxs'])('div', {
-                className: Iy.a.mainLayout,
+                className: Cy.a.mainLayout,
                 children: [
                   Object(yy['jsx'])('div', {
-                    className: Iy.a.SideBar,
+                    className: Cy.a.SideBar,
                     children: Object(yy['jsx'])(wy, {}),
                   }),
                   Object(yy['jsxs'])('div', {
-                    className: Iy.a.LayoutContent,
+                    className: Cy.a.LayoutContent,
                     children: [
-                      Object(yy['jsx'])(Ry, {}),
+                      Object(yy['jsx'])(Ay, {}),
                       Object(yy['jsx'])('div', {
-                        className: Iy.a.children,
+                        className: Cy.a.children,
                         children: t,
                       }),
                       Object(yy['jsx'])(Sy, {}),
@@ -14691,15 +14640,15 @@
               })
         );
       };
-    function Hy(e) {
+    function Py(e) {
       var t = e.children;
       return Object(yy['jsx'])(Ku, {
-        children: Object(yy['jsx'])(Fy, {
+        children: Object(yy['jsx'])(Yy, {
           children: Object(yy['jsx'])('div', { children: t }),
         }),
       });
     }
-    t['default'] = Hy;
+    t['default'] = Py;
   },
   '2KAr': function (e, t, n) {
     var r = n('tny8'),
@@ -15514,16 +15463,15 @@
       o = n.n(i),
       a = n('fbTR'),
       s = n('6T2I'),
-      u = n('B3q3'),
-      c = n('MBkh'),
-      l = n.n(c),
-      f = n('TCZr'),
-      d = n.n(f),
-      h = n('H6AK'),
-      p = n.n(h),
-      m = n('WKca'),
-      v = n('nKUr');
-    function y() {
+      u = n('MBkh'),
+      c = n.n(u),
+      l = n('TCZr'),
+      f = n.n(l),
+      d = n('H6AK'),
+      h = n.n(d),
+      p = n('WKca'),
+      m = n('nKUr');
+    function v() {
       var e = [
           { title: 'ID' },
           { title: 'Full name' },
@@ -15540,34 +15488,34 @@
           { id: '123', name: 'aaaa', addressWallet: '123455', status: !0 },
         ],
         n = () => {};
-      return Object(v['jsxs'])('div', {
-        className: ''.concat(o.a.ManageUserWrapper, ' main'),
+      return Object(m['jsxs'])('div', {
+        className: o.a.ManageUserWrapper,
         children: [
-          Object(v['jsx'])(s['a'], { children: 'Users List' }),
-          Object(v['jsxs'])('div', {
-            className: ''.concat(o.a.ManageUserTop, ' header'),
+          Object(m['jsx'])(s['a'], { children: 'Users List' }),
+          Object(m['jsxs'])('div', {
+            className: o.a.ManageUserTop,
             children: [
-              Object(v['jsx'])('div', {
-                className: 'InputSearch',
-                children: Object(v['jsx'])(a['a'], {}),
+              Object(m['jsx'])('div', {
+                className: o.a.InputSearch,
+                children: Object(m['jsx'])(a['a'], {}),
               }),
-              Object(v['jsx'])('div', {
+              Object(m['jsx'])('div', {
                 className: o.a.filter,
-                children: Object(v['jsx'])(l.a, {
+                children: Object(m['jsx'])(c.a, {
                   sx: { fontSize: 35, cursor: 'pointer' },
                 }),
               }),
             ],
           }),
-          Object(v['jsxs'])('div', {
-            className: 'table',
+          Object(m['jsxs'])('div', {
+            className: o.a.table,
             children: [
-              Object(v['jsxs'])('table', {
+              Object(m['jsxs'])('table', {
                 children: [
-                  Object(v['jsx'])('thead', {
+                  Object(m['jsx'])('thead', {
                     children: e.map((e, t) =>
-                      Object(v['jsx'])('th', {
-                        children: Object(v['jsx'])(r['a'], {
+                      Object(m['jsx'])('th', {
+                        children: Object(m['jsx'])(r['a'], {
                           type: 'body-p1-bold',
                           color: 'neutral-200',
                           children: e.title,
@@ -15575,51 +15523,50 @@
                       }),
                     ),
                   }),
-                  Object(v['jsx'])('tbody', {
+                  Object(m['jsx'])('tbody', {
                     children: t.map((e, t) =>
-                      Object(v['jsxs'])(
+                      Object(m['jsxs'])(
                         'tr',
                         {
                           children: [
-                            Object(v['jsx'])('th', {
-                              children: Object(v['jsx'])(r['a'], {
+                            Object(m['jsx'])('th', {
+                              children: Object(m['jsx'])(r['a'], {
                                 type: 'body-p1-regular',
                                 color: 'neutral-100',
                                 children: e.id,
                               }),
                             }),
-                            Object(v['jsx'])('th', {
-                              children: Object(v['jsx'])(r['a'], {
+                            Object(m['jsx'])('th', {
+                              children: Object(m['jsx'])(r['a'], {
                                 type: 'body-p1-regular',
                                 color: 'neutral-100',
                                 children: e.name,
                               }),
                             }),
-                            Object(v['jsx'])('th', {
-                              children: Object(v['jsx'])(r['a'], {
+                            Object(m['jsx'])('th', {
+                              children: Object(m['jsx'])(r['a'], {
                                 type: 'body-p1-regular',
                                 color: 'neutral-100',
                                 children: e.addressWallet,
                               }),
                             }),
-                            Object(v['jsx'])('th', {
-                              children: Object(v['jsx'])(r['a'], {
+                            Object(m['jsx'])('th', {
+                              children: Object(m['jsx'])(r['a'], {
                                 type: 'body-p1-regular',
                                 color: 'neutral-100',
                                 children: e.status
-                                  ? Object(v['jsx'])(d.a, {
+                                  ? Object(m['jsx'])(f.a, {
                                       sx: { fontSize: 35 },
                                       color: 'primary',
                                     })
-                                  : Object(v['jsx'])(p.a, {
+                                  : Object(m['jsx'])(h.a, {
                                       sx: { fontSize: 35 },
                                     }),
                               }),
                             }),
-                            Object(v['jsx'])('th', {
-                              children: Object(v['jsx'])(u['a'], {
-                                type: 'action',
-                                children: Object(v['jsx'])(r['a'], {
+                            Object(m['jsx'])('th', {
+                              children: Object(m['jsx'])('button', {
+                                children: Object(m['jsx'])(r['a'], {
                                   type: 'body-p2-regular',
                                   color: 'neutral-100',
                                   children: 'Details',
@@ -15634,9 +15581,9 @@
                   }),
                 ],
               }),
-              Object(v['jsx'])('div', {
-                className: 'Pagination',
-                children: Object(v['jsx'])(m['a'], {
+              Object(m['jsx'])('div', {
+                className: o.a.Pagination,
+                children: Object(m['jsx'])(p['a'], {
                   total: 10,
                   pageSize: 3,
                   onChange: n,
@@ -15647,7 +15594,7 @@
         ],
       });
     }
-    t['default'] = y;
+    t['default'] = v;
   },
   '43iI': function (e, t, n) {
     'use strict';
@@ -32864,7 +32811,7 @@
             }),
           }),
           Object(l['jsxs'])('div', {
-            className: 'table',
+            className: o.a.table,
             children: [
               Object(l['jsxs'])('table', {
                 children: [
@@ -34499,7 +34446,6 @@
       return r;
     }
   },
-  JxQ4: function (e, t, n) {},
   'K/tc': function (e, t, n) {
     (function (e, t) {
       t(n('wd/R'));
@@ -46596,59 +46542,55 @@
     'use strict';
     n.r(t),
       n.d(t, 'default', function () {
-        return c;
+        return u;
       });
     var r = n('RKie'),
       i = n.n(r),
       o = (n('Dad8'), n('kvi7')),
       a = n('B3q3'),
-      s = n('6T2I'),
-      u = n('nKUr');
-    function c() {
+      s = n('nKUr');
+    function u() {
       var e = [
         { name: 'Total users', value: '1000' },
         { name: 'Total launchpads', value: '1000' },
         { name: 'Total transactions', value: '1000' },
       ];
-      return Object(u['jsxs'])('div', {
+      return Object(s['jsx'])('div', {
         className: i.a.dashboard,
-        children: [
-          Object(u['jsx'])(s['a'], { children: 'Dashboard' }),
-          Object(u['jsx'])('div', {
-            className: i.a.dashboardInfo,
-            children: e.map((e) =>
-              Object(u['jsxs'])(
-                'div',
-                {
-                  className: i.a.dashboardItem,
-                  children: [
-                    Object(u['jsx'])(o['a'], {
-                      type: 'subheading-p1-regular',
-                      className: i.a.label,
-                      color: 'neutral-200',
-                      children: e.name,
-                    }),
-                    Object(u['jsx'])(o['a'], {
-                      type: 'heading-p2-bold',
+        children: Object(s['jsx'])('div', {
+          className: i.a.dashboardInfo,
+          children: e.map((e) =>
+            Object(s['jsxs'])(
+              'div',
+              {
+                className: i.a.dashboardItem,
+                children: [
+                  Object(s['jsx'])(o['a'], {
+                    type: 'subheading-p1-regular',
+                    className: i.a.label,
+                    color: 'neutral-200',
+                    children: e.name,
+                  }),
+                  Object(s['jsx'])(o['a'], {
+                    type: 'heading-p2-bold',
+                    color: 'neutral-100',
+                    className: i.a.text,
+                    children: e.value,
+                  }),
+                  Object(s['jsx'])(a['a'], {
+                    type: 'primary',
+                    children: Object(s['jsx'])(o['a'], {
+                      type: 'body-p1-regular',
                       color: 'neutral-100',
-                      className: i.a.text,
-                      children: e.value,
+                      children: 'Read more',
                     }),
-                    Object(u['jsx'])(a['a'], {
-                      type: 'primary',
-                      children: Object(u['jsx'])(o['a'], {
-                        type: 'body-p1-regular',
-                        color: 'neutral-100',
-                        children: 'Read more',
-                      }),
-                    }),
-                  ],
-                },
-                e.name,
-              ),
+                  }),
+                ],
+              },
+              e.name,
             ),
-          }),
-        ],
+          ),
+        }),
       });
     }
   },
@@ -47552,9 +47494,8 @@
       s = n('6T2I'),
       u = n('B3q3'),
       c = n('WKca'),
-      l = n('uYtH'),
-      f = n('nKUr');
-    function d() {
+      l = n('nKUr');
+    function f() {
       var e = [
           { title: 'ID' },
           { title: 'Project name' },
@@ -47608,37 +47549,34 @@
           },
         ],
         n = () => {};
-      return Object(f['jsxs'])('div', {
+      return Object(l['jsxs'])('div', {
         className: o.a.EditLaunchPadWrapper,
         children: [
-          Object(f['jsx'])(s['a'], { children: 'Edit LaunchPad' }),
-          Object(f['jsxs'])('div', {
+          Object(l['jsx'])(s['a'], { children: 'Edit LaunchPad' }),
+          Object(l['jsxs'])('div', {
             className: o.a.EditLaunchPadTop,
             children: [
-              Object(f['jsx'])('div', {
+              Object(l['jsx'])('div', {
                 className: o.a.button,
-                children: Object(f['jsx'])(l['a'], {
-                  to: '/create-launchPad',
-                  children: Object(f['jsx'])(u['a'], {
-                    children: 'Add LaunchPad',
-                  }),
+                children: Object(l['jsx'])(u['a'], {
+                  children: 'Add LaunchPad',
                 }),
               }),
-              Object(f['jsx'])('div', {
+              Object(l['jsx'])('div', {
                 className: o.a.InputSearch,
-                children: Object(f['jsx'])(a['a'], {}),
+                children: Object(l['jsx'])(a['a'], {}),
               }),
             ],
           }),
-          Object(f['jsxs'])('div', {
+          Object(l['jsxs'])('div', {
             className: o.a.table,
             children: [
-              Object(f['jsxs'])('table', {
+              Object(l['jsxs'])('table', {
                 children: [
-                  Object(f['jsx'])('thead', {
+                  Object(l['jsx'])('thead', {
                     children: e.map((e, t) =>
-                      Object(f['jsx'])('th', {
-                        children: Object(f['jsx'])(r['a'], {
+                      Object(l['jsx'])('th', {
+                        children: Object(l['jsx'])(r['a'], {
                           type: 'body-p1-bold',
                           color: 'neutral-200',
                           children: e.title,
@@ -47646,62 +47584,62 @@
                       }),
                     ),
                   }),
-                  Object(f['jsx'])('tbody', {
+                  Object(l['jsx'])('tbody', {
                     children: t.map((e, t) =>
-                      Object(f['jsxs'])(
+                      Object(l['jsxs'])(
                         'tr',
                         {
                           children: [
-                            Object(f['jsx'])('th', {
-                              children: Object(f['jsx'])(r['a'], {
+                            Object(l['jsx'])('th', {
+                              children: Object(l['jsx'])(r['a'], {
                                 type: 'body-p1-regular',
                                 color: 'neutral-100',
                                 children: e.id,
                               }),
                             }),
-                            Object(f['jsx'])('th', {
-                              children: Object(f['jsx'])(r['a'], {
+                            Object(l['jsx'])('th', {
+                              children: Object(l['jsx'])(r['a'], {
                                 type: 'body-p1-regular',
                                 color: 'neutral-100',
                                 children: e.name,
                               }),
                             }),
-                            Object(f['jsx'])('th', {
-                              children: Object(f['jsx'])(r['a'], {
+                            Object(l['jsx'])('th', {
+                              children: Object(l['jsx'])(r['a'], {
                                 type: 'body-p1-regular',
                                 color: 'neutral-100',
                                 children: e.token,
                               }),
                             }),
-                            Object(f['jsx'])('th', {
-                              children: Object(f['jsx'])(r['a'], {
+                            Object(l['jsx'])('th', {
+                              children: Object(l['jsx'])(r['a'], {
                                 type: 'body-p1-regular',
                                 color: 'neutral-100',
                                 children: e.idoTime,
                               }),
                             }),
-                            Object(f['jsx'])('th', {
-                              children: Object(f['jsx'])(r['a'], {
+                            Object(l['jsx'])('th', {
+                              children: Object(l['jsx'])(r['a'], {
                                 type: 'body-p1-regular',
                                 color: 'neutral-100',
                                 children: e.upDateTime,
                               }),
                             }),
-                            Object(f['jsx'])('th', {
-                              children: Object(f['jsxs'])('div', {
+                            Object(l['jsx'])('th', {
+                              children: Object(l['jsxs'])('div', {
                                 className: o.a.groupAction,
                                 children: [
-                                  Object(f['jsx'])(u['a'], {
+                                  Object(l['jsx'])(u['a'], {
                                     type: 'action',
-                                    children: Object(f['jsx'])(r['a'], {
+                                    children: Object(l['jsx'])(r['a'], {
                                       type: 'body-p2-regular',
                                       color: 'neutral-100',
                                       children: 'Delete',
                                     }),
                                   }),
-                                  Object(f['jsx'])(u['a'], {
+                                  Object(l['jsx'])(u['a'], {
                                     type: 'action',
-                                    children: Object(f['jsx'])(r['a'], {
+                                    children: Object(l['jsx'])(r['a'], {
                                       type: 'body-p2-regular',
                                       color: 'neutral-100',
                                       children: 'Edit',
@@ -47718,9 +47656,9 @@
                   }),
                 ],
               }),
-              Object(f['jsx'])('div', {
+              Object(l['jsx'])('div', {
                 className: o.a.Pagination,
-                children: Object(f['jsx'])(c['a'], {
+                children: Object(l['jsx'])(c['a'], {
                   total: 10,
                   pageSize: 3,
                   onChange: n,
@@ -47731,7 +47669,7 @@
         ],
       });
     }
-    t['default'] = d;
+    t['default'] = f;
   },
   SFxW: function (e, t, n) {
     (function (e, t) {
@@ -48119,15 +48057,12 @@
   },
   TUjP: function (e, t, n) {
     e.exports = {
-      backgroundColor: 'backgroundColor___2N8Qr',
-      'color-global': 'color-global___22cxS',
       EditLaunchPadWrapper: 'EditLaunchPadWrapper___DrovO',
       EditLaunchPadTop: 'EditLaunchPadTop___1xKEm',
       button: 'button___1olzG',
       InputSearch: 'InputSearch___1QWoT',
       Pagination: 'Pagination___17QUu',
       groupAction: 'groupAction___21BTX',
-      table: 'table___2mdtO',
     };
   },
   TeRw: function (e, t, n) {
@@ -48684,25 +48619,27 @@
         ],
         n = () => {};
       return Object(h['jsxs'])('div', {
-        className: ''.concat(o.a.EditTokenWrapper, ' main'),
+        className: o.a.EditTokenWrapper,
         children: [
           Object(h['jsx'])(s['a'], { children: 'Edit Token in Staking Pools' }),
           Object(h['jsxs'])('div', {
-            className: 'header',
+            className: o.a.EditTokenTop,
             children: [
               Object(h['jsx'])('div', {
                 className: o.a.button,
                 children: Object(h['jsx'])(d['a'], {
                   to: '/create-token',
-                  children: Object(h['jsx'])(u['a'], { children: 'Add Token' }),
+                  children: Object(h['jsx'])(u['a'], {
+                    children: 'Add LaunchPad',
+                  }),
                 }),
               }),
               Object(h['jsx'])('div', {
-                className: 'InputSearch',
+                className: o.a.InputSearch,
                 children: Object(h['jsx'])(a['a'], {}),
               }),
               Object(h['jsx'])('div', {
-                className: 'filter',
+                className: o.a.filter,
                 children: Object(h['jsx'])(f.a, {
                   sx: { fontSize: 35, cursor: 'pointer' },
                 }),
@@ -48710,7 +48647,7 @@
             ],
           }),
           Object(h['jsxs'])('div', {
-            className: 'table',
+            className: o.a.table,
             children: [
               Object(h['jsxs'])('table', {
                 children: [
@@ -48768,7 +48705,7 @@
                             }),
                             Object(h['jsx'])('th', {
                               children: Object(h['jsxs'])('div', {
-                                className: 'groupAction',
+                                className: o.a.groupAction,
                                 children: [
                                   Object(h['jsx'])(u['a'], {
                                     type: 'action',
@@ -48798,7 +48735,7 @@
                 ],
               }),
               Object(h['jsx'])('div', {
-                className: 'Pagination',
+                className: o.a.Pagination,
                 children: Object(h['jsx'])(c['a'], {
                   total: 10,
                   pageSize: 3,
@@ -57607,6 +57544,10 @@
       backgroundColor: 'backgroundColor___3KqRU',
       'color-global': 'color-global___41XJq',
       ManageUserWrapper: 'ManageUserWrapper___100zq',
+      ManageUserTop: 'ManageUserTop___rnLpz',
+      InputSearch: 'InputSearch___wo5J5',
+      table: 'table___1Hxq5',
+      Pagination: 'Pagination___2J-N6',
     };
   },
   YESw: function (e, t, n) {
@@ -75188,7 +75129,11 @@
   r4o6: function (e, t, n) {
     e.exports = {
       EditTokenWrapper: 'EditTokenWrapper___1nkLw',
+      EditTokenTop: 'EditTokenTop___JZlO4',
       button: 'button___2VPLF',
+      InputSearch: 'InputSearch___1URIc',
+      Pagination: 'Pagination___2Bhph',
+      groupAction: 'groupAction___1sGYD',
     };
   },
   rEGp: function (e, t) {
