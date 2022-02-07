@@ -3,20 +3,20 @@ import Text from '../../components/Text';
 import styles from './index.less';
 import Menu, { SubMenu, Item as MenuItem } from 'rc-menu';
 import 'rc-menu/assets/index.css';
-import { Link } from 'umi';
+import { Link, useLocation } from 'umi';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
-import WorkIcon from '@mui/icons-material/Work';
-import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings';
+// import WorkIcon from '@mui/icons-material/Work';
+// import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings';
 import AccountBalanceWalletIcon from '@mui/icons-material/AccountBalanceWallet';
 import PaidIcon from '@mui/icons-material/Paid';
-import SettingsIcon from '@mui/icons-material/Settings';
+// import SettingsIcon from '@mui/icons-material/Settings';
 
 const linkSideBar = [
   {
     name: 'Dashboard',
     path: '/',
-    icon: <DashboardIcon />,
+    icon: <DashboardIcon className={styles.icon} />,
   },
   {
     name: 'Manage users',
@@ -81,9 +81,11 @@ const linkSideBar = [
   // },
 ];
 
-const onClick = () => {};
-
 function SideBar() {
+  const onClick = () => {};
+  const location = useLocation();
+  console.log('path', location.pathname);
+
   return (
     <div className={styles.SideBarWrapper}>
       <Menu mode="inline" onClick={onClick} className={styles.menuSideBar}>
@@ -96,7 +98,14 @@ function SideBar() {
                 title={
                   <div className={styles.menuItem}>
                     <div className={styles.icon}>{item?.icon}</div>
-                    <Text type="subheading-p1-regular" color="neutral-100">
+                    <Text
+                      type="subheading-p1-regular"
+                      color={`${
+                        location.pathname === item.path
+                          ? 'neutral-100'
+                          : 'neutral-200'
+                      }`}
+                    >
                       {item.name}
                     </Text>
                   </div>
@@ -106,7 +115,14 @@ function SideBar() {
                   return (
                     <MenuItem key={i.path}>
                       <Link to={i.path} key={i.path}>
-                        <Text type="subheading-p1-regular" color="neutral-100">
+                        <Text
+                          type="subheading-p1-regular"
+                          color={`${
+                            location.pathname === i.path
+                              ? 'neutral-100'
+                              : 'neutral-200'
+                          }`}
+                        >
                           {i.name}
                         </Text>
                       </Link>
@@ -124,7 +140,14 @@ function SideBar() {
                   className={styles.menuItem}
                 >
                   <div className={styles.icon}>{item?.icon}</div>
-                  <Text type="subheading-p1-regular" color="neutral-100">
+                  <Text
+                    type="subheading-p1-regular"
+                    color={`${
+                      location.pathname === item.path
+                        ? 'neutral-100'
+                        : 'neutral-200'
+                    }`}
+                  >
                     {item.name}
                   </Text>
                 </Link>

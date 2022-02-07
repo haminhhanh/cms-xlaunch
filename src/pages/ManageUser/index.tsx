@@ -7,6 +7,7 @@ import FilterListIcon from '@mui/icons-material/FilterList';
 import DoneIcon from '@mui/icons-material/Done';
 import CloseIcon from '@mui/icons-material/Close';
 import PaginationPage from '@/components/Pagination';
+import Filter from '@/components/Filter';
 
 function ManageUser() {
   const columns = [
@@ -74,7 +75,7 @@ function ManageUser() {
         </div>
 
         <div className={styles.filter}>
-          <FilterListIcon sx={{ fontSize: 35, cursor: 'pointer' }} />
+          <Filter />
         </div>
       </div>
       <div className={styles.table}>

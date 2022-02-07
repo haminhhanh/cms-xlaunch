@@ -18,5 +18,43 @@
     .headerAccount {
       float: right;
     }
+    .menuProfile {
+      z-index: 10;
+      :global {
+        .rc-menu-submenu {
+          .rc-menu-submenu-title {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+          }
+        }
+        .rc-menu-item-selected,
+        .rc-menu-item-active {
+          background: none;
+        }
+        .rc-menu-item-active,
+        .rc-menu-submenu-active > .rc-menu-submenu-title {
+          background: transparent;
+        }
+        .rc-menu-submenu > .rc-menu {
+          background: @neutral-300;
+          border-radius: 5px;
+        }
+        .rc-menu-submenu-selected {
+          background: none;
+        }
+        .rc-menu-item,
+        .rc-menu-submenu-title {
+          cursor: pointer;
+          padding: 10px 15px !important;
+        }
+
+        .rc-menu {
+          border: none;
+          box-shadow: none;
+          background: none;
+        }
+      }
+    }
   }
 }

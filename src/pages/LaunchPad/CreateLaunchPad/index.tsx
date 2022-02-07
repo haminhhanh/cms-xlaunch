@@ -5,10 +5,12 @@ import Text from '@/components/Text';
 import Input from '@/components/Input';
 import Button from '@/components/Button';
 import UploadImage from '@/components/UploadImage';
+import RCCalendar from '@/components/Calendar';
 
 function CreateLaunchPad() {
   return (
     <form className={styles.CreateLaunchPad}>
+      <RCCalendar />
       <Breadcrumb>Create LaunchPad</Breadcrumb>
       <Text
         type="subheading-p1-bold"
