@@ -1,12 +1,20 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Text from '@/components/Text';
 import styles from './index.less';
 import Breadcrumb from '@/components/Breadcrumb';
 import Button from '@/components/Button';
 import PaginationPage from '@/components/Pagination';
 import { Link } from 'umi';
+import useFetchData from '@/utils/hooks/api/get';
+import deleteData from '@/utils/hooks/api/delete';
 
 function EditSupportChain() {
+  const onChangePage = () => {};
+  const { isLoading, data: chainInfo } = useFetchData('chain');
+  const deleteChain = (id: any) => {
+    deleteData('chain', id);
+  };
+
   const columns = [
     {
       title: 'ID',
@@ -21,34 +29,6 @@ function EditSupportChain() {
       title: 'Actions',
     },
   ];
-  const dataListUser = [
-    {
-      id: '123',
-      network: '123455',
-      symbol: '1241414',
-    },
-    {
-      id: '123',
-      network: '123455',
-      symbol: '1241414',
-    },
-    {
-      id: '123',
-      network: '123455',
-      symbol: '1241414',
-    },
-    {
-      id: '123',
-      network: '123455',
-      symbol: '1241414',
-    },
-    {
-      id: '123',
-      network: '123455',
-      symbol: '1241414',
-    },
-  ];
-  const onChangePage = () => {};
   return (
     <div className={`${styles.EditSupportChain} main`}>
       <Breadcrumb>Edit Supported Chain</Breadcrumb>
@@ -73,27 +53,30 @@ function EditSupportChain() {
             })}
           </thead>
           <tbody>
-            {dataListUser.map((item, index) => {
+            {chainInfo.map((item: any, index: any) => {
               return (
                 <tr key={index}>
                   <th>
                     <Text type="body-p1-regular" color="neutral-100">
-                      {item.id}
+                      {item.chain_id}
                     </Text>
                   </th>
                   <th>
                     <Text type="body-p1-regular" color="neutral-100">
-                      {item.network}
+                      {item.chain_name}
                     </Text>
                   </th>
                   <th>
                     <Text type="body-p1-regular" color="neutral-100">
-                      {item.symbol}
+                      {item.chain_symbol}
                     </Text>
                   </th>
                   <th>
                     <div className="groupAction">
-                      <Button type="action">
+                      <Button
+                        type="action"
+                        onClick={() => deleteChain(item.id)}
+                      >
                         <Text type="body-p2-regular" color="neutral-100">
                           Delete
                         </Text>

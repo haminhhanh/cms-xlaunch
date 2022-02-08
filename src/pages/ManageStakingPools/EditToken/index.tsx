@@ -80,7 +80,7 @@ function EditToken() {
       <div className={styles.EditTokenTop}>
         <div className={styles.button}>
           <Link to="/create-token">
-            <Button>Add LaunchPad</Button>
+            <Button>Add Token</Button>
           </Link>
         </div>
         <div className={styles.InputSearch}>

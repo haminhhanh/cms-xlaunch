@@ -2,15 +2,37 @@
   margin: 0 auto;
 }
 .mainLayout {
-  .SideBar {
+  .SideBar,
+  .SideBarActive {
     position: fixed;
     top: 0;
     bottom: 0;
     left: 0;
     z-index: 100;
+    transition: padding-top 0.5s ease 0s, width 0.5s ease 0s;
+    transform: translate3d(0px, 0px, 0px);
+    overflow: hidden;
+    width: 0;
+  }
+  .SideBarActive {
+    overflow: initial;
     width: 350px;
   }
-  .LayoutContent {
+  .header {
+    position: relative;
+    .icon {
+      position: absolute;
+      border: none;
+      background: none;
+      top: 50%;
+      transform: translate(0, -50%);
+    }
+  }
+
+  .LayoutContentActive {
     margin-left: 350px;
+  }
+  .LayoutContent {
+    margin-left: 0;
   }
 }

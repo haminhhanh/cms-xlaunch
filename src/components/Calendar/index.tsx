@@ -1,17 +1,17 @@
 import React from 'react';
-import Calendar from 'rc-calendar';
 import classNames from 'classnames';
 import Text from '../Text';
 import styles from './index.less';
-import 'rc-calendar/assets/index.css';
-import enUS from 'rc-calendar/lib/locale/en_US';
+import DateTimePicker from 'react-datetime-picker';
+import 'react-datetime-picker/dist/DateTimePicker.css';
+import 'react-clock/dist/Clock.css';
 
 interface CalendarProps {
   className?: string;
   label?: string;
   disabled?: boolean;
   defaultChecked?: boolean;
-  value?: boolean;
+  value?: any;
   onChange?: (value: any) => void;
 }
 const RCCalendar = React.forwardRef((props: CalendarProps, ref: any) => {
@@ -20,7 +20,7 @@ const RCCalendar = React.forwardRef((props: CalendarProps, ref: any) => {
     label,
     disabled = false,
     defaultChecked = false,
-    value = false,
+    value,
     onChange,
     ...rest
   } = props;
@@ -29,12 +29,7 @@ const RCCalendar = React.forwardRef((props: CalendarProps, ref: any) => {
 
   return (
     <div className={styles.wrapper}>
-      <Calendar
-        dateInputPlaceholder="please input"
-        onChange={onChange}
-        locale={enUS}
-        showOk={true}
-      />
+      <DateTimePicker onChange={onChange} value={value} />
     </div>
   );
 });
